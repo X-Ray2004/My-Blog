@@ -1035,7 +1035,7 @@ SourceImage: C:\Users\Public\update_svc.exe
 TargetImage: C:\Windows\System32\lsass.exe
 GrantedAccess: 0x1010
 </code></pre></div>
-<p>و<code>0x1010</code> معناها قراءة من الميموري.. بالظبط.</p>
+<p>و <code>0x1010</code> معناها قراءة من الميموري.. بالظبط.</p>
 <p>طب إيه المسار دا كمان، <code>Public\update_svc.exe</code>؟ يعني Update process، ماشي، ممكن يكون فعلًا في update (فاكر جملتنا: اخلق مبررات؟).</p>
 <p>بس الي المفروض عارفينه: إيه خدمات الويندوز موجودة في مسارين، <code>System32</code> أو <code>System</code>.. إنما نلاقيه في Public path!</p>
 <p>طب جه منين <code>update_svc.exe</code>؟ هل ممكن اتحمل؟</p>
@@ -1077,7 +1077,8 @@ DMARC: Fail
 <p>فشل في كل بروتوكولات Mail reputation، بس عدّى لإن في مشكلة في rules الـ Mail Gateway.</p>
 <p>طيب، عايزين نعرف بالظبط آخر المايكرو دا إيه، عشان مرحلة الـ <strong>Eradication</strong> بعدين.</p>
 <p>هناخد الهاش بتاع المايكرو، نعمله <strong>Static Analysis</strong> (VT) و<strong>Dynamic Analysis</strong> (Hybrid أو Any.run).</p>
-<p>هنلاقي انه بيحمّل بايلود من الـ IP الخارجي الي شوفناه في الأول، وكمان بيعمل <strong>Scheduled Task</strong>.</p>
+<p>هنلاقي انه بيحمّل بايلود من الـ IP الخارجي الي شوفناه في الأول، وكمان بيعمل <strong>Scheduled Task</strong>.
+**متنسوش مسح الميل من السيرفر (mail getway) طبعا **</p>
 <hr />
 <h2 id="persistence">الـ Persistence<a class="headerlink" href="#persistence" title="Permanent link">&para;</a></h2>
 <p>نسيرش بـ <code>Event ID: 4698</code> (Schedule Task) كدا في اللوجز، لقينا فعلًا حاجة:</p>

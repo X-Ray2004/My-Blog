@@ -1,5 +1,5 @@
 (function () {
-  const FRAME_SIZE = 40; // عدّليها لو مقاس صورك مختلف
+  const FRAME_SIZE = 45; // عدّليها لو مقاس صورك مختلف
   const BASE_PATH = "/My-Blog/assets/bat/";
 
   const idleFrames = [
@@ -30,7 +30,7 @@
 
   // إعدادات الحركة - زي oneko بالظبط
   const STEP_SIZE = 8;          // مسافة كل "خطوة طيران" بالبكسل - أقل = حركة أنعم لكن لسه بالقطعة
-  const TICK_INTERVAL = 130;    // كل قد إيه (مللي ثانية) بتتحرك خطوة - أكبر = أهدأ وأبطأ
+  const TICK_INTERVAL = 110;    // كل قد إيه (مللي ثانية) بتتحرك خطوة - أكبر = أهدأ وأبطأ
   const STOP_DISTANCE = 45;     // يوقف لما يكون على بعد المسافة دي من المؤشر
   const OFFSET_X = -30;         // يقف على بعد المسافة دي يمين/شمال المؤشر (مش فوقه)
   const OFFSET_Y = 10;          // يقف تحت المؤشر شوية
