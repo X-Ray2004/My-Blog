@@ -125,7 +125,7 @@
     nekoEl.style.top = `${nekoPosY - 16}px`;
     nekoEl.style.zIndex = 2147483647;
 
-    nekoEl.style.backgroundImage = "url('/javascripts/oneko.gif')";
+    nekoEl.style.backgroundImage = "url('./javascripts/oneko.gif')";
     
     document.body.appendChild(nekoEl);
 
