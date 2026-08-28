@@ -7,6 +7,7 @@ theme:
   name: material
   language: ar
   direction: rtl
+  favicon: assets/favicon.png
   palette:
     - scheme: slate
       toggle:
@@ -28,6 +29,7 @@ theme:
     - search.suggest
     - search.highlight
     - content.code.copy
+  
 
 nav:
   - Home: index.md
@@ -50,6 +52,7 @@ markdown_extensions:
   - pymdownx.superfences
   - pymdownx.highlight
   - tables
+  - attr_list
   - toc:
       permalink: true
 

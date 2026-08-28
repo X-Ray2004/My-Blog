@@ -19,14 +19,14 @@
 .md-typeset details {
   border-color: #5b3a7a;
 }
-.md-typeset .md-button {
+
+.md-button {
   color: #ffffff !important;
-  background-color: #5b3a7a !important;
-  border-color: #5b3a7a !important;
+  background-color: #5b3a7a;  /* موف غامق زي باقي الموقع */
+  border-color: #5b3a7a;
 }
 
-.md-typeset .md-button:hover {
-  background-color: #7d5aa6 !important;
-  border-color: #7d5aa6 !important;
-  color: #ffffff !important;
+.md-button:hover {
+  background-color: #7d5aa6;
+  border-color: #7d5aa6;
 }
