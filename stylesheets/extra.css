@@ -1,0 +1,21 @@
+/* الوضع الداكن - الأساسي */
+[data-md-color-scheme="slate"] {
+  --md-default-bg-color: #2b2d31;        /* رمادي غامق للخلفية */
+  --md-default-fg-color: #d4d4d8;        /* رمادي فاتح للنصوص */
+  --md-primary-fg-color: #1b2838;        /* أزرق غامق - الهيدر والنافبار */
+  --md-primary-bg-color: #e5e5e5;
+  --md-accent-fg-color: #5b3a7a;         /* موف غامق - اللينكات والهوفر */
+  --md-typeset-a-color: #7d5aa6;         /* موف أفتح شوية للينكات جوه النص */
+}
+
+/* الوضع الفاتح */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color: #1b2838;
+  --md-accent-fg-color: #5b3a7a;
+}
+
+/* تحسين شكل الكروت والـ admonitions */
+.md-typeset .admonition,
+.md-typeset details {
+  border-color: #5b3a7a;
+}
