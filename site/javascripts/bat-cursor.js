@@ -1,5 +1,5 @@
 (function () {
-  const FRAME_SIZE = 32; // عدّليها لو مقاس صورك مختلف
+  const FRAME_SIZE = 40; // عدّليها لو مقاس صورك مختلف
   const BASE_PATH = "/My-Blog/assets/bat/";
 
   const idleFrames = [
