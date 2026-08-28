@@ -75,7 +75,7 @@
       batY += Math.sin(angle) * step;
 
       if (Math.abs(dx) > 2) {
-        facingLeft = dx < 0;
+        facingLeft = dx > 0;
       }
 
       frameIndex = (frameIndex + 1) % flyFrames.length;
