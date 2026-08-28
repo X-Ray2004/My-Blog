@@ -1,42 +1,48 @@
 site_name: VampireXRAY Blog
 site_description: Just My Articles
 site_author: ReemKhalid
-site_url: https://github.com/X-Ray2004/My-Blog.git
+site_url: https://x-ray2004.github.io/My-Blog/
 
 theme:
   name: material
-  language: ar                    # العربية + RTL تلقائي
+  language: ar
   direction: rtl
   palette:
-    - scheme: default
-      primary: indigo
-      accent: indigo
-      toggle:
-        icon: material/brightness-7
-        name: Dark Mode
     - scheme: slate
-      primary: indigo
-      accent: indigo
       toggle:
         icon: material/brightness-4
-        name: Light Mode
+        name: الوضع الفاتح
+    - scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: الوضع الداكن
+  font:
+    text: Cairo
+    code: Roboto Mono
+  icon:
+    logo: material/bat
   features:
     - navigation.tabs
     - navigation.sections
-    - navigation.expand
     - navigation.top
     - search.suggest
     - search.highlight
     - content.code.copy
 
 nav:
-  - FirstPage: index.md
-  - Arabic Version Articles:
-    - INCIDENT_1: Arabic/INCIDENT_1_VampireXRAY.md
-    - مقال 2: Arabic/article2.md
-  - English Articles:
-    - INCIDENT_1: English/(2).md
-    - Article 2: English/article2.md
+  - Home: index.md
+  - CVE Analysis:
+    - Overview: cve/index.md
+    - CVE-2024-XXXX: cve/cve-2024-xxxx.md
+  - Book Summaries:
+    - Overview: books/index.md
+    - Book Name: books/book-name.md
+  - SOC Reports:
+    - Overview: soc/index.md
+    - Report Name: soc/report-name.md
+  - CTF Writeups:
+    - Overview: ctf/index.md
+    - CTF Name: ctf/ctf-name.md
 
 markdown_extensions:
   - admonition
@@ -54,5 +60,11 @@ extra:
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/reem-khalid-818b83250/
 
+extra_css:
+  - stylesheets/extra.css
+
 extra_javascript:
-  - javascripts/oneko.js
+  - javascripts/bat-cursor.js
+
+plugins:
+  - search

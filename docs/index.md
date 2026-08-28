@@ -1,17 +1,17 @@
-# Welcome to MkDocs
+---
+title: الرئيسية
+---
 
-For full documentation visit [mkdocs.org](https://www.mkdocs.org).
+# مرحباً بيكم في VampireXRAY Blog 🦇
 
-## Commands
+أنا ريم خالد، وهنا بكتب عن [احتوايح Incident Response / الأمن السيبراني - عدّلي حسب مجالك الفعلي].
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
+## أحدث المقالات
 
-## Project layout
+- [الحادثة الأولى (عربي)](Arabic/INCIDENT_1_VampireXRAY.md)
+- [Incident 1 (English)](English/(2).md)
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+## تابعوني
+
+[X (تويتر)](https://x.com/VampireXray){ .md-button }
+[LinkedIn](https://www.linkedin.com/in/reem-khalid-818b83250/){ .md-button }
