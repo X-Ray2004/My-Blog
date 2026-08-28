@@ -52,8 +52,8 @@
     const distance = Math.sqrt(dx * dx + dy * dy);
 
     // حركة ناعمة (lag)
-    batX += dx * 0.12;
-    batY += dy * 0.12;
+    batX += dx * 0.04;
+    batY += dy * 0.04;
 
     if (dx !== 0) {
       facingLeft = dx < 0;
