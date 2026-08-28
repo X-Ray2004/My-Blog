@@ -1,0 +1,58 @@
+site_name: VampireXRAY Blog
+site_description: Just My Articles
+site_author: ReemKhalid
+site_url: https://github.com/X-Ray2004/My-Blog.git
+
+theme:
+  name: material
+  language: ar                    # العربية + RTL تلقائي
+  direction: rtl
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Dark Mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Light Mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+
+nav:
+  - FirstPage: index.md
+  - Arabic Version Articles:
+    - INCIDENT_1: Arabic/INCIDENT_1_VampireXRAY.md
+    - مقال 2: Arabic/article2.md
+  - English Articles:
+    - INCIDENT_1: English/(2).md
+    - Article 2: English/article2.md
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight
+  - tables
+  - toc:
+      permalink: true
+
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://x.com/VampireXray
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/reem-khalid-818b83250/
+
+extra_javascript:
+  - javascripts/oneko.js
