@@ -7,6 +7,12 @@ hide:
 # Reem Khalid (VampireXRAY)
 I am Reem, a cybersecurity analyst specializing in malware analysis and threat detection. I created this blog to share technical insights, reverse engineering research, and practical security expertise
 
+
+# My Youtube Playlists
+[Deeping Into Low Level Playlist](https://www.youtube.com/watch?v=SGYDFqN2sWY&list=PLROtB4crt8KA){ .hero-link }
+
+[LetsDefend Investigation Sol.](https://www.youtube.com/watch?v=IokANqADTH8&list=PL_muQVGmgM2HXNbfuvZMqaLSfsjylXz5J){ .hero-link }
+
 <div class="rtl-content" markdown>
 
 # ريم خالد (VampireXRAY)
