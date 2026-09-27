@@ -979,10 +979,10 @@
 <p>"Suspicious PowerShell execution — the process used the <code>-EncodedCommand</code> parameter"</p>
 </blockquote>
 <p>And the machine the alert came from belongs to a sales employee named <strong>Ahmed</strong>.</p>
-<p>Who is Ahmed closing a four-million-pound deal with at 2 AM? 😅</p>
+<p>Who is Ahmed closing a four-million-pound deal with at 2 AM? </p>
 <p>Let me think about this logically first: the time alone is already suspicious. Second, even if — hypothetically, for whatever reason — the employee was working, why would he have PowerShell access in the first place? Normally that's a locked-down privilege for a regular user.</p>
 <p>But wait, couldn't this be an <strong>IT Admin</strong> on a night shift making a change on a machine? Some of them are allowed to use PowerShell normally, right?</p>
-<p>Are you defending him now? 😂</p>
+<p>Are you defending him now? </p>
 <p>This brings us to the most important principle in the world of crime in general: <strong>the accused is innocent until proven guilty.</strong></p>
 <p>Even in the SOC? <strong>Even in the SOC.</strong></p>
 <p>Bottom line, the sentence that sums up the entire SOC field:</p>
@@ -1007,7 +1007,7 @@
 <p>Hold on — didn't we say this could be an IT admin logging in remotely, normal stuff?</p>
 <p>Well, if it's IT, the IP should be known, right? And they should've logged into this machine at least once before?</p>
 <p>Search on the SIEM — we found an internal IP that did log onto the machine, <strong>but with no prior history of ever connecting to this employee's machine.</strong></p>
-<p>Search that IP in the EDR — turns out it belongs to a completely different sales employee's machine! (Now we're all in 😂)</p>
+<p>Search that IP in the EDR — turns out it belongs to a completely different sales employee's machine! (Now we're all in )</p>
 <p><strong>Containment</strong> is triggered immediately for the entire sales VLAN — we've confirmed there's unauthorized <strong>lateral movement</strong>.</p>
 <p>At some SOCs, an L1 analyst escalates here and their job on this case ends.</p>
 <p>But what if we keep going?</p>

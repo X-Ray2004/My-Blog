@@ -1,17 +1,15 @@
 ---
-title: الرئيسية
+hide:
+  - navigation
+  - toc
+  - path
 ---
 
-# مرحباً بيكم في VampireXRAY Blog 🦇
+# ريم خالد
 
-أنا ريم خالد، وهنا بكتب عن [احتوايح Incident Response / الأمن السيبراني - عدّلي حسب مجالك الفعلي].
+باحثة أمن سيبراني، مهتمة بتحليل البرمجيات الخبيثة (Malware Analysis) وتمارين الـCTF.
+بكتب هنا تقارير تقنية وتحليلات لتهديدات وثغرات حقيقية.
 
-## أحدث المقالات
+مقيمة في مصر.
 
-- [الحادثة الأولى (عربي)](Arabic/INCIDENT_1_VampireXRAY.md)
-- [Incident 1 (English)](English/(2).md)
-
-## تابعوني
-
-[X (تويتر)](https://x.com/VampireXray){ .md-button }
-[LinkedIn](https://www.linkedin.com/in/reem-khalid-818b83250/){ .md-button }
+[GitHub](https://github.com/...) · [LinkedIn](https://linkedin.com/in/...) · [X (تويتر)](https://x.com/VampireXray)

@@ -5,18 +5,18 @@ site_url: https://x-ray2004.github.io/My-Blog/
 
 theme:
   name: material
-  language: ar
-  direction: rtl
+  language: en
+  direction: ltr
   favicon: assets/favicon.png
   palette:
     - scheme: slate
       toggle:
         icon: material/brightness-4
-        name: الوضع الفاتح
+        name: Light mode
     - scheme: default
       toggle:
         icon: material/brightness-7
-        name: الوضع الداكن
+        name: Dark mode
   font:
     text: Cairo
     code: Roboto Mono
@@ -26,35 +26,49 @@ theme:
     - navigation.tabs
     - navigation.sections
     - navigation.top
+    - navigation.footer
+    - navigation.indexes        # يخلي صفحة "Overview" هي index لكل قسم بشكل صحيح
     - search.suggest
     - search.highlight
     - content.code.copy
-  
+    - content.tabs.link
+    - toc.follow                # الـTOC يتحرك مع القراءة زي المدونة اللي بعتيها
 
 nav:
   - Home: index.md
-  - CVE Analysis:
-    - Overview: cve/index.md
-    - CVE-2024-XXXX: cve/cve-2024-xxxx.md
-  - Book Summaries:
-    - Overview: books/index.md
-    - Book Name: books/book-name.md
-  - SOC Reports:
-    - Overview: soc/index.md
-    - Report Name: soc/report-name.md
-  - CTF Writeups:
-    - Overview: ctf/index.md
-    - CTF Name: ctf/ctf-name.md
+  - CVE Analysis: cve/index.md
+  - Summaries:
+      - Overview: books/index.md
+      - SansSEC450-Notes:
+          - Overview: books/SansSEC450-Notes/index.md
+          - Chapter 1: books/SansSEC450-Notes/chapter-1.md
+          - Chapter 2: books/SansSEC450-Notes/chapter-2.md
+          - Chapter 3: books/SansSEC450-Notes/chapter-3.md
+          - Chapter 4: books/SansSEC450-Notes/chapter-4.md
+          - Chapter 5: books/SansSEC450-Notes/chapter-5.md
+      - SansSEC450-Notes2:
+          - Overview: books/SansSEC450-Notes2/index.md
+          - Chapter 1: books/SansSEC450-Notes2/chapter-1.md
+          - Chapter 2: books/SansSEC450-Notes2/chapter-2.md
+          - Chapter 3: books/SansSEC450-Notes2/chapter-3.md
+          - Chapter 4: books/SansSEC450-Notes2/chapter-4.md
+          - Chapter 5: books/SansSEC450-Notes2/chapter-5.md
+  - SOC Reports: soc/index.md
+  - CTF Writeups: ctf/index.md
+  - Other: other/index.md
 
 markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
   - pymdownx.highlight
+  - pymdownx.tabbed:
+      alternate_style: true
   - tables
   - attr_list
+  - md_in_html
   - toc:
-      permalink: true
+      toc_depth: 3
 
 extra:
   social:
@@ -71,3 +85,43 @@ extra_javascript:
 
 plugins:
   - search
+  - blog:
+      blog_dir: cve
+      archive: false
+      blog_toc: false
+      post_readtime: true
+      post_date_format: full
+      pagination_per_page: 5
+  - blog:
+      blog_dir: books
+      archive: false
+      blog_toc: false
+      post_readtime: true
+      post_date_format: full
+      pagination_per_page: 5
+  - blog:
+      blog_dir: soc
+      archive: false
+      blog_toc: false
+      post_readtime: true
+      post_date_format: full
+      pagination_per_page: 5
+  - blog:
+      blog_dir: ctf
+      archive: false
+      blog_toc: false
+      post_readtime: true
+      post_date_format: full
+      pagination_per_page: 5
+  - blog:
+      blog_dir: other
+      archive: false
+      blog_toc: false
+      post_readtime: true
+      post_date_format: full
+      pagination_per_page: 5
+  - git-revision-date-localized:
+      type: date
+      locale: en
+      fallback_to_build_date: true
+  - glightbox        # lightbox للصور/screenshots في تقارير الـCTF والـSOC
