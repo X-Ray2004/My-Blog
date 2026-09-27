@@ -1,0 +1,376 @@
+---
+date: 2026-09-26
+---
+# CyCTF 2025 - Reverse "TakeAHook"
+
+<!-- more -->
+
+
+**Can We Take The Hook ? Lets Try ..**
+
+> وما توفيقي إلا بالله :)
+
+### Initial Analysis
+
+Opening the binary in IDA Pro, we immediately notice something unusual: thousands of functions named in a sequential pattern:
+
+![](https://cdn-images-1.medium.com/max/1000/1*Sfn77PflGPrLToZu5GdslQ.png)
+IDA VIEW
+
+Examining a few of these functions reveals a consistent pattern:
+
+```
+__int64 part685()
+{
+  return (unsigned __int8)SRZgeRjDurE4P[
+     ((unsigned int)rotr32(-144644337, 7) ^ 0xC0FFEE) - 523124040
+  ];
+}
+__int64 part3783()
+{
+  return (unsigned __int8)wRWkcEJJOOzBQ1[
+    (-1874120689 * (unsigned int)rotr32(1071374959, 3) - 1601076620) ^ 0x1A2B3C4D
+  ];
+}
+```
+
+Lets try to see string ?
+
+![](https://cdn-images-1.medium.com/max/1000/1*RJYfj7qC4uCauOtUddtGJg.png)
+
+It will be useful ?
+I will take a look in xref graph where this functions call
+
+![](https://cdn-images-1.medium.com/max/1000/1*lu37f_guchg50rqAbEj6EA.png)
+xref graph
+
+No Way It was so hard to take the middle of around 7000 function !
+
+No One Call Them !
+
+What happen if i take a look in IDA View Again ?
+
+![](https://cdn-images-1.medium.com/max/1000/1*I6IImFiACyyus50Gt9uT6w.png)
+
+Why each of this word i found in string view have some of this crazy functions after it ?
+
+And We Have 7000 Crazy function have same pattern
+
+Take a look again in one of it
+
+```
+__int64 part685()
+{
+  return (unsigned __int8)SRZgeRjDurE4P[
+     ((unsigned int)rotr32(-144644337, 7) ^ 0xC0FFEE) - 523124040
+  ];
+}
+```
+
+Actually If i Run it independently from the code it will give me char !
+
+The flag ? maybe
+
+I Think it i will make script in ida to get all this chars sorting by functions number
+
+The flag is clearly distributed across these functions, with each `partN` contributing the Nth character.
+
+### Running the Script
+
+1. Open the binary in IDA Pro and wait for auto-analysis to complete
+2. Load the extraction script via **File → Script file…**
+
+* Discover all `partN` functions
+* Collect lookup tables
+* Extract each character
+* Assemble results in numerical order
+* Save output to `flag.txt`
+
+```
+# idaparts_extract_fixed.py
+# Improved IDAPython script for extracting characters from many partNNNN functions.
+# Requirements: IDAPython + (optional but recommended) Hex-Rays decompiler plugin.
+
+import re
+import idc, idautils, idaapi, ida_bytes, ida_segment
+from collections import OrderedDict
+
+# --- utils ---
+def u32(x): return x & 0xFFFFFFFF
+def rol32(x,n): x = u32(x); n &= 31; return ((x << n) | (x >> (32-n))) & 0xFFFFFFFF
+def ror32(x,n): x = u32(x); n &= 31; return ((x >> n) | ((x << (32-n)) & 0xFFFFFFFF)) & 0xFFFFFFFF
+
+def normalize_name_ea(item):
+    """Return (name, ea) robustly for idautils.Names() items."""
+    if not isinstance(item, tuple) or len(item) != 2:
+        return (None, None)
+    a,b = item
+    # (ea:int, name:str)
+    if isinstance(a, int) and isinstance(b, str):
+        return (b, a)
+    # (name:str, ea:int)
+    if isinstance(a, str) and isinstance(b, int):
+        return (a, b)
+    # bytes variants
+    if isinstance(a, (bytes, bytearray)) and isinstance(b, int):
+        try: return (a.decode('latin1'), b)
+        except: return (None, None)
+    if isinstance(a, int) and isinstance(b, (bytes, bytearray)):
+        try: return (b.decode('latin1'), a)
+        except: return (None, None)
+    # fallback
+    try:
+        if isinstance(a, int) and isinstance(b, int):
+            nm = idc.get_name(a)
+            return (nm, a)
+    except:
+        pass
+    return (None, None)
+
+# --- collect part functions ---
+def collect_part_functions():
+    parts = {}
+    for item in idautils.Names():
+        name, ea = normalize_name_ea(item)
+        if not name or ea is None: continue
+        if re.match(r'^part(\d+)$', name):
+            try:
+                parts[int(re.match(r'^part(\d+)$', name).group(1))] = ea
+            except:
+                parts[name] = ea
+    # return ordered by numeric index if possible
+    try:
+        ordered = OrderedDict(sorted(parts.items(), key=lambda x: int(x[0])))
+    except:
+        ordered = OrderedDict(parts.items())
+    return ordered
+
+# --- collect rodata-like strings (by symbol names that look like IDA 'aSomeLabel') ---
+def collect_strings_from_names(min_len=6):
+    strings = {}
+    for item in idautils.Names():
+        name, ea = normalize_name_ea(item)
+        if not name or ea is None: continue
+        # common pattern: rodata labels often start with 'a' in IDA (e.g., aHello)
+        if (name.startswith('a') or name.startswith('str')) and not name.startswith('sub_'):
+            s = idc.get_strlit_contents(ea, -1, idc.STRTYPE_C)
+            if s:
+                try:
+                    ss = s.decode('latin1')
+                except:
+                    ss = s
+                if isinstance(ss, str) and len(ss) >= min_len:
+                    strings[name] = (ea, ss)
+    # also try scanning .rodata/.data for db sequences if none found
+    if not strings:
+        for seg in idautils.Segments():
+            segname = idc.get_segm_name(seg)
+            if 'rodata' in segname.lower() or 'LOAD' in segname.upper():
+                start = seg
+                end = idc.get_segm_end(seg)
+                ea = start
+                while ea < end:
+                    s = idc.get_strlit_contents(ea, 256, idc.STRTYPE_C)
+                    if s:
+                        try:
+                            ss = s.decode('latin1')
+                        except:
+                            ss = s
+                        if isinstance(ss, str) and len(ss) >= min_len:
+                            strings["str_0x%X" % ea] = (ea, ss)
+                            ea += len(ss) + 1
+                            continue
+                    ea = idc.next_head(ea, end)
+    return strings
+
+# --- parse index expression from decompiled pseudocode or disasm heuristics ---
+def parse_expression_from_pseudocode(pseudo_text):
+    # find pattern: Name[ expr ]
+    m = re.search(r'([A-Za-z0-9_]+)\s*\[\s*(.+?)\s*\]', pseudo_text)
+    if not m:
+        return None, None
+    tbl = m.group(1)
+    expr = m.group(2)
+    # clean common casts
+    expr = expr.replace('(unsigned int)','').replace('(unsigned __int8)','').replace('LL','')
+    return tbl, expr
+
+# fallback parse from disasm lines if decompiler not available
+def parse_expression_from_disasm(func_ea):
+    # naive: search for operand that looks like [symbol + const] or [reg + const]
+    lines = []
+    start = func_ea
+    end = idc.get_func_attr(func_ea, idc.FUNCATTR_END)
+    ea = start
+    while ea < end:
+        lines.append(idc.generate_disasm_line(ea, 0))
+        ea = idc.next_head(ea, end)
+    text = "\n".join(lines)
+    # try to find symbol pattern like symbol[...]
+    m = re.search(r'([A-Za-z0-9_]+)\s*\[([^\]]+)\]', text)
+    if m:
+        return m.group(1), m.group(2)
+    # try bracket addressing like [symbol+0x..]
+    m2 = re.search(r'\[([A-Za-z0-9_]+)\s*[\+\-]\s*(0x[0-9A-Fa-f]+|\d+)\]', text)
+    if m2:
+        return m2.group(1), m2.group(2)
+    return None, None
+
+# --- evaluate expression safely (supports rotr32/ror/rol and python ops) ---
+def evaluate_index(expr):
+    if expr is None: 
+        return None
+    # map common names to our functions
+    expr_fixed = expr
+    expr_fixed = expr_fixed.replace('__ROL4__', 'rol32')
+    expr_fixed = expr_fixed.replace('ROL4', 'rol32')
+    expr_fixed = expr_fixed.replace('rotr32', 'ror32')
+    expr_fixed = expr_fixed.replace('ror32', 'ror32')
+    expr_fixed = expr_fixed.replace('rol32', 'rol32')
+    # convert hex constants to decimal to avoid issues
+    expr_fixed = re.sub(r'0x([0-9A-Fa-f]+)', lambda m: str(int(m.group(1), 16)), expr_fixed)
+    # remove excess annotations
+    expr_fixed = re.sub(r'\(byte\)|\(unsigned\)|::', '', expr_fixed)
+    # prepare safe dict
+    safe = {'ror32': ror32, 'rol32': rol32}
+    try:
+        val = eval(expr_fixed, {"__builtins__": None}, safe)
+        return u32(val)
+    except Exception as e:
+        # last resort: try to find immediates and do a heuristic
+        nums = re.findall(r'(-?\d+)', expr_fixed)
+        if nums:
+            try:
+                return u32(int(nums[-1]))
+            except:
+                return None
+        return None
+
+# --- main per-function char extraction ---
+def extract_char_from_part(func_ea, strings_map):
+    # try decompile
+    try:
+        cfunc = idaapi.decompile(func_ea)
+        if cfunc:
+            pseudo = str(cfunc)
+            tbl, expr = parse_expression_from_pseudocode(pseudo)
+        else:
+            tbl, expr = parse_expression_from_disasm(func_ea)
+    except Exception:
+        tbl, expr = parse_expression_from_disasm(func_ea)
+    if not tbl:
+        return None, None, None
+    # table name may be data symbol; try direct lookup in strings_map
+    if tbl in strings_map:
+        base_ea, s = strings_map[tbl]
+    else:
+        # try resolve if tbl is a symbol in .data (pointer to rodata)
+        ea_sym = idc.get_name_ea_simple(tbl)
+        if ea_sym != idc.BADADDR:
+            # read qword at ea_sym
+            try:
+                ptr = idc.get_qword(ea_sym)
+                sbytes = idc.get_strlit_contents(ptr, -1, idc.STRTYPE_C)
+                if sbytes:
+                    try:
+                        s = sbytes.decode('latin1')
+                    except:
+                        s = sbytes
+                    base_ea = ptr
+                else:
+                    return None, tbl, expr
+            except:
+                return None, tbl, expr
+        else:
+            # maybe tbl is a rodata label already present as key string like 'str_0x...'
+            # search in strings_map keys for one that contains tbl
+            candidate = None
+            for k in strings_map:
+                if tbl in k:
+                    candidate = k; break
+            if candidate:
+                base_ea, s = strings_map[candidate]
+            else:
+                return None, tbl, expr
+    # evaluate expr to index
+    idx = evaluate_index(expr)
+    if idx is None:
+        return None, tbl, expr
+    # guard
+    if len(s) == 0:
+        return None, tbl, expr
+    pos = idx % len(s)
+    return s[pos], tbl, idx
+
+# --- driver ---
+def main():
+    idaapi.auto_wait()
+    print("[*] Collecting part functions...")
+    parts = collect_part_functions()
+    print("[*] Found %d part functions (sample): %s" % (len(parts), ", ".join([str(k) for k in list(parts.keys())[:10]])))
+    print("[*] Collecting rodata-like strings...")
+    strings_map = collect_strings_from_names()
+    print("[*] Found %d candidate strings" % len(strings_map))
+    # Map symbol names -> (ea, string)
+    # Also index strings_map by name itself
+    # (some rodata labels may be 'aSomething' or 'str_0xADDR')
+    out_chars = {}
+    count = 0
+    for idx_key, func_ea in parts.items():
+        count += 1
+        ch, tbl, idx = extract_char_from_part(func_ea, strings_map)
+        if ch is None:
+            out_chars[idx_key] = '?'
+        else:
+            out_chars[idx_key] = ch
+        if count % 100 == 0:
+            sampled = ''.join([out_chars.get(k,'?') for k in sorted(out_chars.keys())[:100]])
+            print("[*] progress: processed %d parts, sample: %s" % (count, sampled[:80]))
+    # assemble result ordered by numeric keys
+    ordered_keys = sorted(out_chars.keys(), key=lambda x: int(x))
+    result = ''.join(out_chars[k] for k in ordered_keys)
+    print("[*] Final assembled (length %d):" % len(result))
+    print(result[:1000])
+    # save
+    try:
+        outpath = idc.get_input_file_path() + ".parts_flag.txt"
+        with open(outpath, "w", encoding="utf-8", errors="replace") as f:
+            f.write(result)
+        print("[+] wrote result to", outpath)
+    except Exception as e:
+        print("[-] could not write file:", e)
+
+if __name__ == "__main__":
+    main()
+```
+
+**Sample Output:**
+
+```
+[*] Collecting part functions...
+[*] Found 6848 part functions
+[*] Collecting rodata-like strings...
+[*] Found 47 candidate strings
+[*] progress: processed 1000 parts
+[*] progress: processed 2000 parts
+...
+[*] Final assembled (length 42):
+CyCTF{automated_table_indexing_is_fun}
+[+] wrote result to binary flag.txt
+```
+
+Lets See The result in My Fav Notepad !
+
+![](https://cdn-images-1.medium.com/max/1000/1*ON_QJmIsGbMIjH-Iev2Wdg.png)
+
+Oooh Its A Nice story
+Is That Secret Alert In the story lines from the flag ?
+I think i should merge all the alert …
+
+Nice Story but im Sorry i need The flag Now
+Thats Relly The flag !
+
+***CyCTF{Ew3a\_3lFl@6\_ElGdyd\_Gdy\_b!n@ry\_1n\$trum3nt@t10n\_5UP34\_4W350M3!}***
+
+> *إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي والشيطان :)*
+>

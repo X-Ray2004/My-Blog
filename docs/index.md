@@ -4,12 +4,16 @@ hide:
   - toc
   - path
 ---
+# Reem Khalid (VampireXRAY)
+I am Reem, a cybersecurity analyst specializing in malware analysis and threat detection. I created this blog to share technical insights, reverse engineering research, and practical security expertise
 
-# ريم خالد
+<div class="rtl-content" markdown>
 
-باحثة أمن سيبراني، مهتمة بتحليل البرمجيات الخبيثة (Malware Analysis) وتمارين الـCTF.
-بكتب هنا تقارير تقنية وتحليلات لتهديدات وثغرات حقيقية.
+# ريم خالد (VampireXRAY)
+عاملين اي انا ريم, 
+Soc Analyst - Malware Analyst
+و Content Creator على الضيق 
+بشارك في البلوج كل حاجه بحسها ممكن تفيد حد على قدر علمي المحدود وبس كدا !
+</div>
 
-مقيمة في مصر.
-
-[GitHub](https://github.com/...) · [LinkedIn](https://linkedin.com/in/...) · [X (تويتر)](https://x.com/VampireXray)
+[LinkedIn](https://linkedin.com/in/...) · [Youtube](https://www.youtube.com/@VampireXRay/playlists) . [Meduim](https://medium.com/@VampireXRay) . [GitHub](https://github.com/X-Ray2004) · [X (تويتر)](https://x.com/VampireXray)

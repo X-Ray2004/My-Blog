@@ -46,13 +46,18 @@ nav:
           - Chapter 3: books/SansSEC450-Notes/chapter-3.md
           - Chapter 4: books/SansSEC450-Notes/chapter-4.md
           - Chapter 5: books/SansSEC450-Notes/chapter-5.md
-      - SansSEC450-Notes2:
-          - Overview: books/SansSEC450-Notes2/index.md
-          - Chapter 1: books/SansSEC450-Notes2/chapter-1.md
-          - Chapter 2: books/SansSEC450-Notes2/chapter-2.md
-          - Chapter 3: books/SansSEC450-Notes2/chapter-3.md
-          - Chapter 4: books/SansSEC450-Notes2/chapter-4.md
-          - Chapter 5: books/SansSEC450-Notes2/chapter-5.md
+      - Cloud Fundamentals AWS:
+          - Overview: books/cloud/index.md
+          - Chapter 1: books/cloud/chapter-1.md
+          - Chapter 2: books/cloud/chapter-2.md
+          - Chapter 3: books/cloud/chapter-3.md
+          - Chapter 4: books/cloud/chapter-4.md
+          - Chapter 5: books/cloud/chapter-5.md
+          - Chapter 6: books/cloud/chapter-6.md
+          - Chapter 7: books/cloud/chapter-7.md
+          - Chapter 8: books/cloud/chapter-8.md
+          - Chapter 9: books/cloud/chapter-9.md
+          - Chapter 10: books/cloud/chapter-10.md
   - SOC Reports: soc/index.md
   - CTF Writeups: ctf/index.md
   - Other: other/index.md
@@ -76,6 +81,8 @@ extra:
       link: https://x.com/VampireXray
     - icon: fontawesome/brands/linkedin
       link: https://www.linkedin.com/in/reem-khalid-818b83250/
+    - icon: fontawesome/brands/youtube
+      link: https://www.youtube.com/@VampireXRay/playlists
 
 extra_css:
   - stylesheets/extra.css
