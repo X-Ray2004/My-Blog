@@ -1,3 +1,10 @@
+/* ============================================================
+   VampireXRAY Blog — Custom Theme
+   نظام ألوان + تنسيقات موحّدة لكل صفحات المدونة
+   ============================================================ */
+
+/* ---------- 1. الألوان ---------- */
+
 /* الوضع الداكن - الأساسي */
 [data-md-color-scheme="slate"] {
   --md-default-bg-color: #2b2d31;        /* رمادي غامق للخلفية */
@@ -14,11 +21,15 @@
   --md-accent-fg-color: #5b3a7a;
 }
 
-/* تحسين شكل الكروت والـ admonitions */
+/* ---------- 2. الأزرار والصناديق (admonitions) ---------- */
+
 .md-typeset .admonition,
 .md-typeset details {
   border-color: #5b3a7a;
+  border-radius: 6px;
+  margin: 1.25rem 0 1.75rem 0;
 }
+
 .md-typeset .md-button {
   color: #ffffff !important;
   background-color: #5b3a7a !important;
@@ -29,4 +40,188 @@
   background-color: #7d5aa6 !important;
   border-color: #7d5aa6 !important;
   color: #ffffff !important;
+}
+
+/* ---------- 3. توحيد شكل المقالات (CVE / SOC / CTF / Books) ---------- */
+
+/* السطر الصغير تحت الملخص مباشرة: "النوع: ... · رقم التقرير: ..." */
+.report-meta {
+  display: inline-block;
+  font-size: 0.75rem;
+  letter-spacing: 0.03em;
+  opacity: 0.7;
+  margin-top: -0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+/* مسافة موحّدة قبل كل عنوان فرعي */
+.md-content article h2 {
+  margin-top: 2.5rem;
+  padding-top: 0.25rem;
+}
+
+.md-content article h3 {
+  margin-top: 1.75rem;
+}
+
+/* خط فاصل رفيع بعد الملخص وقبل بداية المحتوى الفعلي */
+.md-content article hr {
+  margin: 1.5rem 0 2rem 0;
+  opacity: 0.15;
+  border: none;
+  border-top: 1px solid currentColor;
+}
+
+/* عرض قراءة مريح لعمود النص في كل المقالات */
+.md-content article > * {
+  max-width: 46rem;
+}
+
+/* الصور جوه المقالات: مسافة موحّدة وحواف مدورة خفيفة */
+.md-content article img {
+  border-radius: 6px;
+  margin: 1.5rem 0;
+}
+
+/* الكود بلوكات: مسافة موحّدة قبل وبعد */
+.md-content article pre {
+  margin: 1.5rem 0;
+}
+
+/* ---------- 4. صفحة الهوم (hero) ---------- */
+
+.md-content:has(.hero),
+.md-content__inner:has(.hero) {
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+}
+
+.hero {
+  width: 100%;
+  max-width: 40rem;
+  padding: 2rem 1.5rem;
+}
+
+.hero h1 {
+  font-size: 2.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.hero p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+  opacity: 0.85;
+  margin-bottom: 0.5rem;
+}
+
+.hero-link {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* الصفحة الرئيسية (الهيرو) عربي، فتفضل RTL حتى لو باقي الموقع بقى LTR */
+.hero {
+  direction: rtl;
+  text-align: right;
+}
+
+@media screen and (max-width: 76.1875em) {
+  .md-content:has(.hero),
+  .md-content__inner:has(.hero) {
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ---------- 5. عنوان الهيدر والأيقونة ---------- */
+
+.md-header__topic {
+  font-size: 1.05rem;
+}
+
+.md-header__topic:first-child {
+  font-weight: 700;
+}
+
+.md-header__button.md-logo svg,
+.md-header__button.md-logo img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+/* مساحة تنفس أكبر في صف الهيدر، زي إحساس الديمو الرسمي بتاع Material for MkDocs */
+.md-header__inner {
+  padding: 0.2rem 0.6rem;   /* هيدر أرفع وأقصر */
+}
+
+/* خط رفيع تحت الهيدر مباشرة — لمسة جمالية بسيطة */
+.md-header {
+  border-bottom: 2px solid #ababab;
+}
+
+/* شريط التابس (CTF Writeups / SOC Reports / ...) موف غامق بدل الأزرق */
+.md-tabs {
+  background-color: #2a1a3d;
+}
+
+/* صندوق البحث: عرض أوضح وأكبر شوية */
+.md-search__form {
+  border-radius: 6px;
+}
+
+/* إخفاء شريط "التالية / السابقة" الموف اللي بيربط بين الأقسام تحت المقال */
+.md-footer__inner {
+  height: 5.3rem;
+  display: none;
+}
+
+/* ---------- 6. الفوتر: موف غامق ---------- */
+
+/* الشريط الأسفل نفسه (فيه الأيقونات وMade with) */
+.md-footer-meta {
+  background-color: #1b2838 !important;
+  border-top: 2px solid #ababab;
+}
+
+/* أي جزء تاني من الفوتر (لو موجود صف فوقه لـ prev/next links) */
+.md-footer {
+  background-color: #2a1a3d !important;
+}
+
+/* رجوع خلفية الصفحة نفسها للرمادي الأصلي */
+html,
+body {
+  background-color: var(--md-default-bg-color);
+}
+
+/* ---------- 7. قائمة المدونة: العنوان نص عادي، Continue reading هو اللينك الوحيد ---------- */
+
+.md-post__content h2 a {
+  pointer-events: none;
+  cursor: default;
+  text-decoration: none;
+  color: var(--md-default-fg-color) !important;
+}
+
+/* ---------- 8. اتجاه المقالات العربي: RTL ----------
+   يتحط جوه <div class="rtl-content" markdown> في أول الملف العربي
+   وبعد إننا شلنا بلجن الـi18n، بقى ده الطريقة الوحيدة اللي بتحدد
+   اتجاه الصفحة، مش html[lang="ar"] اللي كانت شغالة بس مع الـi18n */
+.rtl-content {
+  direction: rtl;
+  text-align: right;
+}
+
+/* قائمة "Table of contents" والـ"Metadata" جنب المقال: RTL كمان لو الصفحة فيها محتوى عربي */
+.md-main__inner:has(.rtl-content) .md-sidebar--secondary,
+.md-main__inner:has(.rtl-content) .md-sidebar--primary,
+.md-main__inner:has(.rtl-content) .md-nav--secondary {
+  direction: rtl;
+  text-align: right;
 }
