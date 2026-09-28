@@ -1640,83 +1640,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#q27-transaction-id" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Q27 — Transaction ID
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q28-internal-reference-number" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Q28 — Internal Reference Number
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#phase-7-file-hashes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Phase 7 — File Hashes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q29-sha256-of-vba-macro-file" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Q29 — SHA256 of VBA Macro File
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#q30-sha256-of-info-stealer" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Q30 — SHA256 of Info-Stealer
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ioc-report" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        خلاصة — IOC Report
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#investigation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ملاحظات للـ Investigation الحقيقي
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -1746,6 +1669,7 @@
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*ODZHF09ssmjOxd8b.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*ODZHF09ssmjOxd8b.png"></a></p>
 <h2 id="challenge-description">Challenge Description</h2>
 <p>اسم الملف: <code>challenge.eml</code></p>
+</div>
 <p>DPhish — Phishing Email Analysis</p>
 <p>You are a SOC analyst at ByPaid Solutions. An employee named Babar has reported a suspicious email they received from the HR department.</p>
 <p>Your job is to investigate this email thoroughly:</p>
@@ -1762,17 +1686,20 @@
 <li>Some questions have limited attempts — read carefully before submitting</li>
 <li>Hints are available but cost 100 points each</li>
 </ul>
+<div class="rtl-content">
 <h2 id="_1">البداية — فتح الملف</h2>
 <p>هنبدأ إننا نفتحه على VM معزولة، عشان ممكن يكون في مالوير في صور ولما نفتح الميل بيرن، فا عشان نكون حذرين.</p>
 <div class="highlight"><pre><span></span><code>cat challenge.eml
 </code></pre></div>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*-j_boqBx85W01HKM.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*-j_boqBx85W01HKM.png"></a></p>
 <h2 id="warm-up-subject-line">Warm-up: Subject Line</h2>
+</div>
 <p>Question: What is the subject line of the phishing email?</p>
 <p>Answer: <code>Urgent: Employee Salary Revision and Policy</code></p>
 <h2 id="phase-1-email-headers-analysis">Phase 1 — Email Headers Analysis</h2>
 <h2 id="q1-mail-gateway-hostname">Q1 — Mail Gateway Hostname</h2>
 <p>Question: What is the hostname of the mail gateway that actually sent this email? (found in the Received header)</p>
+<div class="rtl-content">
 <p>لو خدت بالك في الـ Received header هتلاقي:</p>
 <div class="highlight"><pre><span></span><code>Received: from mail.evil.owndomain.online by mx.bf456
 </code></pre></div>
@@ -1782,8 +1709,10 @@
 </blockquote>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png"></a></p>
 <p>Answer: <code>mail.evil.owndomain.online</code></p>
+</div>
 <h2 id="q2-originating-ip-address">Q2 — Originating IP Address</h2>
 <p>Question: What is the originating IP address of the sender?</p>
+<div class="rtl-content">
 <p>الـ IP موجود جنب الـ hostname في نفس الـ Received header.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:351/0*iGxR0GwmmqdoCoqx.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:351/0*iGxR0GwmmqdoCoqx.png"></a></p>
 <p>Answer: <code>185.199.42.13</code></p>
@@ -1791,9 +1720,9 @@
 <p>Question: What is the SPF verification result for this email?</p>
 <p>ده واحد من أهم تلات بروتوكولات في الـ Header Analysis:</p>
 <p>البروتوكول الوظيفة
-SPFهل الـ IP مسموحله يبعت؟
-DKIMهل الإيميل اتوقّع رقمياً من الدومين؟
-DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟</p>
+SPFهل الـ IP مسموحله يبعت؟</p>
+<p>DKIMهل الإيميل اتوقّع رقمياً من الدومين؟</p>
+<p>DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟</p>
 <p>هو بيسأل عن SPF، فا الإجابة <code>softfail</code> — يعني إن الـ IP مشكوك فيه، بس الـ rules بتاعة الـ mail gateway عدّته في الـ spam.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:845/0*lg9EKqnF6un8wlbX.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:845/0*lg9EKqnF6un8wlbX.png"></a></p>
 <p>Answer: <code>softfail</code></p>
@@ -1801,6 +1730,7 @@ DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟</p>
 <p>Question: What is the Reply-To email address?</p>
 <p>في الطبيعي: <code>From == Reply-To</code></p>
 <p>بس في الميل ده لو ركّزت هتلاقي:</p>
+</div>
 <div class="highlight"><pre><span></span><code>From:     hr@bypaid.io                        ← بيظهر شرعي للضحية
 Reply-To: hr-support@evil.owndomain.online    ← مخبي! 🚨
 </code></pre></div>
@@ -1816,6 +1746,7 @@ Reply-To: hr-support@evil.owndomain.online    ← مخبي! 🚨
 <p>Answer: <code>evil.owndomain.online</code></p>
 <h2 id="phase-2-attachments-analysis">Phase 2 — Attachments Analysis</h2>
 <p>Q7 : What engine/tool was used to create the PDF file? (include version)</p>
+<div class="rtl-content">
 <p>طيب بيقولي التول الي عملت ال pdf</p>
 <p>اي pdf ?هو في ملفات في الميل؟لو عملت سكرول شويه كدا هتلاقي انالسيز ل</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:774/1*d8b1-J_FZGsA53fPX6w02Q.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:774/1*d8b1-J_FZGsA53fPX6w02Q.png"></a></p>
@@ -1832,6 +1763,7 @@ Reply-To: hr-support@evil.owndomain.online    ← مخبي! 🚨
 <p>طيب عايزين نستخرجهم عشان نعرف اي دول</p>
 <h2 id="_2">استخراج الملفات</h2>
 <p>هنستخرج الملفات من الميل بسكريبت بسيط:</p>
+</div>
 <div class="highlight"><pre><span></span><code>python3 &lt;&lt; 'EOF'
 import email
 with open('challenge.eml', 'rb') as f:
@@ -1851,6 +1783,7 @@ for part in msg.walk():
         print(f"✅ {fn} ({len(data):,} bytes)")
 EOF
 </code></pre></div>
+<div class="rtl-content">
 <p>الناتج:</p>
 <div class="highlight"><pre><span></span><code>✅ Policy_Update.doc       (35,840 bytes)
 ✅ Meeting_Invite.ics      (760 bytes)
@@ -1980,10 +1913,12 @@ End Sub
 <h2 id="q13-deobfuscated-c2-url">Q13 — Deobfuscated C2 URL</h2>
 <p>Question: What is the full deobfuscated C2 URL in the macro?</p>
 <p>هتلاقي في الكود الـ <code>encodedUrl</code> — حطيناه في CyberChef ورجع:</p>
+</div>
 <p>encodedUrl = Array(&amp;H25, &amp;H39, &amp;H39, &amp;H3D, &amp;H77, &amp;H62, &amp;H62, &amp;H28, &amp;H3B, &amp;H24, &amp;H21, &amp;H63, &amp;H22, &amp;H3A, &amp;H23, &amp;H29, &amp;H22, &amp;H20, &amp;H2C, &amp;H24, &amp;H23, &amp;H63, &amp;H22, &amp;H23, &amp;H21, &amp;H24, &amp;H23, &amp;H28, &amp;H62, &amp;H2C, &amp;H3D, &amp;H24, &amp;H62, &amp;H2E, &amp;H22, &amp;H21, &amp;H21, &amp;H28, &amp;H2E, &amp;H39)</p>
 <p>Answer: <code>&lt;a class="as rg" href="http://evil.owndomain.online/api/collect" rel="noopener ugc nofollow" target="_blank"&gt;http://evil.owndomain.online/api/collect&lt;/a&gt;</code></p>
 <h2 id="q14-http-method">Q14 — HTTP Method</h2>
 <p>Question: What method does the macro use to send data to the C2?</p>
+<div class="rtl-content">
 <p>لو خدت بالك هتلاقي في الكود: <code>objHTTP.Open "POST"</code></p>
 <p>Answer: <code>POST</code></p>
 <h2 id="q15-auto-execute-subroutine">Q15 — Auto-execute Subroutine</h2>
@@ -2087,7 +2022,8 @@ HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
 <p>هلاقي صفحة زي تسجيل دخول، ومتوقع للـ scenario اللي معانا إنه ممكن يقصد الـ user اللي كان معمول عليه highlight.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*vWXbisG9cR8A94xL.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*vWXbisG9cR8A94xL.png"></a></p>
 <p>فاكر في أول الـ writeup لما ظهرلنا <code>text/html</code>؟ معرفناش نعمل بيه إيه — ما نجرب نفك الـ encoding ونفهم؟</p>
-<div class="highlight"><pre><span></span><code>python3 &lt;&lt; 'EOF'
+</div>
+<p></p><div class="highlight"><pre><span></span><code>python3 &lt;&lt; 'EOF'
 import email
 with open('challenge.eml', 'rb') as f:
     msg = email.message_from_binary_file(f)
@@ -2096,77 +2032,7 @@ for part in msg.walk():
         print(part.get_payload(decode=True).decode('utf-8', errors='ignore'))
 EOF
 </code></pre></div>
-<p>هيظهر كود HTML الميل كله وهتلاقي في آخره الـ PIN.</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*vroGrjT-gI9IYdcL.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*vroGrjT-gI9IYdcL.png"></a></p>
-<p>Answer: <code>729314</code></p>
-<h2 id="q27-transaction-id">Q27 — Transaction ID</h2>
-<p>Question: What is the Transaction ID displayed?</p>
-<p>بعد ما سجّلنا بكل حاجة هيظهرلنا الـ Transaction ID.</p>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*QRhAijFnKNpBCTN9.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*QRhAijFnKNpBCTN9.png"></a></p>
-<p>Answer: <code>TXN-8A3F-QZ91</code></p>
-<h2 id="q28-internal-reference-number">Q28 — Internal Reference Number</h2>
-<p>Question: What is the Internal Reference Number shown on the success page?</p>
-<p>Answer: <code>REF-DPHISH-2026-0042</code></p>
-<h2 id="phase-7-file-hashes">Phase 7 — File Hashes</h2>
-<h2 id="q29-sha256-of-vba-macro-file">Q29 — SHA256 of VBA Macro File</h2>
-<p>Question: What is the SHA256 hash of the attached file that contains a VBA macro?</p>
-<div class="highlight"><pre><span></span><code>sha256sum Policy_Update.doc
-</code></pre></div>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*pFt7YosHF8ga-PiC.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*pFt7YosHF8ga-PiC.png"></a></p>
-<p>Answer: <code>2fed17ccf194e2b63734571b2a3b122363779ce920c20dc84798387de87a638</code></p>
-<h2 id="q30-sha256-of-info-stealer">Q30 — SHA256 of Info-Stealer</h2>
-<p>Question: What is the SHA256 hash of the compiled info-stealer malware hidden in the email?</p>
-<p>يقصد طبعاً الـ exe.</p>
-<div class="highlight"><pre><span></span><code>sha256sum Update_Tool.exe
-</code></pre></div>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/0*0uyuTb44j2-XMJfT.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/0*0uyuTb44j2-XMJfT.png"></a></p>
-<p>Answer: <code>6b8f21832549f4a61e66dfd910196146e152a03f00ab0b2c11f06e7c7a01025e</code></p>
-<h2 id="ioc-report">خلاصة — IOC Report</h2>
-<div class="highlight"><pre><span></span><code>╔══════════════════════════════════════════════════════════╗
-║              DPhish Campaign — IOC Summary               ║
-╠══════════════════════════════════════════════════════════╣
-║ EMAIL                                                    ║
-║  Sender IP    : 185.199.42.13                            ║
-║  Mail Gateway : mail.evil.owndomain.online               ║
-║  Mail Client  : PyMailer 3.2.1                           ║
-║  Reply-To     : hr-support@evil.owndomain.online         ║
-║  SPF Result   : softfail                                 ║
-╠══════════════════════════════════════════════════════════╣
-║ PDF METADATA                                             ║
-║  Author       : dphish_admin                             ║
-║  Creator      : wkhtmltopdf 0.12.6                       ║
-║  Producer     : ReportLab v4.1                           ║
-║  Keywords     : CTF-2026-PHISH                           ║
-╠══════════════════════════════════════════════════════════╣
-║ NETWORK                                                  ║
-║  Macro C2     : http://evil.owndomain.online/api/collect ║
-║  EXE C2       : http://evil.owndomain.online/upload      ║
-╠══════════════════════════════════════════════════════════╣
-║ HOST                                                     ║
-║  Registry     : HKCU\...\CurrentVersion\Run              ║
-║  Value Name   : WindowsUpdateSvc                         ║
-║  Mutex        : Global\DPhishMutex2026                   ║
-║  VM Check     : vmtoolsd.exe                             ║
-╠══════════════════════════════════════════════════════════╣
-║ FILE HASHES                                              ║
-║  Policy_Update.doc  : 2fed17cc...a638                    ║
-║  Update_Tool.exe    : 6b8f2183...25e                     ║
-╚══════════════════════════════════════════════════════════╝
-</code></pre></div>
-<h2 id="investigation">ملاحظات للـ Investigation الحقيقي</h2>
-<p>في بعض الخطوات اللي ما استخدمناهاش — لو كنا بنعمل investigation حقيقي:</p>
-<p>Email Threading: لو في emails تانية من نفس المهاجم؟ نفس الـ campaign؟</p>
-<p>Lateral Movement Check: هل الإيميل اتبعت لناس تانيين في الشركة؟</p>
-<div class="highlight"><pre><span></span><code>grep -iE "^To:|^CC:" challenge.eml
-</code></pre></div>
-<p>Timestamp Analysis: التوقيت في الـ headers منطقي؟ الـ timezone في Received headers consistent؟</p>
-<p>BCC Detection: ممكن الإيميل اتبعت لعدد كبير من الناس في BCC.</p>
-<p>Threat Intelligence: التأكد من كل IP وURL ظهر معانا من الـ reputation بتاعته على الـ Threat Intel (VirusTotal, OTX AlienVault).</p>
-<p>Dynamic Analysis: احنا ما محتاجناهوش أوي، لأن الـ exe كان واضح مش obfuscated وكان كفاية الـ static analysis.</p>
-<blockquote>
-<p><em>وبس كده — إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي أو الشيطان.</em></p>
-</blockquote>
-</div>
+<p></p>
 
 
 
@@ -2187,7 +2053,7 @@ EOF
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 04:19:46 UTC">September 28, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 04:31:11 UTC">September 28, 2026</span>
   </span>
 
     
