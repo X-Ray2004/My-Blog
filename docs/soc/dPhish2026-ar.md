@@ -370,6 +370,7 @@ Question: What is the full deobfuscated C2 URL in the macro?
 
 هتلاقي في الكود الـ `encodedUrl` — حطيناه في CyberChef ورجع:
 </div>
+
 encodedUrl = Array(&H25, &H39, &H39, &H3D, &H77, &H62, &H62, &H28, &H3B, &H24, &H21, &H63, &H22, &H3A, &H23, &H29, &H22, &H20, &H2C, &H24, &H23, &H63, &H22, &H23, &H21, &H24, &H23, &H28, &H62, &H2C, &H3D, &H24, &H62, &H2E, &H22, &H21, &H21, &H28, &H2E, &H39)
 
 Answer: `<a class="as rg" href="http://evil.owndomain.online/api/collect" rel="noopener ugc nofollow" target="_blank">http://evil.owndomain.online/api/collect</a>`
@@ -377,7 +378,9 @@ Answer: `<a class="as rg" href="http://evil.owndomain.online/api/collect" rel="n
 ## Q14 — HTTP Method
 
 Question: What method does the macro use to send data to the C2?
+
 <div class="rtl-content" markdown>
+
 لو خدت بالك هتلاقي في الكود: `objHTTP.Open "POST"`
 
 Answer: `POST`
@@ -553,7 +556,9 @@ Question: What is the Verification PIN?
 ![](https://miro.medium.com/v2/resize:fit:695/0*vWXbisG9cR8A94xL.png)
 
 فاكر في أول الـ writeup لما ظهرلنا `text/html`؟ معرفناش نعمل بيه إيه — ما نجرب نفك الـ encoding ونفهم؟
+
 </div>
+
 ```
 python3 << 'EOF'
 import email
@@ -564,13 +569,17 @@ for part in msg.walk():
         print(part.get_payload(decode=True).decode('utf-8', errors='ignore'))
 EOF
 ```
+
 <div class="rtl-content" markdown>
+
 هيظهر كود HTML الميل كله وهتلاقي في آخره الـ PIN.
 
 ![](https://miro.medium.com/v2/resize:fit:695/0*vroGrjT-gI9IYdcL.png)
 
+</div>
+
 Answer: `729314`
-<div>
+
 ## Q27 — Transaction ID
 
 Question: What is the Transaction ID displayed?
@@ -618,40 +627,7 @@ Answer: `6b8f21832549f4a61e66dfd910196146e152a03f00ab0b2c11f06e7c7a01025e`
 
 ## خلاصة — IOC Report
 
-</div>
-```
-╔══════════════════════════════════════════════════════════╗
-║              DPhish Campaign — IOC Summary               ║
-╠══════════════════════════════════════════════════════════╣
-║ EMAIL                                                    ║
-║  Sender IP    : 185.199.42.13                            ║
-║  Mail Gateway : mail.evil.owndomain.online               ║
-║  Mail Client  : PyMailer 3.2.1                           ║
-║  Reply-To     : hr-support@evil.owndomain.online         ║
-║  SPF Result   : softfail                                 ║
-╠══════════════════════════════════════════════════════════╣
-║ PDF METADATA                                             ║
-║  Author       : dphish_admin                             ║
-║  Creator      : wkhtmltopdf 0.12.6                       ║
-║  Producer     : ReportLab v4.1                           ║
-║  Keywords     : CTF-2026-PHISH                           ║
-╠══════════════════════════════════════════════════════════╣
-║ NETWORK                                                  ║
-║  Macro C2     : http://evil.owndomain.online/api/collect ║
-║  EXE C2       : http://evil.owndomain.online/upload      ║
-╠══════════════════════════════════════════════════════════╣
-║ HOST                                                     ║
-║  Registry     : HKCU\...\CurrentVersion\Run              ║
-║  Value Name   : WindowsUpdateSvc                         ║
-║  Mutex        : Global\DPhishMutex2026                   ║
-║  VM Check     : vmtoolsd.exe                             ║
-╠══════════════════════════════════════════════════════════╣
-║ FILE HASHES                                              ║
-║  Policy_Update.doc  : 2fed17cc...a638                    ║
-║  Update_Tool.exe    : 6b8f2183...25e                     ║
-╚══════════════════════════════════════════════════════════╝
-```
-<div class="rtl-content" markdown>
+![alt text](image.png)
 
 ## ملاحظات للـ Investigation الحقيقي
 
