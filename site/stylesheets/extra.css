@@ -8,7 +8,7 @@
 /* الوضع الداكن - الأساسي */
 [data-md-color-scheme="slate"] {
   --md-default-bg-color: #2b2d31;        /* رمادي غامق للخلفية */
-  --md-default-fg-color: #d4d4d8;        /* رمادي فاتح للنصوص */
+  --md-default-fg-color: #e1e1eb;        /* رمادي فاتح للنصوص */
   --md-primary-fg-color: #1b2838;        /* أزرق غامق - الهيدر والنافبار */
   --md-primary-bg-color: #b7a9a9;
   --md-accent-fg-color: #5b3a7a;         /* موف غامق - اللينكات والهوفر */
