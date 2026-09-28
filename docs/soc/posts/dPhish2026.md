@@ -85,7 +85,10 @@ Question: What is the SPF verification result for this email?
 
 This is one of the three most important protocols in Header Analysis:
 
-ProtocolWhat it doesSPFIs this IP allowed to send on behalf of this domain?DKIMWas the email digitally signed by the domain?DMARCWhat happens if SPF or DKIM fail?
+ProtocolWhat it does
+SPF : Is this IP allowed to send on behalf of this domain?
+DKIM : Was the email digitally signed by the domain?
+DMARC : What happens if SPF or DKIM fail?
 
 It’s asking about SPF, so the answer is `softfail` — meaning the IP is suspicious, but the mail gateway's rules let it through to spam instead of outright rejecting it.
 
@@ -283,7 +286,7 @@ Also the command told us it’s OLE format — what does that mean?
 olevba Policy_Update.doc
 ```
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/1*98F2V_sVUj1exqv12eE_2Q.png)
+![](https://miro.medium.com/v2/resize:fit:875/1*98F2V_sVUj1exqv12eE_2Q.png)
 
 ![](https://miro.medium.com/v2/resize:fit:695/1*1PnE7x0oMN3E1lABjFMcog.png)
 
@@ -431,7 +434,7 @@ Nothing obvious in the metadata. Could run it through IDA, but let’s quickly c
 strings Update_Tool.exe
 ```
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/1*spUJNTZevKBTeVlKxstELw.png)
+![](https://miro.medium.com/v2/resize:fit:875/1*spUJNTZevKBTeVlKxstELw.png)
 
 There it is — and `/upload` too, so the answer is:
 
@@ -531,7 +534,7 @@ Question: What file extensions does the malware search for? (comma-separated, al
 .wallet ← Cryptocurrency wallet files
 ```
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/1*bBLMY44meguJ_V9QvBx64A.png)
+![](https://miro.medium.com/v2/resize:fit:875/1*bBLMY44meguJ_V9QvBx64A.png)
 
 Answer: `.dat,.txt,.wallet`
 
