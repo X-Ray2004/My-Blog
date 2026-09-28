@@ -296,7 +296,7 @@ olevba Policy_Update.doc
 لو قرأت الجدول هتلاقي `AutoExec` — يبقى ماكرو. وكمان لو خدت بالك `MSXML2.XMLHTTP` ده السيرفر اللي بيتوصل بيه، وكمان `XOR` — وكده عرفنا إنه C2.
 
 ## كود الماكرو كامل
-
+</div>
 ```
 '─────────────────────────────────────────────────────
 ' الـ Triggers — بيشتغلوا لوحدهم لما الملف يتفتح
@@ -350,14 +350,13 @@ Sub VerifyPolicy()
     statusCode = 0
 End Sub
 ```
-
+<div class="rtl-content" markdown>
 Start To Answer By this code
 
 ## Q12 — XOR Key
 
 Question: What is the XOR key used to obfuscate the URL in the macro? (hex format, e.g. 0xAB)
 
-[![Write on Medium]()](https://medium.com/write?source=promotion_paragraph---post_body_banner_better_place_blocks--06a7dc135714-----------------------------------------)
 
 لو ركّزت في الكود هتلاقي: `xorKey = &H4D`
 
