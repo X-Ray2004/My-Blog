@@ -18,7 +18,7 @@ date: 2026-09-27
 ## Challenge Description
 
 اسم الملف: `challenge.eml`
-رابط تحميل ال Chaallenge : [text](https://drive.google.com/file/d/16WlDYp2nNKCwnl8IIUDpSLUZ0EewgLjI/view?usp=sharing)
+رابط تحميل ال : [challenge](../assets/challenge.zip)
 </div>
 DPhish — Phishing Email Analysis
 

@@ -19,7 +19,7 @@ CTF Writeup + Learning
 
 File: `challenge.eml`
 
-Chaallenge link : [text](https://drive.google.com/file/d/16WlDYp2nNKCwnl8IIUDpSLUZ0EewgLjI/view?usp=sharing)
+Chaallenge link : [click](../../assets/challenge.zip)
 
 DPhish — Phishing Email Analysis
 
