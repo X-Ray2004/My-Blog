@@ -19,6 +19,8 @@ CTF Writeup + Learning
 
 File: `challenge.eml`
 
+Chaallenge link : [text](https://drive.google.com/file/d/1yJHKJuiVMfEm0MtQzljk0YqMbvDfyV5v/view?usp=sharing)
+
 DPhish — Phishing Email Analysis
 
 You are a SOC analyst at ByPaid Solutions. An employee named Babar has reported a suspicious email they received from the HR department.
