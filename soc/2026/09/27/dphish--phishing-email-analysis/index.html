@@ -1876,7 +1876,10 @@
 <h2 id="q3-spf-verification-result">Q3 — SPF Verification Result</h2>
 <p>Question: What is the SPF verification result for this email?</p>
 <p>This is one of the three most important protocols in Header Analysis:</p>
-<p>ProtocolWhat it doesSPFIs this IP allowed to send on behalf of this domain?DKIMWas the email digitally signed by the domain?DMARCWhat happens if SPF or DKIM fail?</p>
+<p>ProtocolWhat it does
+SPF : Is this IP allowed to send on behalf of this domain?
+DKIM : Was the email digitally signed by the domain?
+DMARC : What happens if SPF or DKIM fail?</p>
 <p>It’s asking about SPF, so the answer is <code>softfail</code> — meaning the IP is suspicious, but the mail gateway's rules let it through to spam instead of outright rejecting it.</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:845/1*ZrQKO-YgqoDk0fcKZ4qFTQ.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:845/1*ZrQKO-YgqoDk0fcKZ4qFTQ.png"></a></p>
 <p>Answer: <code>softfail</code></p>
@@ -2007,7 +2010,7 @@ Salary_Report.pdf  → PDF document, version 1.4
 </blockquote>
 <div class="highlight"><pre><span></span><code>olevba Policy_Update.doc
 </code></pre></div>
-<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*98F2V_sVUj1exqv12eE_2Q.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*98F2V_sVUj1exqv12eE_2Q.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*98F2V_sVUj1exqv12eE_2Q.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*98F2V_sVUj1exqv12eE_2Q.png"></a></p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:695/1*1PnE7x0oMN3E1lABjFMcog.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:695/1*1PnE7x0oMN3E1lABjFMcog.png"></a></p>
 <p>If you read the table you’ll find <code>AutoExec</code> — that means it's a macro. And if you notice <code>MSXML2.XMLHTTP</code> — that's the server it connects to. Plus <code>XOR</code> — and from that we knew it's a C2.</p>
 <h2 id="full-macro-code">Full Macro Code</h2>
@@ -2112,7 +2115,7 @@ End Sub
 <p>Nothing obvious in the metadata. Could run it through IDA, but let’s quickly check with <code>strings</code> first:</p>
 <div class="highlight"><pre><span></span><code>strings Update_Tool.exe
 </code></pre></div>
-<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*spUJNTZevKBTeVlKxstELw.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*spUJNTZevKBTeVlKxstELw.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*spUJNTZevKBTeVlKxstELw.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*spUJNTZevKBTeVlKxstELw.png"></a></p>
 <p>There it is — and <code>/upload</code> too, so the answer is:</p>
 <p>Answer: <code>&lt;a class="as rf" href="http://evil.owndomain.online/upload" rel="noopener ugc nofollow" target="_blank"&gt;http://evil.owndomain.online/upload&lt;/a&gt;</code></p>
 <h2 id="all-questions-coming-later-is-answered-by-same-screenshot-too_1">All Questions Coming later is Answered By Same Screenshot too</h2>
@@ -2171,7 +2174,7 @@ HKLM\Software\Microsoft\Windows\CurrentVersion\RunOnce
 .txt    ← text files that might contain passwords or notes
 .wallet ← Cryptocurrency wallet files
 </code></pre></div>
-<p><strong>Press enter or click to view image in full size</strong><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*bBLMY44meguJ_V9QvBx64A.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*bBLMY44meguJ_V9QvBx64A.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/1*bBLMY44meguJ_V9QvBx64A.png" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/1*bBLMY44meguJ_V9QvBx64A.png"></a></p>
 <p>Answer: <code>.dat,.txt,.wallet</code></p>
 <h2 id="phase-6-phishing-website">Phase 6 — Phishing Website</h2>
 <h2 id="q26-verification-pin">Q26 — Verification PIN</h2>
@@ -2279,7 +2282,7 @@ EOF
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 17:56:36 UTC">September 27, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 28, 2026 04:10:22 UTC">September 28, 2026</span>
   </span>
 
     
