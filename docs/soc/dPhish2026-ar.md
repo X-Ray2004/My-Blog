@@ -2,7 +2,9 @@
 date: 2026-09-27
 ---
 # DPhish — Phishing Email Analysis
+
 <!-- more -->
+
 <div class="rtl-content" markdown>
 
 > *بسم الله في حوار جديد في الـ Cyber Security*
@@ -67,7 +69,7 @@ Received: from mail.evil.owndomain.online by mx.bf456
 
 > *المهاجم يقدر يزوّر* `<em class="hh">From: hr@bypaid.io</em>` *بسهولة، لكن الـ Received headers بتُضافها كل mail server في الطريق — وده أصعب تزويره بكتير.*
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png)
+![](https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png)
 
 Answer: `mail.evil.owndomain.online`
 
@@ -87,7 +89,10 @@ Question: What is the SPF verification result for this email?
 
 ده واحد من أهم تلات بروتوكولات في الـ Header Analysis:
 
-البروتوكولالوظيفةSPFهل الـ IP مسموحله يبعت؟DKIMهل الإيميل اتوقّع رقمياً من الدومين؟DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟
+البروتوكول الوظيفة
+SPFهل الـ IP مسموحله يبعت؟
+DKIMهل الإيميل اتوقّع رقمياً من الدومين؟
+DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟
 
 هو بيسأل عن SPF، فا الإجابة `softfail` — يعني إن الـ IP مشكوك فيه، بس الـ rules بتاعة الـ mail gateway عدّته في الـ spam.
 
@@ -140,15 +145,15 @@ Q7 : What engine/tool was used to create the PDF file? (include version)
 
 نص الميل نفسه
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/1*Jm_3rd91NF-CnjQMjFG5kA.png)
+![](https://miro.medium.com/v2/resize:fit:875/1*Jm_3rd91NF-CnjQMjFG5kA.png)
 
 Salary\_Report\_2026.pdf
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/1*0_Jh9w8yg0HbbK_T-oAyfg.png)
+![](https://miro.medium.com/v2/resize:fit:875/1*0_Jh9w8yg0HbbK_T-oAyfg.png)
 
 Policy\_Update.doc
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/1*YNz2jGqOxgD3rLImnvZISw.png)
+![](https://miro.medium.com/v2/resize:fit:875/1*YNz2jGqOxgD3rLImnvZISw.png)
 
 Meeting\_Invite.ics
 
@@ -284,7 +289,7 @@ Policy_Update.doc → Composite Document File V2 Document (= OLE format = Word �
 olevba Policy_Update.doc
 ```
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/0*MJGLAeSx86AZl445.png)
+![](https://miro.medium.com/v2/resize:fit:875/0*MJGLAeSx86AZl445.png)
 
 ![](https://miro.medium.com/v2/resize:fit:695/0*yzPLVTXUU9dCL5_2.png)
 
@@ -434,7 +439,7 @@ Question: What is the full C2 server URL used by the executable for data exfiltr
 strings Update_Tool.exe
 ```
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/0*NTqteqCL5YxCdmDr.png)
+![](https://miro.medium.com/v2/resize:fit:875/0*NTqteqCL5YxCdmDr.png)
 
 اهو وكمان `/upload` — يبقى الإجابة:
 
@@ -530,7 +535,7 @@ Question: What file extensions does the malware search for? (comma-separated, al
 .wallet ← Cryptocurrency wallet files
 ```
 
-**Press enter or click to view image in full size**![](https://miro.medium.com/v2/resize:fit:875/0*P6XdVBy98mGv7yS7.png)
+![](https://miro.medium.com/v2/resize:fit:875/0*P6XdVBy98mGv7yS7.png)
 
 Answer: `.dat,.txt,.wallet`
 
@@ -665,4 +670,5 @@ Threat Intelligence: التأكد من كل IP وURL ظهر معانا من ال
 Dynamic Analysis: احنا ما محتاجناهوش أوي، لأن الـ exe كان واضح مش obfuscated وكان كفاية الـ static analysis.
 
 > *وبس كده — إن أصبت فهو من عند الله، وإن أخطأت فهو من نفسي أو الشيطان.*
+
 </div>
