@@ -18,7 +18,7 @@ date: 2026-09-27
 ## Challenge Description
 
 اسم الملف: `challenge.eml`
-
+</div>
 DPhish — Phishing Email Analysis
 
 You are a SOC analyst at ByPaid Solutions. An employee named Babar has reported a suspicious email they received from the HR department.
@@ -36,7 +36,7 @@ Rules:
 * Answers are case-insensitive
 * Some questions have limited attempts — read carefully before submitting
 * Hints are available but cost 100 points each
-
+<div class="rtl-content" markdown>
 ## البداية — فتح الملف
 
 هنبدأ إننا نفتحه على VM معزولة، عشان ممكن يكون في مالوير في صور ولما نفتح الميل بيرن، فا عشان نكون حذرين.
@@ -48,7 +48,7 @@ cat challenge.eml
 ![](https://miro.medium.com/v2/resize:fit:695/0*-j_boqBx85W01HKM.png)
 
 ## Warm-up: Subject Line
-
+</div>
 Question: What is the subject line of the phishing email?
 
 Answer: `Urgent: Employee Salary Revision and Policy`
@@ -58,7 +58,7 @@ Answer: `Urgent: Employee Salary Revision and Policy`
 ## Q1 — Mail Gateway Hostname
 
 Question: What is the hostname of the mail gateway that actually sent this email? (found in the Received header)
-
+<div class="rtl-content" markdown>
 لو خدت بالك في الـ Received header هتلاقي:
 
 ```
@@ -72,11 +72,11 @@ Received: from mail.evil.owndomain.online by mx.bf456
 ![](https://miro.medium.com/v2/resize:fit:875/0*WA-87_wslvIAeQD1.png)
 
 Answer: `mail.evil.owndomain.online`
-
+</div>
 ## Q2 — Originating IP Address
 
 Question: What is the originating IP address of the sender?
-
+<div class="rtl-content" markdown>
 الـ IP موجود جنب الـ hostname في نفس الـ Received header.
 
 ![](https://miro.medium.com/v2/resize:fit:351/0*iGxR0GwmmqdoCoqx.png)
@@ -91,7 +91,9 @@ Question: What is the SPF verification result for this email?
 
 البروتوكول الوظيفة
 SPFهل الـ IP مسموحله يبعت؟
+
 DKIMهل الإيميل اتوقّع رقمياً من الدومين؟
+
 DMARCلو SPF أو DKIM فشلوا، إيه اللي يحصل؟
 
 هو بيسأل عن SPF، فا الإجابة `softfail` — يعني إن الـ IP مشكوك فيه، بس الـ rules بتاعة الـ mail gateway عدّته في الـ spam.
@@ -107,7 +109,7 @@ Question: What is the Reply-To email address?
 في الطبيعي: `From == Reply-To`
 
 بس في الميل ده لو ركّزت هتلاقي:
-
+</div>
 ```
 From:     hr@bypaid.io                        ← بيظهر شرعي للضحية
 Reply-To: hr-support@evil.owndomain.online    ← مخبي! 🚨
@@ -136,7 +138,7 @@ Answer: `evil.owndomain.online`
 ## Phase 2 — Attachments Analysis
 
 Q7 : What engine/tool was used to create the PDF file? (include version)
-
+<div class="rtl-content" markdown>
 طيب بيقولي التول الي عملت ال pdf
 
 اي pdf ?هو في ملفات في الميل؟لو عملت سكرول شويه كدا هتلاقي انالسيز ل
@@ -168,7 +170,7 @@ text/html
 ## استخراج الملفات
 
 هنستخرج الملفات من الميل بسكريبت بسيط:
-
+</div>
 ```
 python3 << 'EOF'
 import email
@@ -189,7 +191,7 @@ for part in msg.walk():
         print(f"✅ {fn} ({len(data):,} bytes)")
 EOF
 ```
-
+<div class="rtl-content" markdown>
 الناتج:
 
 ```
@@ -367,7 +369,7 @@ Answer: `0x4D`
 Question: What is the full deobfuscated C2 URL in the macro?
 
 هتلاقي في الكود الـ `encodedUrl` — حطيناه في CyberChef ورجع:
-
+</div>
 encodedUrl = Array(&H25, &H39, &H39, &H3D, &H77, &H62, &H62, &H28, &H3B, &H24, &H21, &H63, &H22, &H3A, &H23, &H29, &H22, &H20, &H2C, &H24, &H23, &H63, &H22, &H23, &H21, &H24, &H23, &H28, &H62, &H2C, &H3D, &H24, &H62, &H2E, &H22, &H21, &H21, &H28, &H2E, &H39)
 
 Answer: `<a class="as rg" href="http://evil.owndomain.online/api/collect" rel="noopener ugc nofollow" target="_blank">http://evil.owndomain.online/api/collect</a>`
@@ -375,7 +377,7 @@ Answer: `<a class="as rg" href="http://evil.owndomain.online/api/collect" rel="n
 ## Q14 — HTTP Method
 
 Question: What method does the macro use to send data to the C2?
-
+<div class="rtl-content" markdown>
 لو خدت بالك هتلاقي في الكود: `objHTTP.Open "POST"`
 
 Answer: `POST`
@@ -551,7 +553,7 @@ Question: What is the Verification PIN?
 ![](https://miro.medium.com/v2/resize:fit:695/0*vWXbisG9cR8A94xL.png)
 
 فاكر في أول الـ writeup لما ظهرلنا `text/html`؟ معرفناش نعمل بيه إيه — ما نجرب نفك الـ encoding ونفهم؟
-
+</div>
 ```
 python3 << 'EOF'
 import email
@@ -562,13 +564,13 @@ for part in msg.walk():
         print(part.get_payload(decode=True).decode('utf-8', errors='ignore'))
 EOF
 ```
-
+<div class="rtl-content" markdown>
 هيظهر كود HTML الميل كله وهتلاقي في آخره الـ PIN.
 
 ![](https://miro.medium.com/v2/resize:fit:695/0*vroGrjT-gI9IYdcL.png)
 
 Answer: `729314`
-
+<div>
 ## Q27 — Transaction ID
 
 Question: What is the Transaction ID displayed?
@@ -612,9 +614,11 @@ sha256sum Update_Tool.exe
 ![](https://miro.medium.com/v2/resize:fit:695/0*0uyuTb44j2-XMJfT.png)
 
 Answer: `6b8f21832549f4a61e66dfd910196146e152a03f00ab0b2c11f06e7c7a01025e`
+<div class="rtl-content" markdown>
 
 ## خلاصة — IOC Report
 
+</div>
 ```
 ╔══════════════════════════════════════════════════════════╗
 ║              DPhish Campaign — IOC Summary               ║
@@ -647,6 +651,7 @@ Answer: `6b8f21832549f4a61e66dfd910196146e152a03f00ab0b2c11f06e7c7a01025e`
 ║  Update_Tool.exe    : 6b8f2183...25e                     ║
 ╚══════════════════════════════════════════════════════════╝
 ```
+<div class="rtl-content" markdown>
 
 ## ملاحظات للـ Investigation الحقيقي
 
