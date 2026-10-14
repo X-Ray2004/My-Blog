@@ -102,6 +102,7 @@ Wazuh هو نظام SIEM + HIDS
 ### أول لوج منطقي ومريب (الدقيقة 14)
 
 مع أول لوج منطقي هيقابلك في الدقيقة 14 ومريب، نبدأ نفهم ونأخد IOCs.
+</div>
 
 ![](https://cdn-images-1.medium.com/max/1000/1*9ewVMMQgIoesmO0k8zFktQ.png)
 
@@ -116,6 +117,7 @@ Wazuh هو نظام SIEM + HIDS
 * command: sudo usermod -aG sudo svc\_sync — بيضيف مستخدم svc\_sync لـ sudo.
 * msg: نفس الأمر.
 
+<div class="rtl-content" markdown>
 عندنا دلوقتي أهم اتنين IOCs محتاجين نفهمهم:
 
 1. مين الـ src host؟ لأن واضح إن الـ IP داخلي — ما ممكن يكون حد من IT.

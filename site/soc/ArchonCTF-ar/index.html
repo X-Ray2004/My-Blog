@@ -1756,6 +1756,7 @@
 <p>وكان الـ Challenge Linux واستفدت جداً وحبيت أشارك معاكوا السيناريو.</p>
 <p>للأمانة أنا استعنت في بعض المعلومات من الـ AI في الحل، عشان زي ما قلت معرفش أي حاجة عن اللينكس.</p>
 <p>طولت عليكم، بسم الله والتشالنج كان بيقول:</p>
+</div>
 <div class="highlight"><pre><span></span><code>Alert Source: Wazuh
 Severity: HIGH
 Time: September 22, 2026 — 07:14:50 UTC
@@ -1763,6 +1764,7 @@ Alert Message:
 Multiple suspicious Linux account and command events observed.
 The alert is only the starting point. Your job is to uncover the full incident using the available logs.
 </code></pre></div>
+<div class="rtl-content">
 <p>وحل التشالنج ريبورت الـ investigation بالأقسام دي:</p>
 <ul>
 <li>Incident Identification</li>
@@ -1841,6 +1843,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*k2U-yJYO1WCO-3jvjPjDFA.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*k2U-yJYO1WCO-3jvjPjDFA.png"></a></p>
 <p>أول لوجاية حللناها، خلينا نشوف الباقي</p>
 <h4 id="_1">تاني لوجاية عندي</h4>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:04.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -1863,12 +1866,14 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <li>process: useradd — الأداة.</li>
 <li>dst_ip: JUMP</li>
 </ul>
+<div class="rtl-content">
 <p>طيب useradd يعني بيضيف يوزر 1042 يوزر عادي (لما الـ UID في لينكس يبقى أكبر من 1000 يبقى يوزر عادي مش أدمن).</p>
 <p>فين بقا؟ home=/opt/svc_sync, shell=/bin/bash — إيه اللي جابه في opt؟ اليوزرز بيبقوا في /home.</p>
 <p>دي أول حاجة تثبت إن الموضوع Suspicious.</p>
 <p>تاني حاجة: إزاي بيضيف بيكريت يوزر جديد والمفروض في اللوجاية اللي قبل كدا كان بيضيفه لجروب (يعني المفروض موجود عشان يضيفه)؟؟</p>
 <p>الفكرة إن نظام اللوجات بتاع الـ syscall اللي اسمه auditd مبيسجلش نواتج (يعني نجح الكوماند ولا لا)، فهننقل اللوجاية التالتة يمكن نفهم.</p>
 <h4 id="_2">اللوجاية التالتة</h4>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:08.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -1883,10 +1888,12 @@ The alert is only the starting point. Your job is to uncover the full incident u
   "msg": "group membership changed: svc_sync -&gt; sudo"
 }
 </code></pre></div>
+<div class="rtl-content">
 <p>يعني انقلي اليوزر اللي كريتناه sudo.</p>
 <p>طيب هيعمل كدا ليه إلا لو أصلاً مكنش اول لوجاية اشتغلت؟ يبقى اول كوماند خالص مكنش اشتغل</p>
 <p>التفسير اللي كتبته إن دا حاجة مش مفهومة، لكن المحتمل الاتاكر غلط مش أكتر.</p>
 <h4 id="_3">اللوجاية الرابعة</h4>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:15:02.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -1905,6 +1912,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <li>src_ip: 203.0.113.120 → IOC IP External</li>
 <li>dst_ip / dst_port: JUMP</li>
 </ul>
+<div class="rtl-content">
 <p>الـ msg بتقول إن في SSH Connection حصل على بورت 51112 لـ IP External بـ publickey.</p>
 <p>طبعاً إن يوزر يتكريت حالاً وبعدين يطلع IP خارجي، كدا تم إثبات إن الحوار Suspicious.</p>
 <p>طبعاً بتحط الـ IP على CTI بس طلع Clean، ودا منطقي عشان دا مجرد Simulation Attack لتشالنج مش حقيقي.</p>
@@ -1931,6 +1939,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*0UVbQdfrTsh_DRnkvqBK9A.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*0UVbQdfrTsh_DRnkvqBK9A.png"></a></p>
 <p>بعد كدا هنلاقي كام واحدة مهمين بعد كريت اليوزر الجديد علطول.</p>
 <h3 id="_4">اللوج الأول: إنشاء الخدمة</h3>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:13.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -1954,8 +1963,10 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <li>src_ip: 0.0.0.0 → معناها كوماند على نفس الجهاز</li>
 <li>dst_ip: 10.20.40.10 → JUMP-01</li>
 </ul>
+<div class="rtl-content">
 <p>و Created symlink يعني اعملي خدمة باسم system-update.service وحطها في ملف /etc/systemd/system.</p>
 <h3 id="_5">اللوج التاني: كتابة ملف الخدمة</h3>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:16.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -1974,12 +1985,14 @@ The alert is only the starting point. Your job is to uncover the full incident u
   "msg": "type=PATH name=/etc/systemd/system/system-update.service"
 }
 </code></pre></div>
+<div class="rtl-content">
 <p>تمت كتابة ملف الخدمة.</p>
 <p>طيب يا ريم ممكن خدمة عادية؟</p>
 <p>لا، الخدمات العادية للنظام بتكون في باث /lib/systemd/system/.</p>
 <p>طيب يا ريم ممكن أدمن كريت خدمة.. ممكن.</p>
 <p>بعدها بثواني..</p>
 <h3 id="dns-query">اللوجاية التالتة: DNS Query</h3>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:28.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -2005,6 +2018,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <li>dst_ip: 10.20.40.53 مين دا؟</li>
 <li>status: NOERROR تم بنجاح</li>
 </ul>
+<div class="rtl-content">
 <p>اللوجاية بتقول إن 10.20.40.53 خلا الجهاز بتاع JUMP-01 يطلع DNS Query على cdn-sync-update.com.</p>
 <p>نسيرش باللينك اللي طلع عليه على VT مثلاً</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*RvveWJDY-Z53i7eRGwbaKg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*RvveWJDY-Z53i7eRGwbaKg.png"></a></p>
@@ -2019,6 +2033,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*HLKK_WgB8EJA5nd6g3CWVg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*HLKK_WgB8EJA5nd6g3CWVg.png"></a></p>
 <p>طلعلي 3 لوجات، نشوفهم.</p>
 <h3 id="zeek">اللوج الأول: Zeek</h3>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:34.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -2047,10 +2062,12 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <li>dst_port: 443 — HTTPS.</li>
 <li>status: SF — Success + Finished</li>
 </ul>
+<div class="rtl-content">
 <p>اللوجاية بتقول فتح اتصال TLS مع cnd-sync-update.com، أيوه بالظبط هو اللي كان معانا فوق، واستخدم systemd عشان يطلع بيها على الـ C2.</p>
 <p>هو استخدم الـ DNS الشركة بعدين طلع Public على الـ IP.</p>
 <h3 id="firewall">اللوج التاني: Firewall</h3>
 <p>طب إيه تاني log؟</p>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:14:42.000 UTC",
   "host": "JUMP-01 Bastion",
@@ -2066,6 +2083,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
   "msg": "nftables: accept outbound tcp to 203.0.113.120:443"
 }
 </code></pre></div>
+<div class="rtl-content">
 <ul>
 <li>nftables: أداة Firewall في Linux.</li>
 </ul>
@@ -2084,6 +2102,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*4ad0iWdQhjAZHgPlpA4_tg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*4ad0iWdQhjAZHgPlpA4_tg.png"></a></p>
 <p>اللي هي اللوجاية دي، نبدأ من هنا نشوف اللوجز اللي قبله إيه اللي حصل واحدة واحدة.</p>
 <p>هكتبلكم الماسدج بتاعة اللوجز بس:</p>
+</div>
 <div class="highlight"><pre><span></span><code>"msg": "query packages.ubuntu.com A 10.20.40.53"
 "msg": "audit: write /var/lib/app/config.json"
 "msg": "container create name=debugger image=alpine:3.20"
@@ -2092,6 +2111,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 "msg": "type=EXECVE nsenter -t 1 -m -u -i -n -p /bin/bash"
 "msg": "type=PATH name=/etc/shadow"
 </code></pre></div>
+<div class="rtl-content">
 <p>طيب أول واحدة وهي:</p>
 <p>“msg”: “query packages.ubuntu.com A 10.20.40.53”</p>
 <p>ودي حاجة Legit بيبحث عن تحديثات والموقع صحيح فعلاً، يبقى دي برا السكوب اللي شاكين فيه، نشوف اللي بعد كدا.</p>
@@ -2136,7 +2156,9 @@ The alert is only the starting point. Your job is to uncover the full incident u
 </code></pre></div>
 <p>و.cache دا ملف الكاش المخفي في لينكس والنقطة يعني الملف مخفي</p>
 <p>فليه حد هيخبي سكربت هناك؟</p>
-<div class="highlight"><pre><span></span><code>{
+<div class="highlight"><pre><span></span><code>&lt;/div&gt;
+
+{
   "time": "2026-09-22 07:13:13.000 UTC",
   "host": "WEB-01 Ubuntu 24.04",
   "source": "auditd",
@@ -2164,6 +2186,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 </ul>
 <p>و health.php,O_CREAT|O_WRONLY يعني كريتلي ملف اسمه health.php وافتحه اكتب فيه.</p>
 <p>/var/www/html/uploads/.cache/health.php ودا المسار في ملف الهاش المخفي.</p>
+<div class="rtl-content">
 <p>هنا اتاكدنا ان دا اتاك صريح فا بنعمل كونتينمنت لكل ال hosts الي عدينا عليها لحد دلوقتي (لو بنتكتلم في الواقع وملقيناش reputation لاي حاجه)</p>
 <hr>
 <h3 id="10201020">السيرش عن الهوست 10.20.10.20</h3>
@@ -2171,6 +2194,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <p>قبل اللوجاية بتاعة worker.py اللي فوق لقيت لوجاية.</p>
 <p>الـ IP دا 203.0.113.77 عمل طلب تحميل برنامج حجم 18433 بايت يعني 18 كيلو ودا طلب كبير شوية يكفي لسكريبت، وحمله من خلال سكريبت بايثون.</p>
 <p>بس لقيت بعدها علطول:</p>
+</div>
 <div class="highlight"><pre><span></span><code>{
   "time": "2026-09-22 07:13:23.000 UTC",
   "host": "WEB-01 Ubuntu 24.04",
@@ -2196,6 +2220,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <ul>
 <li>src_ip: 203.0.113.77 — External IP الجديد</li>
 </ul>
+<div class="rtl-content">
 <p>من الآخر الاتاكر هنا رفع ملف الـ PHP في فولدر ال uploads في الكاش المخفي وشغله بـ cmd.</p>
 <p>واللوجاية اللي قبلها وآخر لوج منطقية معانا وهي:</p>
 <p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*aTJ4XimJlcAlCOo-oou9qg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*aTJ4XimJlcAlCOo-oou9qg.png"></a></p>
@@ -2252,6 +2277,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 <p>وبس كدا !</p>
 <p>ان اصبت فهو من عند الله وان اخطات فهو من نفسي والشيطان :)</p>
 </div>
+</div>
 
 
 
@@ -2272,7 +2298,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 19:03:55 UTC">October 14, 2026</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 19:19:18 UTC">October 14, 2026</span>
   </span>
 
     
