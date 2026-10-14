@@ -1,9 +1,12 @@
 ---
 date: 2026-08-27
 ---
+
 # Active Directory (AD) والـ Kerberos Protocol Attacks
 
 <!-- more -->
+
+<div class="rtl-content" markdown>
 
 مش حوار CVE جديد بس موضوع مهم اوي في ال cyber security وهو ال Active Directory (AD) والـ Attacks بتاعته بالتحديد Kerberos Protocol
 
@@ -105,3 +108,5 @@ date: 2026-08-27
 وبس كدا
 
 *ان أصبت فهو من عند الله وان اخطأت فهو من نفسي والشيطان :)*
+
+</div>

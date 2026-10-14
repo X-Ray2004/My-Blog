@@ -4,8 +4,9 @@ hide:
   - toc
   - path
 ---
+[Remember, From the River to the Sea Palestine Will be Free !](./index.md){ .md-button }
 # Reem Khalid (VampireXRAY)
-I am Reem, a cybersecurity analyst specializing in malware analysis and threat detection. I created this blog to share technical insights, reverse engineering research, and practical security expertise
+I am Reem, From Egypt, a cybersecurity analyst specializing in malware analysis and threat detection. I created this blog to share technical insights, reverse engineering research, and practical security expertise
 
 <div class="rtl-content" markdown>
 عاملين اي انا ريم, 

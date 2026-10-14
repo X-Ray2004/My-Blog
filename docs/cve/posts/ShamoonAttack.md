@@ -1,9 +1,12 @@
 ---
-date: 2025-01-02
+date: 2025-01-12
 ---
+
 # Dissecting the Shamoon Attack
 
 <!-- more -->
+
+[🇪🇬 اقرأ بالعربي](../ShamoonAttack-ar.md){ .md-button }
 
 ### A Technical Analysis of a Destructive Cyber Campaign
 
