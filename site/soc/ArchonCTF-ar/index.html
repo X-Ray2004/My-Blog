@@ -1,0 +1,2384 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Just My Articles">
+      
+      
+        <meta name="author" content="ReemKhalid">
+      
+      
+        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/soc/ArchonCTF-ar/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>ArchonCTF ar - VampireXRAY Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Cairo";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#linux-soc-investigation-how-can-you-reach-host-from-the-container" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="VampireXRAY Blog" class="md-header__button md-logo" aria-label="VampireXRAY Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.75 8S5 7 8 9c0 0 .5 3.75 2.5 3.75V11s.5 1 1.5 1 1.5-1 1.5-1v1.75C15.5 12.75 16 9 16 9c3-2 7.25-1 7.25-1-2 1-2.25 4.5-2.25 4.5-4 0-4 3.25-4 3.25-5-1-5 2.75-5 2.75s0-3.75-5-2.75c0 0 0-3.25-4-3.25C3 12.5 2.75 9 .75 8"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VampireXRAY Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              ArchonCTF ar
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../cve/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CVE Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../books/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Summaries
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  SOC Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../ctf/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CTF Writeups
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../other/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Other
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="VampireXRAY Blog" class="md-nav__button md-logo" aria-label="VampireXRAY Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.75 8S5 7 8 9c0 0 .5 3.75 2.5 3.75V11s.5 1 1.5 1 1.5-1 1.5-1v1.75C15.5 12.75 16 9 16 9c3-2 7.25-1 7.25-1-2 1-2.25 4.5-2.25 4.5-4 0-4 3.25-4 3.25-5-1-5 2.75-5 2.75s0-3.75-5-2.75c0 0 0-3.25-4-3.25C3 12.5 2.75 9 .75 8"></path></svg>
+
+    </a>
+    VampireXRAY Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CVE Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summaries
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summaries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/SansSEC450-Notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SansSEC450-Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SansSEC450-Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/SansSEC450-Notes/chapter-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../books/cloud/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Fundamentals AWS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cloud Fundamentals AWS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../books/cloud/chapter-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOC Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ctf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF Writeups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../other/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#linux-soc-investigation-how-can-you-reach-host-from-the-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Linux Soc Investigation : How Can YOu rEach Host From The Container
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Linux Soc Investigation : How Can YOu rEach Host From The Container">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cyber-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        بسم الله — حوار أو جريمة جديدة في الـ Cyber Security
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#machines" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        لو دخلنا على التشالنج هنلاقي ماب بكل الـ Machines اللي عندنا في النتورك.
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="لو دخلنا على التشالنج هنلاقي ماب بكل الـ Machines اللي عندنا في النتورك.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alert" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        تحليل الـ Alert
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-source-wazuh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Source: Wazuh
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#severity-high" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Severity: HIGH
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time-september-22-2026071450-utc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Time: September 22, 2026–07:14:50 UTC
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#alert-message" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alert Message
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        أول لوج منطقي ومريب (الدقيقة 14)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ip-10202010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        أولاً: نسيرش عن الـ IP 10.20.20.10
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#svc_sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ثانياً: نسيرش إيه المستخدم دا وعمل إيه svc_sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iocs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        الـ IOCs الحالية
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jump-01-10204010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        نبدأ بـ JUMP-01 (10.20.40.10)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        اللوج الأول: إنشاء الخدمة
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        اللوج التاني: كتابة ملف الخدمة
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dns-query" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        اللوجاية التالتة: DNS Query
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2030113120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        السيرش عن 203.0.113.120
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zeek" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        اللوج الأول: Zeek
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#firewall" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        اللوج التاني: Firewall
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        اللوج التالت
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#public-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        سؤال جديد: جاب الـ Public Key منين؟
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-escape" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        تفسير التكنيك (Container Escape)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        طب ازاي دخل Docker؟
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10201020" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        السيرش عن الهوست 10.20.10.20
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ioc-203011377" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        آخر IOC: 203.0.113.77
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        طيب إيه التايم لاين بتاع الأتاك بعد التوهة دي كلها؟
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071304-web-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:04 اتصال المهاجم بـ WEB-01
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071308-apiv1upload" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:08 رفع ملف خبيث عبر /api/v1/upload
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071311-workerpy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:11 تشغيل worker.py
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071313-web-shell-healthphp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:13 إنشاء Web Shell (health.php)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071319-id-web-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:19 تنفيذ أمر id عبر Web Shell
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071330-docker-docker-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:30 إنشاء حاوية Docker مميزة على DOCKER-01
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071335" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:35 يكشف ربط نظام ملفات المضيف
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071340-nsenter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:40 الهروب من الحاوية عبر nsenter
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071345-etcshadow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:45 قراءة /etc/shadow
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071356-ssh-deploy-jump-01" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:13:56 SSH ناجح للمستخدم deploy إلى JUMP-01
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071401-usermod" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:01 محاولة usermod (فشلت)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071404-svc_sync" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:04 إنشاء svc_sync
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071408-svc_sync-sudo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:08 إضافة svc_sync إلى sudo
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071413-system-updateservice" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:13 تفعيل system-update.service
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071416" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:16 كتابة ملف الخدمة
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071428-dns-cdn-sync-updatecom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:28 استعلام DNS لـ cdn-sync-update.com
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071434-c2-2030113120443" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:34 اتصال C2 بـ 203.0.113.120:443
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071442" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:42 جدار الحماية يسمح بالاتصال
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071450-wazuh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:14:50 Wazuh يطلق التنبيه
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#071502-ssh-svc_sync-2030113120" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        07:15:02 SSH ناجح لـ svc_sync من 203.0.113.120
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>ArchonCTF ar</h1>
+
+<!-- more --><div class="rtl-content">
+<h2 id="linux-soc-investigation-how-can-you-reach-host-from-the-container">Linux Soc Investigation : How Can YOu rEach Host From The Container</h2>
+<h3 id="cyber-security">بسم الله — حوار أو جريمة جديدة في الـ Cyber Security</h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="../images/ArchonCTF-ar/1791997108698.png" data-desc-position="bottom"><img alt="1791997108698" src="../images/ArchonCTF-ar/1791997108698.png"></a></p>
+<p>أغلبنا كـ SOC Analyst أول حاجة بندور عليها هي الـ investigations على ويندوز — والـ AD وإلخ، لأن دا الشائع.. بس اللي متأكدين منه إن عدد مش قليل من السيرفرات أساسها لينكس.</p>
+<p>دا مش هوك وربنا دا بكلمكم بأمانة أنا معرفش ولا قرأت أي حاجة قبل كدا لسيناريوهات على لينكس وبقالي فترة بدور على سيناريوهات كويسة شاملة أغلب الـ Cyber Kill Chain.</p>
+<p>فأنا من يومين كنت شاركت في CTF SOC Investigation لشركة Archon Vanguard، وفعلاً الـ CTF كانت قريبة جداً جداً من الواقع وحتى اقرب من منصات ال Labs</p>
+<p>وكان الـ Challenge Linux واستفدت جداً وحبيت أشارك معاكوا السيناريو.</p>
+<p>للأمانة أنا استعنت في بعض المعلومات من الـ AI في الحل، عشان زي ما قلت معرفش أي حاجة عن اللينكس.</p>
+<p>طولت عليكم، بسم الله والتشالنج كان بيقول:</p>
+<div class="highlight"><pre><span></span><code>Alert Source: Wazuh
+Severity: HIGH
+Time: September 22, 2026 — 07:14:50 UTC
+Alert Message:
+Multiple suspicious Linux account and command events observed.
+The alert is only the starting point. Your job is to uncover the full incident using the available logs.
+</code></pre></div>
+<p>وحل التشالنج ريبورت الـ investigation بالأقسام دي:</p>
+<ul>
+<li>Incident Identification</li>
+<li>Executive Summary</li>
+<li>Initial Detection</li>
+<li>Attack Timeline</li>
+<li>Attack Chain Analysis</li>
+<li>Technical Investigation</li>
+<li>Affected Assets &amp; Scope</li>
+<li>Indicators of Compromise</li>
+<li>MITRE ATT&amp;CK Mapping</li>
+<li>Decoy / Benign Activity Assessment</li>
+<li>Root Cause Analysis</li>
+<li>Impact Assessment</li>
+<li>Containment, Eradication &amp; Recovery</li>
+<li>Detection Gaps &amp; Recommendations</li>
+<li>Final Assessment</li>
+</ul>
+<p>بس إحنا هنشرح المايندسيت للحل عادي، وفي الآخر نشوف اللي ناقصنا.</p>
+<h2 id="machines">لو دخلنا على التشالنج هنلاقي ماب بكل الـ Machines اللي عندنا في النتورك.</h2>
+<h3 id="alert">تحليل الـ Alert</h3>
+<p>نبدأ أول حاجة نحلل الـ Alert، وتحت كل سطر نكتب شرحه.</p>
+<h3 id="alert-source-wazuh">Alert Source: Wazuh</h3>
+<p>Wazuh هو نظام SIEM + HIDS</p>
+<ul>
+<li>SIEM: بيجمع اللوجز من كل الأجهزة ويحللها.</li>
+<li>HIDS: بيراقب كل جهاز لوحده (ملفات، حسابات، عمليات).</li>
+</ul>
+<p>وهتلاقي في الماب WAZUH-MGR-01 اللي هو Wazuh Agent.</p>
+<h3 id="severity-high">Severity: HIGH</h3>
+<h3 id="time-september-22-2026071450-utc">Time: September 22, 2026–07:14:50 UTC</h3>
+<p>دا أول حاجة مهمة معانا عشان نبدأ نحدد الـ Scope.</p>
+<h3 id="alert-message">Alert Message</h3>
+<blockquote>
+<p>Multiple suspicious Linux account and command events observed.</p>
+</blockquote>
+<p>يعني فيه حسابات اتغيرت (useradd, usermod, group_add) — فيه أوامر اتنفذت (commands) كدا يعني، أو دا المتوقع سبب الـ Alert.</p>
+<blockquote>
+<p>The alert is only the starting point. Your job is to uncover the full incident using the available logs.</p>
+</blockquote>
+<p>مفيش أي IOCs تانية، فهنبدأ باللي معانا وإننا نشوف اللوجز في سكوب الوقت اللي معانا.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*wdPVIgFgx63voYc7vJA88Q.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*wdPVIgFgx63voYc7vJA88Q.png"></a></p>
+<p>طبعاً التشالنج كان موضح إن في لوجز كتير جداً Noise، فأكيد هنلاقي لوجز كتير يهيأ لنا إنها Suspicious، لكن هنروح للخمس دقايق بتوع الـ Alert الأول ونفهم الـ SIEM شاف إيه عشان يـ Fire Alert قبل أي حاجة، وبعدين نكمل.</p>
+<p>هتلاقي كتير جداً لوجز بالشكل دا:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*9gw0ae4eG1lT7KorcDoHzA.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*9gw0ae4eG1lT7KorcDoHzA.png"></a></p>
+<p>بس لو ركزت هتلاقي إن src ip 0.0.0.0 ودا بيحصل لما تكون الأوامر على نفس الجهاز، فدي مش مشكلتنا دلوقتي إننا نقرأ 100 ألف لوج، فنشوف المهم ويتم تجاهل دول دلوقتي.</p>
+<hr>
+<h3 id="14">أول لوج منطقي ومريب (الدقيقة 14)</h3>
+<p>مع أول لوج منطقي هيقابلك في الدقيقة 14 ومريب، نبدأ نفهم ونأخد IOCs.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*9ewVMMQgIoesmO0k8zFktQ.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*9ewVMMQgIoesmO0k8zFktQ.png"></a></p>
+<ul>
+<li>الهوست اسمه “JUMP-01 Bastion” وال IP بتاعه اللي هو الـ dst_ip 10.20.40.10</li>
+<li>اللي خد اللوجاية: auditd ودا نظام لوجز Linux بيسجل كل حاجة تخص الـ syscalls</li>
+<li>الإيفنت EXECVE تنفيذ أمر (syscall)</li>
+<li>user: deploy — المستخدم اللي نفذ.</li>
+<li>process: sudo — الكوماند اللي استُخدمت.</li>
+<li>parent_process: sshd — الأب، يعني العملية اتنفذت من جلسة SSH.</li>
+<li>src_ip: 10.20.20.10 = منعرفوش</li>
+<li>dst_ip: 10.20.40.10 = JUMP-01.</li>
+<li>command: sudo usermod -aG sudo svc_sync — بيضيف مستخدم svc_sync لـ sudo.</li>
+<li>msg: نفس الأمر.</li>
+</ul>
+<p>عندنا دلوقتي أهم اتنين IOCs محتاجين نفهمهم:</p>
+<ol>
+<li>مين الـ src host؟ لأن واضح إن الـ IP داخلي — ما ممكن يكون حد من IT.</li>
+<li>إيه المستخدم دا ودنيته إيه؟ عشان اسمه غريب، وإيه اللي حصل بعد كدا على الهوست دا.</li>
+</ol>
+<h3 id="ip-10202010">أولاً: نسيرش عن الـ IP 10.20.20.10</h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*HfzGrqvwcLllMKB1G7fLwQ.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*HfzGrqvwcLllMKB1G7fLwQ.png"></a></p>
+<p>هتلاقي إنه DOCKER-01 (ملناش دعوة باللوج لأنها خارج سكوب الوقت).</p>
+<p>تمام، يعني ممكن Legit وممكن لا.</p>
+<p>إيه تاني؟ (نحاول منتوسعش بدون فايدة ونخلص اللي في إيدينا ونكتفي الآن إننا عرفنا اسم الهوست)</p>
+<h3 id="svc_sync">ثانياً: نسيرش إيه المستخدم دا وعمل إيه svc_sync</h3>
+<p>نسيرش بيه، طلعلنا أربع لوجات، فنبدأ نفهم بقا.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*racgym2PtDi8NSWTNOVGGw.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*racgym2PtDi8NSWTNOVGGw.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*k2U-yJYO1WCO-3jvjPjDFA.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*k2U-yJYO1WCO-3jvjPjDFA.png"></a></p>
+<p>أول لوجاية حللناها، خلينا نشوف الباقي</p>
+<h4 id="_1">تاني لوجاية عندي</h4>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:04.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "auth.log",
+  "severity": "INFO",
+  "event": "USER_CREATE",
+  "user": "root",
+  "process": "useradd",
+  "src_ip": "10.20.20.10",
+  "dst_ip": "10.20.40.10",
+  "action": "create_account",
+  "status": "success",
+  "program": "useradd",
+  "msg": "useradd: new user: name=svc_sync, UID=1042, GID=1042, home=/opt/svc_sync, shell=/bin/bash"
+}
+</code></pre></div>
+<ul>
+<li>USER_CREATE: حدث = إنشاء مستخدم.</li>
+<li>user: root — منفذ الأمر كـ root.</li>
+<li>process: useradd — الأداة.</li>
+<li>dst_ip: JUMP</li>
+</ul>
+<p>طيب useradd يعني بيضيف يوزر 1042 يوزر عادي (لما الـ UID في لينكس يبقى أكبر من 1000 يبقى يوزر عادي مش أدمن).</p>
+<p>فين بقا؟ home=/opt/svc_sync, shell=/bin/bash — إيه اللي جابه في opt؟ اليوزرز بيبقوا في /home.</p>
+<p>دي أول حاجة تثبت إن الموضوع Suspicious.</p>
+<p>تاني حاجة: إزاي بيضيف بيكريت يوزر جديد والمفروض في اللوجاية اللي قبل كدا كان بيضيفه لجروب (يعني المفروض موجود عشان يضيفه)؟؟</p>
+<p>الفكرة إن نظام اللوجات بتاع الـ syscall اللي اسمه auditd مبيسجلش نواتج (يعني نجح الكوماند ولا لا)، فهننقل اللوجاية التالتة يمكن نفهم.</p>
+<h4 id="_2">اللوجاية التالتة</h4>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:08.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "auditd",
+  "severity": "INFO",
+  "event": "GROUP_CHANGE",
+  "user": "root",
+  "process": "usermod",
+  "parent_process": "sudo",
+  "command": "usermod -aG sudo svc_sync",
+  "program": "usermod",
+  "msg": "group membership changed: svc_sync -&gt; sudo"
+}
+</code></pre></div>
+<p>يعني انقلي اليوزر اللي كريتناه sudo.</p>
+<p>طيب هيعمل كدا ليه إلا لو أصلاً مكنش اول لوجاية اشتغلت؟ يبقى اول كوماند خالص مكنش اشتغل</p>
+<p>التفسير اللي كتبته إن دا حاجة مش مفهومة، لكن المحتمل الاتاكر غلط مش أكتر.</p>
+<h4 id="_3">اللوجاية الرابعة</h4>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:15:02.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "auth.log",
+  "event": "SSH_SUCCESS",
+  "user": "svc_sync",
+  "process": "sshd",
+  "src_ip": "203.0.113.120",
+  "src_port": "51112",
+  "dst_ip": "10.20.40.10",
+  "dst_port": "22",
+  "msg": "sshd: Accepted publickey for svc_sync from 203.0.113.120 port 51112 ssh2"
+}
+</code></pre></div>
+<ul>
+<li>src_ip: 203.0.113.120 → IOC IP External</li>
+<li>dst_ip / dst_port: JUMP</li>
+</ul>
+<p>الـ msg بتقول إن في SSH Connection حصل على بورت 51112 لـ IP External بـ publickey.</p>
+<p>طبعاً إن يوزر يتكريت حالاً وبعدين يطلع IP خارجي، كدا تم إثبات إن الحوار Suspicious.</p>
+<p>طبعاً بتحط الـ IP على CTI بس طلع Clean، ودا منطقي عشان دا مجرد Simulation Attack لتشالنج مش حقيقي.</p>
+<hr>
+<h3 id="iocs">الـ IOCs الحالية</h3>
+<p>عندنا دلوقتي 2 IPs كـ IOCs مهمين لازم نفهم الدنيا حواليهم:</p>
+<ol>
+<li>10.20.20.10 اللي بدأ منه كريت اليوزر وعرفنا إنه DOCKER-01</li>
+<li>203.0.113.120 اللي بدأنا نشك بيه لأن اليوزر اللي اتكريت طلع عليه Connection</li>
+</ol>
+<p>وكمان نسيرش عن JUMP دا نشوف اللوجز عليه والتتابع عامل إزاي.</p>
+<hr>
+<h3 id="jump-01-10204010">نبدأ بـ JUMP-01 (10.20.40.10)</h3>
+<p>نبدأ بـ 10.20.40.10 ونأخده كـ src ip عشان نفهم هو وصله الاتاكر من الأول إزاي، ونسيرش في نفس سكوب الـ Alert في الدقيقتين 14–15 (وبالذات قبل وقت كريت اليوزر عشان نفهم إيه اللي حصل قبلها، بس منخرجش من السكوب).</p>
+<p>هتلاقي لوجات كتير، ولكن لو ركزنا على السكوب بتاع الوقت</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*ga_an40hYO5cjw0uWBRa7w.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*ga_an40hYO5cjw0uWBRa7w.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*v0O2br6j0cjh4WAbzJOrdw.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*v0O2br6j0cjh4WAbzJOrdw.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*YxgFH1KvLyd6b2NdFBsvaQ.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*YxgFH1KvLyd6b2NdFBsvaQ.png"></a></p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*wFV9XQTwXCA4xSfGp2dAeg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*wFV9XQTwXCA4xSfGp2dAeg.png"></a></p>
+<p>قبل كريت اليوزر علطول.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*ga_an40hYO5cjw0uWBRa7w.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*ga_an40hYO5cjw0uWBRa7w.png"></a></p>
+<p>منطقي الجهاز DOCKER-01 هيكريت كونكشن الأول ونجح فعلاً، أمال كريت اليوزر بعد كدا إزاي؟</p>
+<p>بعد كدا اللوجات بتاعة كريت اليوزر اللي شرحناهم.</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*0UVbQdfrTsh_DRnkvqBK9A.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*0UVbQdfrTsh_DRnkvqBK9A.png"></a></p>
+<p>بعد كدا هنلاقي كام واحدة مهمين بعد كريت اليوزر الجديد علطول.</p>
+<h3 id="_4">اللوج الأول: إنشاء الخدمة</h3>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:13.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "journal",
+  "severity": "UNIT_CREATED",
+  "event": "INFO",
+  "user": "root",
+  "process": "systemctl",
+  "src_ip": "0.0.0.0",
+  "dst_ip": "10.20.40.10",
+  "facility": "syslog",
+  "action": "install",
+  "status": "success",
+  "service": "system-update.service",
+  "command": "systemctl enable system-update.service",
+  "program": "systemctl",
+  "msg": "Created symlink /etc/systemd/system/multi-user.target.wants/system-update.service"
+}
+</code></pre></div>
+<ul>
+<li>src_ip: 0.0.0.0 → معناها كوماند على نفس الجهاز</li>
+<li>dst_ip: 10.20.40.10 → JUMP-01</li>
+</ul>
+<p>و Created symlink يعني اعملي خدمة باسم system-update.service وحطها في ملف /etc/systemd/system.</p>
+<h3 id="_5">اللوج التاني: كتابة ملف الخدمة</h3>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:16.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "auditd",
+  "severity": "INFO",
+  "event": "FILE_WRITE",
+  "user": "root",
+  "process": "bash",
+  "src_ip": "0.0.0.0",
+  "dst_ip": "10.20.40.10",
+  "facility": "security",
+  "action": "write",
+  "status": "success",
+  "command": "cat &gt; /etc/systemd/system/system-update.service",
+  "program": "bash",
+  "msg": "type=PATH name=/etc/systemd/system/system-update.service"
+}
+</code></pre></div>
+<p>تمت كتابة ملف الخدمة.</p>
+<p>طيب يا ريم ممكن خدمة عادية؟</p>
+<p>لا، الخدمات العادية للنظام بتكون في باث /lib/systemd/system/.</p>
+<p>طيب يا ريم ممكن أدمن كريت خدمة.. ممكن.</p>
+<p>بعدها بثواني..</p>
+<h3 id="dns-query">اللوجاية التالتة: DNS Query</h3>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:28.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "dns",
+  "severity": "INFO",
+  "event": "DNS_QUERY",
+  "user": "unknown",
+  "process": "systemd-resolved",
+  "src_ip": "10.20.40.10",
+  "dst_ip": "10.20.40.53",
+  "dst_port": "53",
+  "facility": "network",
+  "action": "query",
+  "status": "NOERROR",
+  "query": "cdn-sync-update.com",
+  "program": "systemd-resolved",
+  "protocol": "udp",
+  "msg": "query cdn-sync-update.com A 10.20.40.53"
+}
+</code></pre></div>
+<ul>
+<li>src_ip: 10.20.40.10 = JUMP-01. اللي عرفناه قبل كدا</li>
+<li>dst_ip: 10.20.40.53 مين دا؟</li>
+<li>status: NOERROR تم بنجاح</li>
+</ul>
+<p>اللوجاية بتقول إن 10.20.40.53 خلا الجهاز بتاع JUMP-01 يطلع DNS Query على cdn-sync-update.com.</p>
+<p>نسيرش باللينك اللي طلع عليه على VT مثلاً</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*RvveWJDY-Z53i7eRGwbaKg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*RvveWJDY-Z53i7eRGwbaKg.png"></a></p>
+<p>ملقيناش حاجة ودا طبيعي زي ما قلنا عشان Simulation، لكن دا اللي المفروض يتعمل في الحقيقة، ولو طلع Malicious بنعمل Containment فوراً.</p>
+<p>طب مين 10.20.40.53؟ نسيرش بيه كأنه src ip عشان نفهم (هو Internal يعني معانا في الشركة فنقدر نعرف مين دا).</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*Z3Iz8pd_B7JKj40xx1ghzQ.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*Z3Iz8pd_B7JKj40xx1ghzQ.png"></a></p>
+<p>بالظبط دا DNS Server الشركة (ملناش دعوة باللوج، ركز في الوقت الله يباركلك).</p>
+<p>طيب معانا cdn-sync-update.com كـ IOC أكيد، فلما نجرب نسيرش بيه في الـ SIEM عشان نعرف هل في أجهزة تانية طلعت على الـ URL دا تتعمل لها Containment لو تم تأكيد إنها Malicious.</p>
+<hr>
+<h3 id="2030113120">السيرش عن 203.0.113.120</h3>
+<p>طيب معانا كان IOC تاني، فاكره؟ الـ External IP. نسيرش بيه 203.0.113.120،</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*HLKK_WgB8EJA5nd6g3CWVg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*HLKK_WgB8EJA5nd6g3CWVg.png"></a></p>
+<p>طلعلي 3 لوجات، نشوفهم.</p>
+<h3 id="zeek">اللوج الأول: Zeek</h3>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:34.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "zeek",
+  "severity": "INFO",
+  "event": "CONN",
+  "user": "unknown",
+  "process": "systemd",
+  "src_ip": "10.20.40.10",
+  "src_port": "43512",
+  "dst_ip": "203.0.113.120",
+  "dst_port": "443",
+  "facility": "network",
+  "action": "connection",
+  "status": "SF",
+  "protocol": "tcp",
+  "msg": "service=https tls=sni=cnd-sync-update.com"
+}
+</code></pre></div>
+<ul>
+<li>source: zeek — أداة مراقبة الشبكة.</li>
+<li>event: CONN — حدث = اتصال شبكي.</li>
+<li>process: systemd — مدير النظام والخدمات في لينكس</li>
+<li>src_ip: 10.20.40.10 — JUMP-01.</li>
+<li>dst_ip: 203.0.113.120 — خارجي</li>
+<li>dst_port: 443 — HTTPS.</li>
+<li>status: SF — Success + Finished</li>
+</ul>
+<p>اللوجاية بتقول فتح اتصال TLS مع cnd-sync-update.com، أيوه بالظبط هو اللي كان معانا فوق، واستخدم systemd عشان يطلع بيها على الـ C2.</p>
+<p>هو استخدم الـ DNS الشركة بعدين طلع Public على الـ IP.</p>
+<h3 id="firewall">اللوج التاني: Firewall</h3>
+<p>طب إيه تاني log؟</p>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:14:42.000 UTC",
+  "host": "JUMP-01 Bastion",
+  "source": "firewall",
+  "event": "FLOW",
+  "process": "nftables",
+  "src_ip": "10.20.40.10",
+  "src_port": "43512",
+  "dst_ip": "203.0.113.120",
+  "dst_port": "443",
+  "action": "accept",
+  "protocol": "tcp",
+  "msg": "nftables: accept outbound tcp to 203.0.113.120:443"
+}
+</code></pre></div>
+<ul>
+<li>nftables: أداة Firewall في Linux.</li>
+</ul>
+<p>الفاير وول وافق الكونيكشن C2 attack.</p>
+<h3 id="_6">اللوج التالت</h3>
+<p>واللوجاية التالتة كانت</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*hb88vAGFeHuK06MQ9-e1Cg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*hb88vAGFeHuK06MQ9-e1Cg.png"></a></p>
+<p>أيوه بالظبط دي اللي شوفناها في الأول خالص مع اليوزر الجديد.</p>
+<hr>
+<h3 id="public-key">سؤال جديد: جاب الـ Public Key منين؟</h3>
+<p>بس في سؤال جديد هنا: طيب اتأكدنا دلوقتي إن اللي بيحصل دا ممكن احتمال كبير Attack (متأكدناش عشان مفيش Reputation واضحة للـ IOCs).</p>
+<p>هو لما هو اتاكر و External IP وبتاع، جاب منين الـ Public Key عشان يعمل الكونيكشن؟ (أه موجود Public للكل بس للـ Internal Network بس).</p>
+<p>فاكر في الأول خالص أول لوج كانت الـ src ip إيه؟ كان 10.20.20.10 وسرشنا عليه وطلع DOCKER-01.</p>
+<p>ما نسيرش بيه تاني نفهم أكتر المرادي؟ في سكوب الوقت برضو يعني خمس دقايق قبل وبعد.</p>
+<p>فنكمل سيرش مثلاً من قبل في وقت الكونيكشن على الجهاز JUMP اللي كان في حدود الدقيقة 13 اللي كان في الأول اللي كانت بالـ Public Key</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*4ad0iWdQhjAZHgPlpA4_tg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*4ad0iWdQhjAZHgPlpA4_tg.png"></a></p>
+<p>اللي هي اللوجاية دي، نبدأ من هنا نشوف اللوجز اللي قبله إيه اللي حصل واحدة واحدة.</p>
+<p>هكتبلكم الماسدج بتاعة اللوجز بس:</p>
+<div class="highlight"><pre><span></span><code>"msg": "query packages.ubuntu.com A 10.20.40.53"
+"msg": "audit: write /var/lib/app/config.json"
+"msg": "container create name=debugger image=alpine:3.20"
+"msg": "Notice A Privileged Container Was Started"
+"msg": "Notice container mounted host filesystem"
+"msg": "type=EXECVE nsenter -t 1 -m -u -i -n -p /bin/bash"
+"msg": "type=PATH name=/etc/shadow"
+</code></pre></div>
+<p>طيب أول واحدة وهي:</p>
+<p>“msg”: “query packages.ubuntu.com A 10.20.40.53”</p>
+<p>ودي حاجة Legit بيبحث عن تحديثات والموقع صحيح فعلاً، يبقى دي برا السكوب اللي شاكين فيه، نشوف اللي بعد كدا.</p>
+<p>طب بعد كدا؟ أكدب عليكم؟ أنا حطيتهم على Gemini لأن معنديش خبرة أوي في الدوكر ولينكس، بص كدا قال إيه:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*PGSdoTtqBtlcVXGpxYTjGw.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*PGSdoTtqBtlcVXGpxYTjGw.png"></a></p>
+<p>طب بص قال إيه في الآخر :))</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*eJFhZZs6VBlq7bNtmt9JyQ.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*eJFhZZs6VBlq7bNtmt9JyQ.png"></a></p>
+<p>وبعدها علطول لوجاية الكونكشن فاكرها؟</p>
+<p>طيب ما تيجي نفهم التكنيك دا أكتر؟</p>
+<h3 id="container-escape">تفسير التكنيك (Container Escape)</h3>
+<p>“msg”: “audit: write /var/lib/app/config.json”</p>
+<p>ليه يوزر عادي هيعدل أو يكتب ملف Configurations؟</p>
+<p>“msg”: “container create name=debugger image=alpine:3.20”</p>
+<p>وبعدين كريت كونتينر باسم debugger مش غريب شوية؟</p>
+<p>“msg”: “Notice A Privileged Container Was Started”</p>
+<p>وعملها Privileged لكل حاجة يعني روت من الآخر.</p>
+<p>“msg”: “Notice container mounted host filesystem”</p>
+<p>وقامت عاملة Mount يعني التسلط على الفايل سيستم الأساسي للجهاز الهوست نفسه!</p>
+<p>“msg”: “type=EXECVE nsenter -t 1 -m -u -i -n -p /bin/bash”</p>
+<ul>
+<li>-t 1 يعني العملية المستهدفة PID 1 يعني من عمليات الروت</li>
+<li>-m يعني بياخد أكسيس على بروسيس اسمه namespace اللي مسؤول عن توزيع الـ Virtual Address للبروسيس على الهوست نفسه، يعني شايفه كل حاجة على الهوست وغير الهوست حرفياً، يعني أكسيس على الميموري وكل حاجة من الآخر</li>
+<li>-n يعني بيأكسس على نظام الشبكة، يعني النتورك الأساسية للجهاز</li>
+<li>-p يعني بيشوف كل البروسيسز الموجودة حرفياً على الهوست</li>
+<li>/bin/bash يعني Terminal Shell دي الوحيدة اللي عارفنها</li>
+</ul>
+<p>“msg”: “type=PATH name=/etc/shadow”</p>
+<p>طبعاً بيأكسس على ملف هاش باسوردات كل اليوزرز.</p>
+<p>التكنيك برقم T1611 على MITRE.</p>
+<p>والتول الي كشفت اللوجات دي كانت falco اداه لمراقبه شبكه الكونتينرز على دوكر</p>
+<p>وطبعاً هنا عرفنا جاب منين الـ Public Key وكل حاجة عموماً لانه خلاص وصل للميموري من خلال namespaces operation</p>
+<hr>
+<h3 id="docker">طب ازاي دخل Docker؟</h3>
+<p>طب ماشي بس إزاي برضو دخل لـ Docker؟</p>
+<p>مين اليوزر اللي عمل الكومندات دي طيب؟ هتلاقي كلهم بعد عمل الكونتينر اليوزر في اللوجز اسمه root، بس مين اللي في وقت عمل الكونتينر</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*mgl1BCnYoOGPPGd3fvDFaA.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*mgl1BCnYoOGPPGd3fvDFaA.png"></a></p>
+<p>اليوزر كان اي ؟ www-data نسيرش بيه ممكن نوصل لحاجة؟</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*GNysw5Qo9lvQv21knvyP_w.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*GNysw5Qo9lvQv21knvyP_w.png"></a></p>
+<p>لسه يدوب بجيب سكوب الوقت لقيت worker.py وليلة سعتك.. ليه فيه سكربت بايثون مخفي؟</p>
+<p>مخفي إزاي عرفتي منين؟</p>
+<div class="highlight"><pre><span></span><code>"msg": "type=EXECVE python3 /tmp/.cache/worker.py"
+</code></pre></div>
+<p>و.cache دا ملف الكاش المخفي في لينكس والنقطة يعني الملف مخفي</p>
+<p>فليه حد هيخبي سكربت هناك؟</p>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:13:13.000 UTC",
+  "host": "WEB-01 Ubuntu 24.04",
+  "source": "auditd",
+  "severity": "INFO",
+  "event": "FILE_WRITE",
+  "user": "www-data",
+  "process": "python3",
+  "parent_process": "nginx",
+  "src_ip": "0.0.0.0",
+  "dst_ip": "10.20.10.20",
+  "facility": "security",
+  "action": "write",
+  "status": "success",
+  "command": "open(/var/www/html/uploads/.cache/health.php,O_CREAT|O_WRONLY)",
+  "program": "python3",
+  "msg": "type=PATH item=/var/www/html/uploads/.cache/health.php"
+}
+</code></pre></div>
+<ul>
+<li>event: FILE_WRITE — اكتب فايل</li>
+<li>process: python3 — سكربت بايثون</li>
+<li>parent_process: nginx — سيرفر الويب اللي عمل كدا (الكونتينر)</li>
+<li>dst_ip: 10.20.10.20 — هوست جديد هنسيرش عنه بعدين</li>
+<li>status: success — نجح</li>
+</ul>
+<p>و health.php,O_CREAT|O_WRONLY يعني كريتلي ملف اسمه health.php وافتحه اكتب فيه.</p>
+<p>/var/www/html/uploads/.cache/health.php ودا المسار في ملف الهاش المخفي.</p>
+<p>هنا اتاكدنا ان دا اتاك صريح فا بنعمل كونتينمنت لكل ال hosts الي عدينا عليها لحد دلوقتي (لو بنتكتلم في الواقع وملقيناش reputation لاي حاجه)</p>
+<hr>
+<h3 id="10201020">السيرش عن الهوست 10.20.10.20</h3>
+<p>طب هل في حاجة تانية؟ نسيرش بالهوست يمكن نفهم؟ 10.20.10.20</p>
+<p>قبل اللوجاية بتاعة worker.py اللي فوق لقيت لوجاية.</p>
+<p>الـ IP دا 203.0.113.77 عمل طلب تحميل برنامج حجم 18433 بايت يعني 18 كيلو ودا طلب كبير شوية يكفي لسكريبت، وحمله من خلال سكريبت بايثون.</p>
+<p>بس لقيت بعدها علطول:</p>
+<div class="highlight"><pre><span></span><code>{
+  "time": "2026-09-22 07:13:23.000 UTC",
+  "host": "WEB-01 Ubuntu 24.04",
+  "source": "zeek",
+  "severity": "INFO",
+  "event": "HTTP",
+  "user": "unknown",
+  "process": "systemd",
+  "src_ip": "203.0.113.77",
+  "src_port": "50102",
+  "dst_ip": "10.20.10.20",
+  "dst_port": "443",
+  "facility": "network",
+  "action": "http",
+  "status": "200",
+  "uri": "/uploads/.cache/health.php?cmd=id"شغله,
+  "http_method": "GET",
+  "http_status": "200",
+  "protocol": "tcp",
+  "msg": "method=GET host=web01 uri=/uploads/.cache/health.php?cmd=id status=200"
+}
+</code></pre></div>
+<ul>
+<li>src_ip: 203.0.113.77 — External IP الجديد</li>
+</ul>
+<p>من الآخر الاتاكر هنا رفع ملف الـ PHP في فولدر ال uploads في الكاش المخفي وشغله بـ cmd.</p>
+<p>واللوجاية اللي قبلها وآخر لوج منطقية معانا وهي:</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*aTJ4XimJlcAlCOo-oou9qg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*aTJ4XimJlcAlCOo-oou9qg.png"></a></p>
+<p>قدر يعمل كونيكشن من خلال HTTPS ونجح.</p>
+<hr>
+<h3 id="ioc-203011377">آخر IOC: 203.0.113.77</h3>
+<p>فاضل بس آخر IOC عشان نكون عملنا اللي علينا، نسيرش عن 203.0.113.77.</p>
+<p>لقينا محاولات Access على أجهزة شبكة الشركة</p>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*255kfOjh2hptJ-bsunoavw.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*255kfOjh2hptJ-bsunoavw.png"></a></p>
+<p>بس كلها محاولات قديمة جداً فواضح إنها Noise.</p>
+<p>وكدا الخط اتسد بعد ما سرشنا عن كل حاجة.</p>
+<hr>
+<h3 id="_7">طيب إيه التايم لاين بتاع الأتاك بعد التوهة دي كلها؟</h3>
+<h3 id="071304-web-01">07:13:04 اتصال المهاجم بـ WEB-01</h3>
+<p>المهاجم (عنوانه 203.0.113.77) فتح اتصال HTTPS مع السيرفر WEB-01 الي هو 10.20.10.20 على البورت 443. ده أول اتصال في السلسلة، وده اللي بدأ كل حاجة. لسه مفيش حاجة غلط، مجرد اتصال عادي من بره.</p>
+<h3 id="071308-apiv1upload">07:13:08 رفع ملف خبيث عبر /api/v1/upload</h3>
+<p>بعدين المهاجم بعت طلب POST على مسار /api/v1/upload وده معناه إنه رفع ملف. الملف حجمه 18,433 بايت، والـ User-Agent بتاعه python-requests/2.31.0 يعني مش متصفح عادي، ده برنامج بيشتغل أوتوماتيك. الرد كان 200 يعني الرفع نجح. ده أول مؤشر على استغلال ثغرة في خاصية رفع الملفات.</p>
+<h3 id="071311-workerpy">07:13:11 تشغيل worker.py</h3>
+<p>بعد الرفع بـ 3 ثواني، nginx (سيرفر الويب) شغّل ملف اسمه worker.py موجود في /tmp/.cache/. ده مش طبيعي لأن nginx عادةً مابيشغلش Python مباشرة. ده معناه إن الملف اللي اترفع خلّى nginx ينفذ كود.</p>
+<h3 id="071313-web-shell-healthphp">07:13:13 إنشاء Web Shell (health.php)</h3>
+<p>و worker.py (اللي اشتغل) كتب ملف جديد اسمه health.php في المسار /var/www/html/uploads/.cache/. لاحظ إنه في مجلد مخفي .cache جوه مجلد uploads وده مكان مش طبيعي لملفات PHP. الملف ده هو الـ Web Shell اللي هيسمح للمهاجم ينفذ أوامر.</p>
+<h3 id="071319-id-web-shell">07:13:19 تنفيذ أمر id عبر Web Shell</h3>
+<p>بعدين المهاجم طلب الملف health.php وحط معاه parameter اسمه cmd=id. ده معناه إنه عايز ينفذ أمر id على السيرفر. الرد كان 200 وحجمه 512 بايت، يعني الأمر اتنفذ ورجع نتيجة. ده تأكيد إن الـ Web Shell شغال.</p>
+<h3 id="071330-docker-docker-01">07:13:30 إنشاء حاوية Docker مميزة على DOCKER-01</h3>
+<p>هنا بقى على جهاز تاني اسمه DOCKER-01، المستخدم www-data (نفس اللي كان على WEB-01) أنشأ حاوية Docker اسمها debugger باستخدام صورة alpine:3.20. الأمر كان: docker run -d — privileged -v /:/host alpine:3.20. كلمة — privileged معناها الحاوية دي عندها صلاحيات كاملة، و -v /:/host معناها إن نظام ملفات الجهاز الأصلي (الهوست) مربوط جوه الكونتينر</p>
+<h3 id="071335">07:13:35 يكشف ربط نظام ملفات المضيف</h3>
+<p>اداه Falco كمان كشفت إن الحاوية ربطت نظام ملفات الهوست. الأمر اللي اتنفذ جوا الكونتينر كان mount -t proc proc /host/proc وده معناه إنها بتحضر عشان تدخل على الهوست.</p>
+<h3 id="071340-nsenter">07:13:40 الهروب من الحاوية عبر nsenter</h3>
+<p>بعدها المهاجم استخدم أمر nsenter عشان يدخل على namespaces بتاعت العملية رقم 1 (PID 1) على المضيف. الأمر: nsenter -t 1 -m -u -i -n -p /bin/bash. ده معناه إنه خرج من الكونتينر ودخل على الجهاز الأصلي نفسه. بقى عنده shell على اللهوست.</p>
+<h3 id="071345-etcshadow">07:13:45 قراءة /etc/shadow</h3>
+<p>بعد ما هرب من الكونتينر، المهاجم قرأ ملف /etc/shadow اللي فيه كلمات المرور المشفرة لكل المستخدمين على الجهاز. ده خطر كبير لأن أي حد يقدر ياخد الملف ده ويفك التشفير بعدين.</p>
+<h3 id="071356-ssh-deploy-jump-01">07:13:56 SSH ناجح للمستخدم deploy إلى JUMP-01</h3>
+<p>بعد كدا المهاجم دخل على جهاز تالت اسمه JUMP-01 (وهو الباستيون — بوابة الدخول للشبكة) باستخدام حساب اسمه deploy. الدخول كان من عنوان DOCKER-01 (10.20.20.10) باستخدام مفتاح SSH (publickey). ده معناه إنه قدر يتحرك جانبيًا من DOCKER-01 للباستيون.</p>
+<h3 id="071401-usermod">07:14:01 محاولة usermod (فشلت)</h3>
+<p>المهاجم (بحساب deploy) حاول ينفذ أمر sudo usermod -aG sudo svc_sync عشان يضيف مستخدم اسمه svc_sync لمجموعة sudo. بس المحاولة فشلت لأن المستخدم svc_sync لسه ما اتعملش. عرفنا إنها فشلت لأن مفيش حدث GROUP_CHANGE في الوقت ده، وكمان لأن بعدها بـ 3 ثواني حصل useradd.</p>
+<h3 id="071404-svc_sync">07:14:04 إنشاء svc_sync</h3>
+<p>بعدها المهاجم أنشأ المستخدم svc_sync بأمر useradd. المستخدم ده له UID 1042 و home directory في /opt/svc_sync (مش /home). ده تمويه عشان يبان كأنه خدمة نظام مش مستخدم عادي.</p>
+<h3 id="071408-svc_sync-sudo">07:14:08 إضافة svc_sync إلى sudo</h3>
+<p>المرة دي نجح الأمر usermod -aG sudo svc_sync و svc_sync بقى عضو في مجموعة sudo. ده معناه إن المستخدم ده بقى عنده صلاحيات إدارية (يقدر يعمل كل حاجة كأنه root).</p>
+<h3 id="071413-system-updateservice">07:14:13 تفعيل system-update.service</h3>
+<p>بعد كده المهاجم فعّل خدمة systemd اسمها system-update.service باستخدام systemctl enable. ده عمل symlink عشان الخدمة تشتغل تلقائيًا مع كل مرة الجهاز يعمل boot. ده نوع من أنواع الـ Persistence</p>
+<h3 id="071416">07:14:16 كتابة ملف الخدمة</h3>
+<p>المهاجم كتب ملف الخدمة نفسه في /etc/systemd/system/system-update.service باستخدام cat &gt;. الملف ده فيه تعليمات الخدمة، وأهم حاجة فيه ExecStart اللي بيقول الخدمة هتنفذ إيه. للأسف محتوى الملف مش موجود في اللوجز.</p>
+<h3 id="071428-dns-cdn-sync-updatecom">07:14:28 استعلام DNS لـ cdn-sync-update.com</h3>
+<p>جهاز JUMP-01 سأل الـ DNS عن عنوان النطاق cdn-sync-update.com. ده نطاق غريب ومش معروف، ومش نطاق داخلي. ده أول مؤشر على إن فيه اتصال بـ C2 (سيرفر تحكم) هيحصل.</p>
+<h3 id="071434-c2-2030113120443">07:14:34 اتصال C2 بـ 203.0.113.120:443</h3>
+<p>بعدين جهاز JUMP-01 فتح اتصال TLS مع العنوان 203.0.113.120 على البورت 443. العملية اللي فتحت الاتصال هي systemd، يعني الخدمة اللي اتعملت قبلها بـ 18 ثانية هي اللي بتعمل الاتصال. الـ SNI كان cnd-sync-update.com. ده تأكيد إن الخدمة دي هي C2 beacon.</p>
+<h3 id="071442">07:14:42 جدار الحماية يسمح بالاتصال</h3>
+<p>جدار الحماية (nftables) سجل إنه سمح بالاتصال الصادر ده. ده تأكيد إضافي إن الاتصال حصل فعلاً ووصل.</p>
+<h3 id="071450-wazuh">07:14:50 Wazuh يطلق التنبيه</h3>
+<p>وبعدها نظام Wazuh أطلق تنبيه بخطورة عالية (HIGH) برقم 5712. التنبيه ده جه بعد 106 ثانية من بداية الهجوم، وده متأخر يعتبر</p>
+<h3 id="071502-ssh-svc_sync-2030113120">07:15:02 SSH ناجح لـ svc_sync من 203.0.113.120</h3>
+<p>بعدها المهاجم دخل على JUMP-01 باستخدام الحساب svc_sync من العنوان الخارجي 203.0.113.120 (نفس عنوان الـ C2). ده معناه إنه نجح في إنه يعمل backdoor ويدخل من بره. وده آخر حدث في السلسلة المسجلة.</p>
+<p>وبس كدا !</p>
+<p>ان اصبت فهو من عند الله وان اخطات فهو من نفسي والشيطان :)</p>
+</div>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="October 14, 2026 19:03:55 UTC">October 14, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/VampireXray" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/reem-khalid-818b83250/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@VampireXRay/playlists" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../javascripts/bat-cursor.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>

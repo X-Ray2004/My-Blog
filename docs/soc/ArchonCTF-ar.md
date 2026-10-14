@@ -23,6 +23,8 @@ date: 2026-10-14
 
 طولت عليكم، بسم الله والتشالنج كان بيقول:
 
+</div>
+
 ```
 Alert Source: Wazuh
 Severity: HIGH
@@ -32,6 +34,7 @@ Multiple suspicious Linux account and command events observed.
 The alert is only the starting point. Your job is to uncover the full incident using the available logs.
 ```
 
+<div class="rtl-content" markdown>
 وحل التشالنج ريبورت الـ investigation بالأقسام دي:
 
 * Incident Identification
@@ -140,6 +143,8 @@ Wazuh هو نظام SIEM + HIDS
 
 #### تاني لوجاية عندي
 
+</div>
+
 ```
 {
   "time": "2026-09-22 07:14:04.000 UTC",
@@ -163,6 +168,8 @@ Wazuh هو نظام SIEM + HIDS
 * process: useradd — الأداة.
 * dst\_ip: JUMP
 
+<div class="rtl-content" markdown>
+
 طيب useradd يعني بيضيف يوزر 1042 يوزر عادي (لما الـ UID في لينكس يبقى أكبر من 1000 يبقى يوزر عادي مش أدمن).
 
 فين بقا؟ home=/opt/svc\_sync, shell=/bin/bash — إيه اللي جابه في opt؟ اليوزرز بيبقوا في /home.
@@ -174,6 +181,8 @@ Wazuh هو نظام SIEM + HIDS
 الفكرة إن نظام اللوجات بتاع الـ syscall اللي اسمه auditd مبيسجلش نواتج (يعني نجح الكوماند ولا لا)، فهننقل اللوجاية التالتة يمكن نفهم.
 
 #### اللوجاية التالتة
+
+</div>
 
 ```
 {
@@ -191,6 +200,8 @@ Wazuh هو نظام SIEM + HIDS
 }
 ```
 
+<div class="rtl-content" markdown>
+
 يعني انقلي اليوزر اللي كريتناه sudo.
 
 طيب هيعمل كدا ليه إلا لو أصلاً مكنش اول لوجاية اشتغلت؟ يبقى اول كوماند خالص مكنش اشتغل
@@ -198,6 +209,8 @@ Wazuh هو نظام SIEM + HIDS
 التفسير اللي كتبته إن دا حاجة مش مفهومة، لكن المحتمل الاتاكر غلط مش أكتر.
 
 #### اللوجاية الرابعة
+
+</div>
 
 ```
 {
@@ -218,6 +231,7 @@ Wazuh هو نظام SIEM + HIDS
 * src\_ip: 203.0.113.120 → IOC IP External
 * dst\_ip / dst\_port: JUMP
 
+<div class="rtl-content" markdown>
 الـ msg بتقول إن في SSH Connection حصل على بورت 51112 لـ IP External بـ publickey.
 
 طبعاً إن يوزر يتكريت حالاً وبعدين يطلع IP خارجي، كدا تم إثبات إن الحوار Suspicious.
@@ -264,6 +278,7 @@ Wazuh هو نظام SIEM + HIDS
 بعد كدا هنلاقي كام واحدة مهمين بعد كريت اليوزر الجديد علطول.
 
 ### اللوج الأول: إنشاء الخدمة
+</div>
 
 ```
 {
@@ -289,9 +304,11 @@ Wazuh هو نظام SIEM + HIDS
 * src\_ip: 0.0.0.0 → معناها كوماند على نفس الجهاز
 * dst\_ip: 10.20.40.10 → JUMP-01
 
+<div class="rtl-content" markdown>
 و Created symlink يعني اعملي خدمة باسم system-update.service وحطها في ملف /etc/systemd/system.
 
 ### اللوج التاني: كتابة ملف الخدمة
+</div>
 
 ```
 {
@@ -313,6 +330,7 @@ Wazuh هو نظام SIEM + HIDS
 }
 ```
 
+<div class="rtl-content" markdown>
 تمت كتابة ملف الخدمة.
 
 طيب يا ريم ممكن خدمة عادية؟
@@ -324,6 +342,7 @@ Wazuh هو نظام SIEM + HIDS
 بعدها بثواني..
 
 ### اللوجاية التالتة: DNS Query
+</div>
 
 ```
 {
@@ -351,6 +370,7 @@ Wazuh هو نظام SIEM + HIDS
 * dst\_ip: 10.20.40.53 مين دا؟
 * status: NOERROR تم بنجاح
 
+<div class="rtl-content" markdown>
 اللوجاية بتقول إن 10.20.40.53 خلا الجهاز بتاع JUMP-01 يطلع DNS Query على cdn-sync-update.com.
 
 نسيرش باللينك اللي طلع عليه على VT مثلاً
@@ -378,6 +398,7 @@ Wazuh هو نظام SIEM + HIDS
 طلعلي 3 لوجات، نشوفهم.
 
 ### اللوج الأول: Zeek
+</div>
 
 ```
 {
@@ -408,6 +429,7 @@ Wazuh هو نظام SIEM + HIDS
 * dst\_port: 443 — HTTPS.
 * status: SF — Success + Finished
 
+<div class="rtl-content" markdown>
 اللوجاية بتقول فتح اتصال TLS مع cnd-sync-update.com، أيوه بالظبط هو اللي كان معانا فوق، واستخدم systemd عشان يطلع بيها على الـ C2.
 
 هو استخدم الـ DNS الشركة بعدين طلع Public على الـ IP.
@@ -415,6 +437,7 @@ Wazuh هو نظام SIEM + HIDS
 ### اللوج التاني: Firewall
 
 طب إيه تاني log؟
+</div>
 
 ```
 {
@@ -432,6 +455,7 @@ Wazuh هو نظام SIEM + HIDS
   "msg": "nftables: accept outbound tcp to 203.0.113.120:443"
 }
 ```
+<div class="rtl-content" markdown>
 
 * nftables: أداة Firewall في Linux.
 
@@ -464,6 +488,7 @@ Wazuh هو نظام SIEM + HIDS
 اللي هي اللوجاية دي، نبدأ من هنا نشوف اللوجز اللي قبله إيه اللي حصل واحدة واحدة.
 
 هكتبلكم الماسدج بتاعة اللوجز بس:
+</div>
 
 ```
 "msg": "query packages.ubuntu.com A 10.20.40.53"
@@ -475,6 +500,7 @@ Wazuh هو نظام SIEM + HIDS
 "msg": "type=PATH name=/etc/shadow"
 ```
 
+<div class="rtl-content" markdown>
 طيب أول واحدة وهي:
 
 “msg”: “query packages.ubuntu.com A 10.20.40.53”
@@ -556,6 +582,8 @@ Wazuh هو نظام SIEM + HIDS
 فليه حد هيخبي سكربت هناك؟
 
 ```
+</div>
+
 {
   "time": "2026-09-22 07:13:13.000 UTC",
   "host": "WEB-01 Ubuntu 24.04",
@@ -586,6 +614,8 @@ Wazuh هو نظام SIEM + HIDS
 
 /var/www/html/uploads/.cache/health.php ودا المسار في ملف الهاش المخفي.
 
+
+<div class="rtl-content" markdown>
 هنا اتاكدنا ان دا اتاك صريح فا بنعمل كونتينمنت لكل ال hosts الي عدينا عليها لحد دلوقتي (لو بنتكتلم في الواقع وملقيناش reputation لاي حاجه)
 
 ---
@@ -599,6 +629,7 @@ Wazuh هو نظام SIEM + HIDS
 الـ IP دا 203.0.113.77 عمل طلب تحميل برنامج حجم 18433 بايت يعني 18 كيلو ودا طلب كبير شوية يكفي لسكريبت، وحمله من خلال سكريبت بايثون.
 
 بس لقيت بعدها علطول:
+</div>
 
 ```
 {
@@ -626,6 +657,7 @@ Wazuh هو نظام SIEM + HIDS
 
 * src\_ip: 203.0.113.77 — External IP الجديد
 
+<div class="rtl-content" markdown>
 من الآخر الاتاكر هنا رفع ملف الـ PHP في فولدر ال uploads في الكاش المخفي وشغله بـ cmd.
 
 واللوجاية اللي قبلها وآخر لوج منطقية معانا وهي:

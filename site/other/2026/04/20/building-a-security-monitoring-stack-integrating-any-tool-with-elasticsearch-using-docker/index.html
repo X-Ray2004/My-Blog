@@ -1,0 +1,2258 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Just My Articles">
+      
+      
+        <meta name="author" content="ReemKhalid">
+      
+      
+        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/other/2026/04/20/building-a-security-monitoring-stack-integrating-any-tool-with-elasticsearch-using-docker/">
+      
+      
+        <link rel="prev" href="../../../../2024/11/20/findcrypt3-ida-plugin/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../../../../assets/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Building a Security Monitoring Stack: Integrating Any Tool with Elasticsearch Using Docker - VampireXRAY Blog</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cairo:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Cairo";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../../../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#building-a-security-monitoring-stack-integrating-any-tool-with-elasticsearch-using-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../../.." title="VampireXRAY Blog" class="md-header__button md-logo" aria-label="VampireXRAY Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.75 8S5 7 8 9c0 0 .5 3.75 2.5 3.75V11s.5 1 1.5 1 1.5-1 1.5-1v1.75C15.5 12.75 16 9 16 9c3-2 7.25-1 7.25-1-2 1-2.25 4.5-2.25 4.5-4 0-4 3.25-4 3.25-5-1-5 2.75-5 2.75s0-3.75-5-2.75c0 0 0-3.25-4-3.25C3 12.5 2.75 9 .75 8"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VampireXRAY Blog
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Building a Security Monitoring Stack: Integrating Any Tool with Elasticsearch Using Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Light mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo" aria-label="Dark mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../cve/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CVE Analysis
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../../../books/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Summaries
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../soc/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  SOC Reports
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../../../../ctf/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  CTF Writeups
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="../../../../" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Other
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" hidden="">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../../.." title="VampireXRAY Blog" class="md-nav__button md-logo" aria-label="VampireXRAY Blog" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M.75 8S5 7 8 9c0 0 .5 3.75 2.5 3.75V11s.5 1 1.5 1 1.5-1 1.5-1v1.75C15.5 12.75 16 9 16 9c3-2 7.25-1 7.25-1-2 1-2.25 4.5-2.25 4.5-4 0-4 3.25-4 3.25-5-1-5 2.75-5 2.75s0-3.75-5-2.75c0 0 0-3.25-4-3.25C3 12.5 2.75 9 .75 8"></path></svg>
+
+    </a>
+    VampireXRAY Blog
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../cve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CVE Analysis
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../books/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summaries
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Summaries
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../books/SansSEC450-Notes/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SansSEC450-Notes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SansSEC450-Notes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/SansSEC450-Notes/chapter-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/SansSEC450-Notes/chapter-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/SansSEC450-Notes/chapter-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/SansSEC450-Notes/chapter-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/SansSEC450-Notes/chapter-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../../../books/cloud/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cloud Fundamentals AWS
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cloud Fundamentals AWS
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 1
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 2
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 3
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 4
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 5
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 6
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 7
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 8
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 9
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../books/cloud/chapter-10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Chapter 10
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../soc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SOC Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../../ctf/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CTF Writeups
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      <a href="../../../../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Other
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+                
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#the-universal-integration-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Universal Integration Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-5-step-integration-recipe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The 5-Step Integration Recipe
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-understanding-docker-networking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Understanding Docker Networking
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-persistent-storage-with-volumes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Persistent Storage with Volumes
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-the-tool-container-common-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: The Tool Container — Common Patterns
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-basic-container-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Basic Container Configuration
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#b-tool-specific-configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Tool-Specific Configurations
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#c-critical-configuration-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Critical Configuration Requirements
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-filebeat-the-universal-shipper" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Filebeat — The Universal Shipper
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-generic-filebeat-pattern" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        The Generic Filebeat Pattern
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-filebeat-settings-explained" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Filebeat Settings Explained
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-elasticsearch-kibana-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Elasticsearch &amp; Kibana Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-kibana-data-view-discover-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Kibana Data View &amp; Discover Setup
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-data-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Creating a Data View
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-discover" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Discover
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-integration-challenges-solutions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common Integration Challenges &amp; Solutions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenge-1-timestamp-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenge 1: Timestamp Issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenge-2-data-not-appearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenge 2: Data Not Appearing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#challenge-3-container-communication-failures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Challenge 3: Container Communication Failures
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#real-world-example-integrating-suricata-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Real-World Example: Integrating Suricata IDS
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-1-suricata-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Suricata Container
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-2-suricata-filebeat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Suricata Filebeat
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-3-elasticsearch-kibana-same-as-before" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 3: Elasticsearch &amp; Kibana (Same as before)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-4-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 4: Verification
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-5-kibana-data-view" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 5: Kibana Data View
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#step-6-results" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 6: Results
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting-flowchart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Troubleshooting Flowchart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conclusion
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+  <div class="md-content md-content--post" data-md-component="content">
+    <div class="md-sidebar md-sidebar--post" data-md-component="sidebar" data-md-type="navigation">
+      <div class="md-sidebar__scrollwrap">
+        <div class="md-sidebar__inner md-post">
+          <nav class="md-nav md-nav--primary">
+            <div class="md-post__back">
+              <div class="md-nav__title md-nav__container">
+                <a href="../../../../" class="md-nav__link">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+                  <span class="md-ellipsis">
+                    Back to index
+                  </span>
+                </a>
+              </div>
+            </div>
+            
+            <ul class="md-post__meta md-nav__list">
+              <li class="md-nav__item md-nav__item--section">
+                <div class="md-post__title">
+                  <span class="md-ellipsis">
+                    Metadata
+                  </span>
+                </div>
+                <nav class="md-nav">
+                  <ul class="md-nav__list">
+                    <li class="md-nav__item">
+                      <div class="md-nav__link">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"></path></svg>
+                        <time datetime="2026-04-20 00:00:00+00:00" class="md-ellipsis">Monday, April 20, 2026</time>
+                      </div>
+                    </li>
+                    
+                    
+                    
+                      
+                      <li class="md-nav__item">
+                        <div class="md-nav__link">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20a8 8 0 0 0 8-8 8 8 0 0 0-8-8 8 8 0 0 0-8 8 8 8 0 0 0 8 8m0-18a10 10 0 0 1 10 10 10 10 0 0 1-10 10C6.47 22 2 17.5 2 12A10 10 0 0 1 12 2m.5 5v5.25l4.5 2.67-.75 1.23L11 13V7z"></path></svg>
+                          <span class="md-ellipsis">
+                            
+                              7 min read
+                            
+                          </span>
+                        </div>
+                      </li>
+                    
+                  </ul>
+                </nav>
+              </li>
+            </ul>
+            
+          </nav>
+          
+        </div>
+      </div>
+    </div>
+    <article class="md-content__inner md-typeset">
+      
+        
+  
+
+
+
+
+<h1 id="building-a-security-monitoring-stack-integrating-any-tool-with-elasticsearch-using-docker">Building a Security Monitoring Stack: Integrating Any Tool with Elasticsearch Using Docker</h1>
+<!-- more -->
+
+<p><em>A practical guide to connecting security tools like Suricata to Elasticsearch for unified monitoring</em></p>
+<blockquote>
+<p>وما توفيقي إلا بالله :)</p>
+</blockquote>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://miro.medium.com/v2/resize:fit:875/0*1AQ0k_MN2f-PXJkf.jpg" data-desc-position="bottom"><img alt="" src="https://miro.medium.com/v2/resize:fit:875/0*1AQ0k_MN2f-PXJkf.jpg"></a></p>
+<h2 id="the-universal-integration-pattern">The Universal Integration Pattern</h2>
+<p>After integrating multiple security tools (Suricata, Packetbeat, OSQuery, and more) into my Elasticsearch stack, I noticed a repeating pattern. Here’s the framework that works for almost any tool:</p>
+<h2 id="the-5-step-integration-recipe">The 5-Step Integration Recipe</h2>
+<div class="highlight"><pre><span></span><code>1. Tool Container    → Generates security data
+2. Log Storage       → Persists the data (Docker volume)
+3. Filebeat Shipper  → Reads logs and ships to Elasticsearch
+4. Elasticsearch     → Indexes and stores events
+5. Kibana Discover   → Visualizes and analyzes data
+</code></pre></div>
+<p>Let’s break down each step.</p>
+<h2 id="step-1-understanding-docker-networking">Step 1: Understanding Docker Networking</h2>
+<p><strong>The Foundation: Bridge Network</strong></p>
+<p>Before connecting any tools, you need a shared network where all containers can communicate.</p>
+<div class="highlight"><pre><span></span><code># docker-compose.yml
+networks:
+  security-net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+</code></pre></div>
+<p><strong>What this does:</strong></p>
+<ul>
+<li>Creates an isolated network for your security stack</li>
+<li>Assigns IPs automatically (172.19.0.2, 172.19.0.3, etc.)</li>
+<li>Containers can reach each other by name (e.g., <code>elasticsearch:9200</code>)</li>
+<li>Your monitoring tools can see each other’s traffic (important for network sensors!)</li>
+</ul>
+<p><strong>Key Insight:</strong> All your containers must be on the same network to communicate. This seems obvious but is the #1 issue I see beginners face.</p>
+<h2 id="step-2-persistent-storage-with-volumes">Step 2: Persistent Storage with Volumes</h2>
+<p><strong>The Problem:</strong> Containers are ephemeral. When they restart, data is lost.</p>
+<p><strong>The Solution:</strong> Docker volumes provide persistent storage that survives container restarts.</p>
+<div class="highlight"><pre><span></span><code>volumes:
+  elasticsearch-data:   # Stores your security events (critical!)
+  suricata-logs:       # Stores Suricata's raw logs
+  tool-logs:           # Generic pattern for any tool
+</code></pre></div>
+<p><strong>Volume Types You’ll Use:</strong></p>
+<ol>
+<li>
+<p><strong>Data Volumes</strong> (for Elasticsearch):</p>
+</li>
+<li>
+<p>Stores indexed events</p>
+</li>
+<li>Location: Docker manages this (usually <code>/var/lib/docker/volumes/</code>)</li>
+<li><strong>Critical:</strong> Deleting this = losing all your data!</li>
+</ol>
+<p><strong>2. Log Volumes</strong> (for tools):</p>
+<ul>
+<li>Temporary storage for raw logs</li>
+<li>Filebeat reads from here</li>
+<li>Can be safely deleted (Elasticsearch has the data)</li>
+</ul>
+<p><strong>Best Practice:</strong> Always mount tool logs to a volume, even if you think you don’t need it. You’ll thank yourself during debugging.</p>
+<h2 id="step-3-the-tool-container-common-patterns">Step 3: The Tool Container — Common Patterns</h2>
+<p>Every security tool container needs:</p>
+<h2 id="a-basic-container-configuration">A. Basic Container Configuration</h2>
+<div class="highlight"><pre><span></span><code>your-tool:
+  image: vendor/tool:version
+  container_name: descriptive-name
+  networks:
+    - security-net
+  volumes:
+    - tool-logs:/var/log/tool
+  restart: unless-stopped
+</code></pre></div>
+<h2 id="b-tool-specific-configurations">B. Tool-Specific Configurations</h2>
+<p>Some tools need special permissions or network modes:</p>
+<p><strong>Network Sensors (Suricata, Packetbeat):</strong></p>
+<div class="highlight"><pre><span></span><code>cap_add:
+  - NET_ADMIN    # Modify network configuration
+  - NET_RAW      # Access raw packets
+network_mode: "container:target"  # Share another container's network
+</code></pre></div>
+<p><strong>Endpoint Agents (OSQuery):</strong></p>
+<div class="highlight"><pre><span></span><code>volumes:
+  - ./config.conf:/etc/tool/config.conf:ro  # Mount configuration
+  - tool-logs:/var/log/tool                 # Log output
+command: ["tool", "--config", "/etc/tool/config.conf"]
+</code></pre></div>
+<h2 id="c-critical-configuration-requirements">C. Critical Configuration Requirements</h2>
+<p>Your tool MUST:</p>
+<ol>
+<li><strong>Write logs to a known location</strong> (e.g., <code>/var/log/tool/events.log</code>)</li>
+<li><strong>Use JSON format</strong> (Elasticsearch’s native format)</li>
+<li><strong>Include timestamps</strong> in each event</li>
+<li><strong>Flush logs immediately</strong> (don’t buffer for too long)</li>
+</ol>
+<p><strong>Example OSQuery Configuration:</strong></p>
+<div class="highlight"><pre><span></span><code>{
+  "options": {
+    "logger_path": "/var/log/osquery",
+    "logger_plugin": "filesystem",
+    "log_result_events": "true"
+  }
+}
+</code></pre></div>
+<h2 id="step-4-filebeat-the-universal-shipper">Step 4: Filebeat — The Universal Shipper</h2>
+<p><strong>Why Filebeat?</strong></p>
+<ul>
+<li>Lightweight (low resource usage)</li>
+<li>Guaranteed delivery (retries on failure)</li>
+<li>Handles backpressure (won’t overwhelm Elasticsearch)</li>
+<li>Works with any log file</li>
+</ul>
+<h2 id="the-generic-filebeat-pattern">The Generic Filebeat Pattern</h2>
+<div class="highlight"><pre><span></span><code>tool-filebeat:
+  image: docker.elastic.co/beats/filebeat:8.15.0
+  container_name: tool-filebeat
+  user: root
+  volumes:
+    - tool-logs:/var/log/tool:ro    # Read-only mount!
+  networks:
+    - security-net
+  command: &gt;
+    bash -c "
+      cat &gt; /usr/share/filebeat/filebeat.yml &lt;&lt;'EOF'
+      filebeat.inputs:
+        - type: log
+          enabled: true
+          paths:
+            - /var/log/tool/*.log
+          json.keys_under_root: true
+          json.add_error_key: true
+
+      output.elasticsearch:
+        hosts: ['elasticsearch:9200']
+        index: 'tool-events-%{+yyyy.MM.dd}'
+
+      setup.ilm.enabled: false
+      setup.template.enabled: false
+      EOF
+
+      filebeat -e
+    "
+  depends_on:
+    - elasticsearch
+  restart: unless-stopped
+</code></pre></div>
+<h2 id="key-filebeat-settings-explained">Key Filebeat Settings Explained</h2>
+<p><strong>Input Configuration:</strong></p>
+<div class="highlight"><pre><span></span><code>paths:
+  - /var/log/tool/*.log    # Where to find logs
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>json.keys_under_root: true  # Flatten JSON (important!)
+# Without this:
+#   {"message": {"timestamp": "...", "alert": "..."}}
+# With this:
+#   {"timestamp": "...", "alert": "..."}json.add_error_key: true    # Track parsing errors
+</code></pre></div>
+<p><strong>Output Configuration:</strong></p>
+<div class="highlight"><pre><span></span><code>hosts: ['elasticsearch:9200']           # Container name + port
+index: 'tool-events-%{+yyyy.MM.dd}'    # Daily indices
+# Creates: tool-events-2024.01.30, tool-events-2024.01.31, etc.
+</code></pre></div>
+<p><strong>Why daily indices?</strong></p>
+<ul>
+<li>Easier to delete old data</li>
+<li>Better query performance</li>
+<li>Simpler lifecycle management</li>
+</ul>
+<h2 id="step-5-elasticsearch-kibana-setup">Step 5: Elasticsearch &amp; Kibana Setup</h2>
+<p><strong>Elasticsearch (The Storage Engine):</strong></p>
+<div class="highlight"><pre><span></span><code>elasticsearch:
+  image: docker.elastic.co/elasticsearch/elasticsearch:8.15.0
+  container_name: elasticsearch
+  environment:
+    - discovery.type=single-node
+    - xpack.security.enabled=false    # ⚠️ Dev only!
+    - "ES_JAVA_OPTS=-Xms4g -Xmx4g"   # 4GB RAM
+  ports:
+    - "9200:9200"
+  volumes:
+    - elasticsearch-data:/usr/share/elasticsearch/data
+  networks:
+    - security-net
+  restart: unless-stopped
+</code></pre></div>
+<p><strong>Important Notes:</strong></p>
+<ul>
+<li><code>xpack.security.enabled=false</code> is for development only</li>
+<li>For production: Enable authentication, use HTTPS</li>
+<li>RAM allocation: Set to 50% of available memory (max 32GB)</li>
+</ul>
+<p><strong>Kibana (The Interface):</strong></p>
+<div class="highlight"><pre><span></span><code>kibana:
+  image: docker.elastic.co/kibana/kibana:8.15.0
+  container_name: kibana
+  environment:
+    - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+  ports:
+    - "5601:5601"
+  networks:
+    - security-net
+  depends_on:
+    - elasticsearch
+  restart: unless-stopped
+</code></pre></div>
+<h2 id="step-6-kibana-data-view-discover-setup">Step 6: Kibana Data View &amp; Discover Setup</h2>
+<p>This is where many people get stuck. Here’s the correct process:</p>
+<h2 id="creating-a-data-view">Creating a Data View</h2>
+<ol>
+<li><strong>Open Kibana:</strong><a href="http://localhost:5601/">http://localhost:5601</a></li>
+<li><strong>Navigate:</strong> Menu → Stack Management → Data Views</li>
+<li><strong>Create Data View:</strong></li>
+</ol>
+<div class="highlight"><pre><span></span><code>Name: Tool Events
+   Index pattern: tool-events-*
+   Timestamp field: @timestamp
+</code></pre></div>
+<ol>
+<li><strong>Common Issues:Problem:</strong> “No matching indices found”</li>
+</ol>
+<div class="highlight"><pre><span></span><code># Check if data exists:
+   curl http://localhost:9200/tool-events-*/_count
+
+   # If count &gt; 0 but Kibana doesn't see it:
+   # Refresh the page and try again
+</code></pre></div>
+<p><strong>Problem:</strong> “Could not locate time field”</p>
+<div class="highlight"><pre><span></span><code>Cause: Your logs don't have @timestamp field
+
+   Solution: Add to Filebeat config:
+     json.keys_under_root: true
+     json.overwrite_keys: true
+
+   Or add explicit timestamp processing
+</code></pre></div>
+<h2 id="using-discover">Using Discover</h2>
+<p><strong>Select Data View:</strong> Choose “Tool Events” from dropdown</p>
+<p><strong>Set Time Range:</strong></p>
+<ul>
+<li>Top right corner</li>
+<li>Start with “Last 7 days”</li>
+<li>Adjust based on your data</li>
+</ul>
+<p><strong>Add Useful Columns:</strong></p>
+<div class="highlight"><pre><span></span><code>Common columns for security tools:
+   - @timestamp
+   - event.type
+   - source.ip
+   - destination.ip
+   - alert.signature (for IDS)
+   - message
+</code></pre></div>
+<p><strong>Filter Data:</strong></p>
+<div class="highlight"><pre><span></span><code>KQL Examples:
+   - event.type: "alert"
+   - source.ip: "192.168.1.50"
+   - alert.severity: "high"
+   - message: *SQL*injection*
+</code></pre></div>
+<h2 id="common-integration-challenges-solutions">Common Integration Challenges &amp; Solutions</h2>
+<h2 id="challenge-1-timestamp-issues">Challenge 1: Timestamp Issues</h2>
+<p><strong>Problem:</strong> Events appear at wrong time or Kibana shows “No results”</p>
+<p><strong>Root Causes:</strong></p>
+<ol>
+<li>Tool doesn’t include timestamp</li>
+<li>Timestamp format not recognized</li>
+<li>Timezone mismatch</li>
+</ol>
+<p><strong>Solutions:</strong></p>
+<div class="highlight"><pre><span></span><code># Filebeat: Add timestamp processing
+processors:
+  - timestamp:
+      field: custom_timestamp
+      target_field: "@timestamp"
+      layouts:
+        - '2006-01-02T15:04:05Z'
+        - 'UNIX'
+</code></pre></div>
+<p>Or configure tool to use ISO 8601 format:</p>
+<div class="highlight"><pre><span></span><code>2024-01-30T15:23:45.123Z  ✅ Good
+1706626425                ✅ Unix timestamp (also good)
+30/01/2024 15:23:45       ❌ Ambiguous
+</code></pre></div>
+<h2 id="challenge-2-data-not-appearing">Challenge 2: Data Not Appearing</h2>
+<p><strong>Debugging Checklist:</strong></p>
+<div class="highlight"><pre><span></span><code># 1. Check if tool is running
+docker ps | grep tool-name
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># 2. Check if logs are being written
+docker exec tool-container ls -lh /var/log/tool/# 3. Check if Filebeat sees the logs
+docker logs tool-filebeat | grep "Harvester started"# 4. Check if Elasticsearch received data
+curl http://localhost:9200/tool-events-*/_count# 5. Check Filebeat registry
+docker exec tool-filebeat cat /usr/share/filebeat/data/registry/filebeat/log.json
+</code></pre></div>
+<h2 id="challenge-3-container-communication-failures">Challenge 3: Container Communication Failures</h2>
+<p><strong>Problem:</strong> Filebeat can’t reach Elasticsearch</p>
+<p><strong>Common Causes:</strong></p>
+<div class="highlight"><pre><span></span><code># ❌ Wrong: Using localhost
+hosts: ['localhost:9200']
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># ❌ Wrong: Using host IP in container
+hosts: ['192.168.1.100:9200']# ✅ Correct: Using container name
+hosts: ['elasticsearch:9200']
+</code></pre></div>
+<p><strong>How to verify connectivity:</strong></p>
+<div class="highlight"><pre><span></span><code># From inside Filebeat container:
+docker exec tool-filebeat curl http://elasticsearch:9200
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Should return Elasticsearch version info
+</code></pre></div>
+<h2 id="real-world-example-integrating-suricata-ids">Real-World Example: Integrating Suricata IDS</h2>
+<p>Now let’s see the complete pattern in action with Suricata, a popular network intrusion detection system.</p>
+<h2 id="step-1-suricata-container">Step 1: Suricata Container</h2>
+<div class="highlight"><pre><span></span><code>suricata:
+  image: jasonish/suricata:latest
+  container_name: suricata-ids
+  cap_add:
+    - NET_ADMIN
+    - NET_RAW
+  network_mode: "container:target-container"
+  volumes:
+    - suricata-logs:/var/log/suricata
+  restart: unless-stopped
+</code></pre></div>
+<p><strong>Key Points:</strong></p>
+<ul>
+<li><code>cap_add</code>: Required for packet capture</li>
+<li><code>network_mode</code>: Attaches to another container's network interface</li>
+<li>Logs written to: <code>/var/log/suricata/eve.json</code></li>
+</ul>
+<h2 id="step-2-suricata-filebeat">Step 2: Suricata Filebeat</h2>
+<div class="highlight"><pre><span></span><code>suricata-filebeat:
+  image: docker.elastic.co/beats/filebeat:8.15.0
+  container_name: suricata-filebeat
+  user: root
+  volumes:
+    - suricata-logs:/var/log/suricata:ro
+  networks:
+    - security-net
+  command: &gt;
+    bash -c "
+      cat &gt; /usr/share/filebeat/filebeat.yml &lt;&lt;'EOF'
+      filebeat.inputs:
+        - type: log
+          enabled: true
+          paths:
+            - /var/log/suricata/eve.json
+          json.keys_under_root: true
+          json.add_error_key: true
+          fields:
+            log_type: suricata
+            sensor: ids-001
+          fields_under_root: true
+
+      output.elasticsearch:
+        hosts: ['elasticsearch:9200']
+        index: 'suricata-%{+yyyy.MM.dd}'
+
+      setup.ilm.enabled: false
+      setup.template.enabled: false
+
+      logging.level: info
+      logging.to_stderr: true
+      EOF
+
+      filebeat -e
+    "
+  depends_on:
+    - elasticsearch
+  restart: unless-stopped
+</code></pre></div>
+<p><strong>Additional Fields Explained:</strong></p>
+<div class="highlight"><pre><span></span><code>fields:
+  log_type: suricata    # Identify source
+  sensor: ids-001       # Identify specific sensor
+fields_under_root: true  # Don't nest under "fields"
+</code></pre></div>
+<h2 id="step-3-elasticsearch-kibana-same-as-before">Step 3: Elasticsearch &amp; Kibana (Same as before)</h2>
+<div class="highlight"><pre><span></span><code>elasticsearch:
+  # ... (same configuration as shown earlier)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>kibana:
+  # ... (same configuration as shown earlier)
+</code></pre></div>
+<h2 id="step-4-verification">Step 4: Verification</h2>
+<p><strong>Check Suricata Logs:</strong></p>
+<div class="highlight"><pre><span></span><code># View raw logs
+docker exec suricata-ids tail -f /var/log/suricata/eve.json
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Should see JSON events like:
+{
+  "timestamp": "2024-01-30T15:23:45.123456+0000",
+  "event_type": "alert",
+  "src_ip": "192.168.1.50",
+  "dest_ip": "172.19.0.5",
+  "alert": {
+    "signature": "ET EXPLOIT SQL Injection Attempt",
+    "severity": 1
+  }
+}
+</code></pre></div>
+<p><strong>Check Filebeat Shipping:</strong></p>
+<div class="highlight"><pre><span></span><code>docker logs suricata-filebeat
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Look for:
+# "Harvester started for file: /var/log/suricata/eve.json"
+# "Non-zero metrics in the last period"
+</code></pre></div>
+<p><strong>Query Elasticsearch:</strong></p>
+<div class="highlight"><pre><span></span><code># Count events
+curl http://localhost:9200/suricata-*/_count
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Get sample event
+curl http://localhost:9200/suricata-*/_search?size=1 | jq
+</code></pre></div>
+<h2 id="step-5-kibana-data-view">Step 5: Kibana Data View</h2>
+<p><strong>Create Data View:</strong></p>
+<div class="highlight"><pre><span></span><code>Name: Suricata IDS Events
+Index pattern: suricata-*
+Timestamp: @timestamp
+</code></pre></div>
+<p><strong>Essential Columns in Discover:</strong></p>
+<ul>
+<li>@timestamp</li>
+<li>event_type</li>
+<li>src_ip</li>
+<li>dest_ip</li>
+<li>alert.signature</li>
+<li>alert.severity</li>
+</ul>
+<p><strong>Useful Queries:</strong></p>
+<div class="highlight"><pre><span></span><code># High severity alerts
+alert.severity: 1
+</code></pre></div>
+<div class="highlight"><pre><span></span><code># Specific attack type
+alert.signature: *SQL*injection*# Source IP
+src_ip: "192.168.1.50"# Time range + filter
+@timestamp &gt;= "2024-01-30" AND event_type: "alert"
+</code></pre></div>
+<h2 id="step-6-results">Step 6: Results</h2>
+<p>After everything is running, you should see:</p>
+<p><strong>In Elasticsearch:</strong></p>
+<div class="highlight"><pre><span></span><code>$ curl http://localhost:9200/suricata-*/_count
+{"count": 45519}  # My actual results!
+</code></pre></div>
+<p><strong>In Kibana Discover:</strong></p>
+<div class="highlight"><pre><span></span><code>2,471 documents found
+(showing events from last 7 days)
+</code></pre></div>
+<div class="highlight"><pre><span></span><code>Sample event:
+@timestamp: Jan 30, 2024 @ 19:05:29.622
+src_ip: 172.19.0.8
+dest_ip: 172.19.0.5
+alert.signature: ET EXPLOIT SQL Injection SELECT FROM
+alert.severity: 1
+event_type: alert
+</code></pre></div>
+<h2 id="troubleshooting-flowchart">Troubleshooting Flowchart</h2>
+<div class="highlight"><pre><span></span><code>Data not appearing in Kibana?
+    │
+    ├─&gt; Is tool container running?
+    │   └─&gt; No: Check docker logs, fix configuration
+    │   └─&gt; Yes: Continue
+    │
+    ├─&gt; Are logs being written?
+    │   └─&gt; docker exec tool ls -lh /var/log/tool/
+    │   └─&gt; No: Check tool configuration
+    │   └─&gt; Yes: Continue
+    │
+    ├─&gt; Is Filebeat reading logs?
+    │   └─&gt; docker logs filebeat | grep "Harvester started"
+    │   └─&gt; No: Check paths, permissions
+    │   └─&gt; Yes: Continue
+    │
+    ├─&gt; Is data in Elasticsearch?
+    │   └─&gt; curl http://localhost:9200/index-*/_count
+    │   └─&gt; No: Check Filebeat connection, credentials
+    │   └─&gt; Yes: Continue
+    │
+    └─&gt; Data view configured correctly?
+        └─&gt; Check index pattern, timestamp field
+        └─&gt; Refresh field list
+</code></pre></div>
+<h2 id="conclusion">Conclusion</h2>
+<p>Integrating security tools with Elasticsearch via Docker follows a consistent pattern:</p>
+<ol>
+<li><strong>Network</strong>: Shared bridge network for communication</li>
+<li><strong>Volumes</strong>: Persistent storage for data and logs</li>
+<li><strong>Tool Container</strong>: Generates security events</li>
+<li><strong>Filebeat</strong>: Ships logs reliably to Elasticsearch</li>
+<li><strong>Data View</strong>: Makes data visible in Kibana</li>
+</ol>
+<p>Once you understand this pattern, you can integrate almost any security tool in 30–60 minutes.</p>
+<blockquote>
+<p>وبس كدا ان اصبت فهو من عند الله وان اخطأت فهو من نفسي والشيطان :)</p>
+</blockquote>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-date" title="September 27, 2026 17:56:36 UTC">September 27, 2026</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+  
+
+
+
+      
+    </article>
+  </div>
+
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+        
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer">
+        
+          
+          <a href="../../../../2024/11/20/findcrypt3-ida-plugin/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Findcrypt3 IDA Plugin">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Findcrypt3 IDA Plugin
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://x.com/VampireXray" target="_blank" rel="noopener" title="x.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/reem-khalid-818b83250/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zM102.2 96a38.5 38.5 0 1 1 0 77 38.5 38.5 0 1 1 0-77m282.1 320h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"></path></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.youtube.com/@VampireXRay/playlists" target="_blank" rel="noopener" title="www.youtube.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M549.7 124.1c-6.2-23.7-24.8-42.3-48.3-48.6C458.9 64 288.1 64 288.1 64S117.3 64 74.7 75.5c-23.5 6.3-42 24.9-48.3 48.6C15 167 15 256.4 15 256.4s0 89.4 11.4 132.3c6.3 23.6 24.8 41.5 48.3 47.8C117.3 448 288.1 448 288.1 448s170.8 0 213.4-11.5c23.5-6.3 42-24.2 48.3-47.8 11.4-42.9 11.4-132.3 11.4-132.3s0-89.4-11.4-132.3zM232.2 337.6V175.2l142.7 81.2z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../../../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.footer", "navigation.indexes", "search.suggest", "search.highlight", "content.code.copy", "content.tabs.link", "toc.follow"], "search": "../../../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+        <script src="../../../../../javascripts/bat-cursor.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
