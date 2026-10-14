@@ -9,13 +9,11 @@
         <meta name="author" content="ReemKhalid">
       
       
-        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/cve/2026/03/20/cve-202226134-the-confluence-rce-that-shook-enterprise-security/">
+        <link rel="canonical" href="https://x-ray2004.github.io/My-Blog/cve/2025/01/12/dissecting-the-shamoonattack/">
       
       
-        <link rel="prev" href="../../../../2025/01/20/blacklotus-uefi-bootkit-a-deep-dive-into-cve-202221849/">
       
-      
-        <link rel="next" href="../cve-20150311-use-after-free-vulnerability-in-adobe-flash-player-exploited-qadars-bankingtrojan/">
+        <link rel="next" href="../../../02/22/blacklotus-uefi-bootkit-a-deep-dive-into-cve-202221849/">
       
       
         
@@ -26,7 +24,7 @@
     
     
       
-        <title>CVE-2022–26134: The Confluence RCE That Shook Enterprise Security - VampireXRAY Blog</title>
+        <title>Dissecting the Shamoon Attack - VampireXRAY Blog</title>
       
     
     
@@ -89,7 +87,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#cve-202226134-the-confluence-rce-that-shook-enterprise-security" class="md-skip">
+        <a href="#dissecting-the-shamoon-attack" class="md-skip">
           Skip to content
         </a>
       
@@ -123,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              CVE-2022–26134: The Confluence RCE That Shook Enterprise Security
+              Dissecting the Shamoon Attack
             
           </span>
         </div>
@@ -1224,10 +1222,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
       
         <li class="md-nav__item">
-  <a href="#a-deep-dive-into-the-critical-vulnerability-that-exposed-thousands-of-organizations" class="md-nav__link">
+  <a href="#a-technical-analysis-of-a-destructive-cyber-campaign" class="md-nav__link">
     <span class="md-ellipsis">
       
-        A Deep Dive into the Critical Vulnerability That Exposed Thousands of Organizations
+        A Technical Analysis of a Destructive Cyber Campaign
       
     </span>
   </a>
@@ -1235,22 +1233,22 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#todays-discussion-might-be-a-bit-different-because-were-stepping-slightly-away-from-the-usual-territory-were-diving-into-the-remote-code-execution-rce-vulnerability-that-made-waves-in-2022-cve-202226134-classified-as-high-severity" class="md-nav__link">
+  <a href="#the-shamoon-malware-first-identified-in-2012-and-reemerging-in-2016-and-2018-represents-a-pinnacle-of-destructive-cyberattacks-targeting-critical-infrastructure-this-article-provides-a-detailed-technical-analysis-of-the-2018-shamoon-3-attack-on-a-saudi-arabian-petroleum-company-focusing-on-its-execution-payload-mechanics-and-defensive-strategies-aimed-at-cybersecurity-analysts-this-guide-includes-commands-for-investigation-and-mitigation-offering-actionable-insights-for-both-junior-and-senior-professionals" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Today’s discussion might be a bit different because we’re stepping slightly away from the usual territory. We’re diving into the remote code execution (RCE) vulnerability that made waves in 2022: CVE-2022–26134, classified as High severity.
+        The Shamoon malware, first identified in 2012 and reemerging in 2016 and 2018, represents a pinnacle of destructive cyberattacks targeting critical infrastructure. This article provides a detailed technical analysis of the 2018 Shamoon 3 attack on a Saudi Arabian petroleum company, focusing on its execution, payload mechanics, and defensive strategies. Aimed at cybersecurity analysts, this guide includes commands for investigation and mitigation, offering actionable insights for both junior and senior professionals.
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Today’s discussion might be a bit different because we’re stepping slightly away from the usual territory. We’re diving into the remote code execution (RCE) vulnerability that made waves in 2022: CVE-2022–26134, classified as High severity.">
+    <nav class="md-nav" aria-label="The Shamoon malware, first identified in 2012 and reemerging in 2016 and 2018, represents a pinnacle of destructive cyberattacks targeting critical infrastructure. This article provides a detailed technical analysis of the 2018 Shamoon 3 attack on a Saudi Arabian petroleum company, focusing on its execution, payload mechanics, and defensive strategies. Aimed at cybersecurity analysts, this guide includes commands for investigation and mitigation, offering actionable insights for both junior and senior professionals.">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#the-timeline-a-zero-day-nightmare" class="md-nav__link">
+  <a href="#the-incident-a-coordinated-strike" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Timeline: A Zero-Day Nightmare
+        The Incident: A Coordinated Strike
       
     </span>
   </a>
@@ -1258,10 +1256,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#understanding-rce-remote-code-execution" class="md-nav__link">
+  <a href="#timeline-anatomy-of-the-attack" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Understanding RCE: Remote Code Execution
+        Timeline: Anatomy of the Attack
       
     </span>
   </a>
@@ -1269,10 +1267,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#what-is-ognl" class="md-nav__link">
+  <a href="#october-911-initial-access-via-dormant-credentials" class="md-nav__link">
     <span class="md-ellipsis">
       
-        What is OGNL?
+        October 9–11: Initial Access via Dormant Credentials
       
     </span>
   </a>
@@ -1280,10 +1278,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-proof-of-concept-how-attackers-confirmed-the-vulnerability" class="md-nav__link">
+  <a href="#october-2931-lateral-movement-and-target-selection" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Proof of Concept: How Attackers Confirmed the Vulnerability
+        October 29–31: Lateral Movement and Target Selection
       
     </span>
   </a>
@@ -1291,10 +1289,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-1-execute-a-command" class="md-nav__link">
+  <a href="#november-19-command-and-control-via-winrm" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 1: Execute a Command
+        November 19: Command-and-Control via WinRM
       
     </span>
   </a>
@@ -1302,10 +1300,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-convert-the-output" class="md-nav__link">
+  <a href="#december-10-mbr-overwrite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Convert the Output
+        December 10: MBR Overwrite
       
     </span>
   </a>
@@ -1313,10 +1311,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-3-exfiltrate-via-http-header" class="md-nav__link">
+  <a href="#why-edr-failed" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 3: Exfiltrate via HTTP Header
+        Why EDR Failed
       
     </span>
   </a>
@@ -1324,10 +1322,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-complete-request-format" class="md-nav__link">
+  <a href="#malware-analysis-inside-ismexe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Complete Request Format
+        Malware Analysis: Inside ISM.exe
       
     </span>
   </a>
@@ -1335,10 +1333,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#post-exploitation-what-happened-next" class="md-nav__link">
+  <a href="#sabotage-and-evasion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Post-Exploitation: What Happened Next
+        Sabotage and Evasion
       
     </span>
   </a>
@@ -1346,10 +1344,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#real-world-exploitation-the-crypto-mining-campaign" class="md-nav__link">
+  <a href="#impact" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Real-World Exploitation: The Crypto Mining Campaign
+        Impact
       
     </span>
   </a>
@@ -1357,10 +1355,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#detection-how-to-identify-this-attack" class="md-nav__link">
+  <a href="#mitigation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Detection: How to Identify This Attack
+        Mitigation
       
     </span>
   </a>
@@ -1368,10 +1366,21 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#the-patch-how-atlassian-fixed-it" class="md-nav__link">
+  <a href="#prevention" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Patch: How Atlassian Fixed It
+        Prevention
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#boot-process-why-mbr-matters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Boot Process: Why MBR Matters
       
     </span>
   </a>
@@ -1390,10 +1399,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#closing-thoughts" class="md-nav__link">
+  <a href="#conclusion" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Closing Thoughts
+        Conclusion
       
     </span>
   </a>
@@ -1442,7 +1451,7 @@
                     <li class="md-nav__item">
                       <div class="md-nav__link">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 19H5V8h14m-3-7v2H8V1H6v2H5c-1.11 0-2 .89-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-1V1m-1 11h-5v5h5z"></path></svg>
-                        <time datetime="2026-03-20 00:00:00+00:00" class="md-ellipsis">Friday, March 20, 2026</time>
+                        <time datetime="2025-01-12 00:00:00+00:00" class="md-ellipsis">Sunday, January 12, 2025</time>
                       </div>
                     </li>
                     
@@ -1478,108 +1487,172 @@
 
 
 
-<h1 id="cve-202226134-the-confluence-rce-that-shook-enterprise-security">CVE-2022–26134: The Confluence RCE That Shook Enterprise Security</h1>
+<h1 id="dissecting-the-shamoon-attack">Dissecting the Shamoon&nbsp;Attack</h1>
 <!-- more -->
 
-<h3 id="a-deep-dive-into-the-critical-vulnerability-that-exposed-thousands-of-organizations">A Deep Dive into the Critical Vulnerability That Exposed Thousands of Organizations</h3>
-<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*T5a1LPFQnRepoLtXkrPF6g.jpeg" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*T5a1LPFQnRepoLtXkrPF6g.jpeg"></a></p>
-<blockquote>
-<p>بسم الله المعين</p>
-</blockquote>
-<p><em>Another conversation about Cyber Security before I disappear into graduation year — please keep me in your prayers for success!</em> 👋🏻</p>
-<h2 id="todays-discussion-might-be-a-bit-different-because-were-stepping-slightly-away-from-the-usual-territory-were-diving-into-the-remote-code-execution-rce-vulnerability-that-made-waves-in-2022-cve-202226134-classified-as-high-severity">Today’s discussion might be a bit different because we’re stepping slightly away from the usual territory. We’re diving into the remote code execution (RCE) vulnerability that made waves in 2022: <strong>CVE-2022–26134</strong>, classified as <strong>High severity</strong>.</h2>
-<h3 id="the-timeline-a-zero-day-nightmare">The Timeline: A Zero-Day Nightmare</h3>
-<p>In June 2022, Atlassian — the Australian software company behind popular tools like Trello — dropped a bombshell announcement. They disclosed a <strong>Zero-Day vulnerability</strong> in their Confluence platform (a content collaboration and file-sharing platform), and at that moment, there was no patch available.</p>
-<p>The security community held its breath for exactly one day. Atlassian released emergency patches the very next day, and we all hoped that would be the end of it.</p>
-<p><em>Spoiler alert: It wasn’t.</em></p>
-<p>Rapid7 quickly announced that active exploitation had already begun, with attacks targeting numerous companies and their customers. The breach window was open, and attackers were rushing through.</p>
+<p><a class="md-button" href="../../../../ShamoonAttack-ar/">🇪🇬 اقرأ بالعربي</a></p>
+<h3 id="a-technical-analysis-of-a-destructive-cyber-campaign">A Technical Analysis of a Destructive Cyber Campaign</h3>
+<h2 id="the-shamoon-malware-first-identified-in-2012-and-reemerging-in-2016-and-2018-represents-a-pinnacle-of-destructive-cyberattacks-targeting-critical-infrastructure-this-article-provides-a-detailed-technical-analysis-of-the-2018-shamoon-3-attack-on-a-saudi-arabian-petroleum-company-focusing-on-its-execution-payload-mechanics-and-defensive-strategies-aimed-at-cybersecurity-analysts-this-guide-includes-commands-for-investigation-and-mitigation-offering-actionable-insights-for-both-junior-and-senior-professionals">The Shamoon malware, first identified in 2012 and reemerging in 2016 and 2018, represents a pinnacle of destructive cyberattacks targeting critical infrastructure. This article provides a detailed technical analysis of the 2018 Shamoon 3 attack on a Saudi Arabian petroleum company, focusing on its execution, payload mechanics, and defensive strategies. Aimed at cybersecurity analysts, this guide includes commands for investigation and mitigation, offering actionable insights for both junior and senior professionals.</h2>
+<h3 id="the-incident-a-coordinated-strike">The Incident: A Coordinated Strike</h3>
+<p>On December 10, 2018, a Saudi Arabian oil production company suffered a severe attack, with 42 devices rendered inoperable and a network of approximately 15,000 devices compromised. The attack culminated in the overwriting of the Master Boot Record (MBR), making systems unbootable. This was the result of a meticulously planned, low-and-slow campaign spanning months.</p>
 <hr>
-<h3 id="understanding-rce-remote-code-execution">Understanding RCE: Remote Code Execution</h3>
-<p>First, let’s break down the acronym. <strong>RCE</strong> stands for <strong>Remote Code Execution</strong> — exactly what it sounds like, and just as dangerous.</p>
-<p>In this case, the vulnerability allowed any attacker to send HTTP requests (GET, POST, etc.) to the Confluence Server or Data Center. These requests contained <strong>OGNL payloads</strong> that would execute on the server and return responses that clearly indicated successful code execution.</p>
-<h3 id="what-is-ognl">What is OGNL?</h3>
-<p><strong>OGNL</strong> (Object-Graph Navigation Language) is a Java-based expression language with a specific format that allows direct access to Java objects. The format looks like this:</p>
-<div class="highlight"><pre><span></span><code>${code}
-</code></pre></div>
-<p>The vulnerability existed because requests were passing user-controlled URIs directly to the OGNL parser. Anyone with Burp Suite (or similar tools) could exploit this attack vector with minimal effort.</p>
-<hr>
-<h3 id="the-proof-of-concept-how-attackers-confirmed-the-vulnerability">The Proof of Concept: How Attackers Confirmed the Vulnerability</h3>
-<p>To verify the vulnerability, attackers crafted requests that would return the execution result in the HTTP response through a custom header called <strong>X-Cmd-Response</strong>.</p>
-<p>Here’s how the exploitation chain worked:</p>
-<h3 id="step-1-execute-a-command">Step 1: Execute a Command</h3>
-<div class="highlight"><pre><span></span><code>@java.lang.Runtime@getRuntime().exec("whoami").getInputStream()
-</code></pre></div>
-<p>This executes the <code>whoami</code> command and captures the output as an InputStream.</p>
-<h3 id="step-2-convert-the-output">Step 2: Convert the Output</h3>
-<div class="highlight"><pre><span></span><code>@org.apache.commons.io.IOUtils@toString(...,"utf-8")
-</code></pre></div>
-<p>This converts the InputStream to a UTF-8 String and stores it in a variable (let’s call it <strong>#a</strong>).</p>
-<h3 id="step-3-exfiltrate-via-http-header">Step 3: Exfiltrate via HTTP Header</h3>
-<div class="highlight"><pre><span></span><code>@com.opensymphony.webwork.ServletActionContext@getResponse().setHeader("X-Cmd-Response", #a)
-</code></pre></div>
-<p>This accesses the HTTP Response object and adds a new header named <code>X-Cmd-Response</code> with the value containing the command output stored in <strong>#a</strong>.</p>
-<p>All of this is wrapped in the OGNL format: <code>${...}</code></p>
-<h3 id="the-complete-request-format">The Complete Request Format</h3>
-<p>The HTTP response from the server would look something like this:</p>
-<div class="highlight"><pre><span></span><code>HTTP/1.1 200 OK
-Content-Type: text/html;charset=UTF-8
-X-Cmd-Response: confluence
-</code></pre></div>
-<p>Using the same approach, any code that establishes a reverse shell would work just as effectively. 🙂</p>
-<hr>
-<h3 id="post-exploitation-what-happened-next">Post-Exploitation: What Happened Next</h3>
-<p>Once inside, attackers had their sights set on large enterprises. We all know where this is headed, but what exactly did they do with that user access?</p>
-<h3 id="real-world-exploitation-the-crypto-mining-campaign">Real-World Exploitation: The Crypto Mining Campaign</h3>
-<p>One particularly notable exploitation campaign through this CVE involved sending malware payloads that downloaded shell script files named <strong>ro[.]sh</strong> and <strong>ap[.]sh</strong>, which subsequently established <strong>C2 (Command and Control) connections</strong>.</p>
-<p>Through the C2 channel, attackers downloaded a <strong>cryptocurrency miner</strong> — malware designed to hijack system resources for mining cryptocurrency. The sophistication was impressive:</p>
-<p><strong>Initial Setup:</strong></p>
+<h3 id="timeline-anatomy-of-the-attack">Timeline: Anatomy of the Attack</h3>
+<h3 id="october-911-initial-access-via-dormant-credentials">October 9–11: Initial Access via Dormant Credentials</h3>
+<p>Attackers exploited active administrative accounts belonging to former employees, likely through phishing or credential reuse. These accounts provided domain-level access to the network.</p>
+<p><strong>Investigation Commands</strong>:</p>
 <ul>
-<li>Disabled <code>iptables</code> (firewall rules) to maintain stealth</li>
-<li>Downloaded <strong>PwnKit</strong> for privilege escalation</li>
-<li>Loaded the <code>ap[.]sh</code> script, which disabled any competing malware on the system (how thoughtful! 🙄)</li>
+<li>Check for active accounts of former employees:</li>
 </ul>
-<p><strong>Lateral Movement:</strong></p>
+<div class="highlight"><pre><span></span><code>Get-ADUser -Filter {Enabled -eq $true} -Properties LastLogonDate,Description | Where-Object {($_.Description -like "*terminated*") -or ($_.LastLogonDate -lt (Get-Date).AddDays(-90))} | Select-Object Name,LastLogonDate
+</code></pre></div>
 <ul>
-<li>Established SSH connections to spread across the network</li>
-<li>Exploited additional hosts to maximize mining resources</li>
+<li>Review audit logs for suspicious logins:</li>
 </ul>
-<p><strong>Persistence Mechanisms:</strong></p>
+<div class="highlight"><pre><span></span><code>Get-WinEvent -LogName "Security" | Where-Object {$_.Id -eq 4624 -and $_.Properties[5].Value -like "*admin*"} | Select-Object TimeCreated,@{Name="Account";Expression={$_.Properties[5].Value}}
+</code></pre></div>
+<h3 id="october-2931-lateral-movement-and-target-selection">October 29–31: Lateral Movement and Target Selection</h3>
+<p>The attackers used PsExec for remote execution and attempted RDP brute force attacks to expand their foothold. Network discovery was conducted via SMB (Port 445) and ICMP scans to identify high-value targets.</p>
+<p><strong>Investigation Commands</strong>:</p>
 <ul>
-<li>If the host was Linux-based, the malware modified <code>/etc/ld.so.preload</code> (similar to Windows DLL files), allowing it to inject malware libraries into processes</li>
-<li>Performed comprehensive hard disk scanning to identify additional exploitation opportunities</li>
+<li>Detect PsExec usage in logs:</li>
 </ul>
-<p>And that’s it — we finally made it through! 😅</p>
+<div class="highlight"><pre><span></span><code>Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" | Where-Object {$_.Id -eq 1 -and $_.Message -like "*psexec*"} | Select-Object TimeCreated,@{Name="CommandLine";Expression={$_.Properties[10].Value}}
+</code></pre></div>
+<ul>
+<li>Identify SMB scanning activity:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Get-WinEvent -LogName "Security" | Where-Object {$_.Id -eq 445} | Select-Object TimeCreated,@{Name="SourceIP";Expression={$_.Properties[18].Value}}
+</code></pre></div>
+<ul>
+<li>Monitor ICMP traffic:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>tshark -i eth0 -f "icmp" -T fields -e frame.time -e ip.src -e ip.dst
+</code></pre></div>
+<h3 id="november-19-command-and-control-via-winrm">November 19: Command-and-Control via WinRM</h3>
+<p>Attackers leveraged Windows Remote Management (WinRM) to configure payloads and establish C2 communication with external servers.</p>
+<p><strong>Investigation Commands</strong>:</p>
+<ul>
+<li>Check for WinRM activity:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Get-WinEvent -LogName "Microsoft-Windows-WinRM/Operational" | Where-Object {$_.Id -eq 91} | Select-Object TimeCreated,@{Name="ClientIP";Expression={$_.Properties[2].Value}}
+</code></pre></div>
+<ul>
+<li>List active WinRM listeners:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>winrm enumerate winrm/config/listener
+</code></pre></div>
+<h3 id="december-10-mbr-overwrite">December 10: MBR Overwrite</h3>
+<p>On December 10, a scheduled task triggered the Shamoon payload, overwriting the MBR on 42 devices, including servers. This rendered systems unbootable, halting operations.</p>
+<p><strong>Investigation Commands</strong>:</p>
+<ul>
+<li>Identify scheduled tasks:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Get-ScheduledTask | Where-Object {$_.State -eq "Ready"} | Select-Object TaskName,TaskPath,Date
+</code></pre></div>
+<ul>
+<li>Check for MBR modifications:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>dd if=/dev/sda bs=512 count=1 | hexdump -C
+</code></pre></div>
 <hr>
-<h3 id="detection-how-to-identify-this-attack">Detection: How to Identify This Attack</h3>
-<p>The primary detection method is examining <strong>HTTP logs</strong> that reveal suspicious requests containing OGNL patterns. Look for:</p>
-<ul>
-<li>Unusual URI patterns with <code>${...}</code> syntax</li>
-<li>Requests to Confluence endpoints with embedded Java expressions</li>
-<li>Custom headers like <code>X-Cmd-Response</code> in responses</li>
-<li>Sudden outbound connections from Confluence servers</li>
-</ul>
+<h3 id="why-edr-failed">Why EDR Failed</h3>
+<p>Darktrace’s EDR detected PsExec, RDP brute force, and WinRM activity, but the attack succeeded due to:</p>
+<p>Detection Without Action : Alerts were raised but not investigated by the security team.</p>
+<p>Disabled Automation : Darktrace Antigena (autonomous response) was disabled during a trial.</p>
+<p>Human Oversight : Manual response was required but not executed in time.</p>
+<p>Low-and-Slow Approach : Gradual movement evaded detection thresholds.</p>
+<p>Time-Triggered Payload : The payload executed at a preset time, bypassing real-time intervention.</p>
 <hr>
-<h3 id="the-patch-how-atlassian-fixed-it">The Patch: How Atlassian Fixed It</h3>
-<p>The remediation was straightforward but critical:</p>
+<h3 id="malware-analysis-inside-ismexe">Malware Analysis: Inside ISM.exe</h3>
+<p><a class="glightbox" data-type="image" data-width="auto" data-height="auto" href="https://cdn-images-1.medium.com/max/1000/1*jTpMih7jImOFXfPd5xMtdg.png" data-desc-position="bottom"><img alt="" src="https://cdn-images-1.medium.com/max/1000/1*jTpMih7jImOFXfPd5xMtdg.png"></a></p>
+<p>The payload included <strong>ISM.exe</strong> (565 KB), deployed during the WinRM phase for information gathering. It collected:</p>
+<ul>
+<li>Antivirus and firewall products.</li>
+<li>System date, time, and timezone.</li>
+<li>Local domain and %username% (via systeminfo).</li>
+<li>Running processes (via tasklist).</li>
+<li>WPAD and proxy configurations.</li>
+</ul>
+<p><strong>Analysis Commands</strong>:</p>
+<ul>
+<li>Extract system information:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>systeminfo &gt; system_info.txt
+tasklist &gt; process_list.txt
+</code></pre></div>
+<ul>
+<li>Check for ISM.exe:</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Get-Process | Where-Object {$_.Path -like "*ISM.exe*"} | Select-Object Name,Path,StartTime
+</code></pre></div>
+<h3 id="sabotage-and-evasion">Sabotage and Evasion</h3>
+<p>The malware executed:</p>
+<p><strong>Process Termination</strong>: Killed winit.exe to force shutdowns.</p>
+<div class="highlight"><pre><span></span><code>taskkill /IM winit.exe /F
+</code></pre></div>
+<p><strong>Scheduled Tasks</strong>: Created tasks for persistence.</p>
+<div class="highlight"><pre><span></span><code>schtasks /create /tn "MaliciousTask" /tr "C:\malware.exe" /sc once /st 00:00
+</code></pre></div>
+<p><strong>Disabled Defenses</strong>: Blocked Windows updates and checks.</p>
+<div class="highlight"><pre><span></span><code>net stop wuauserv
+</code></pre></div>
+<p><strong>Communication Blocks</strong>: Disrupted DNS and HTTP to prevent alerts.</p>
+<div class="highlight"><pre><span></span><code>netsh advfirewall firewall add rule name="BlockDNS" dir=out protocol=udp localport=53 action=block
+</code></pre></div>
+<p><strong>Cleanup</strong>: Deleted temporary files.</p>
+<div class="highlight"><pre><span></span><code>del /q /s %TEMP%\*
+</code></pre></div>
+<hr>
+<h3 id="impact">Impact</h3>
+<p>The attack disrupted a critical petroleum company, destroying 42 devices and affecting a 15,000-device network. Recovery required extensive resources, impacting operations and finances.</p>
+<hr>
+<h3 id="mitigation">Mitigation</h3>
 <ol>
-<li><strong>Stopped translating any code within HTTP requests</strong> — preventing OGNL interpretation of user-controlled input</li>
-<li><strong>Implemented filtering for suspicious requests</strong> — blocking patterns matching OGNL injection attempts</li>
+<li><strong>Restore MBR</strong>:</li>
+<li><strong>Reinstall OS</strong>: Use a clean image after network sanitization.</li>
+<li><strong>Network Cleanup</strong>: Scan for residual malware.</li>
 </ol>
-<p>That’s it! Sometimes the simplest solutions are the most effective.</p>
+<hr>
+<h3 id="prevention">Prevention</h3>
+<ol>
+<li><strong>Disable Unnecessary Services</strong>:</li>
+<li><strong>Revoke Legacy Accounts</strong>:</li>
+<li><strong>Enforce MFA</strong>:</li>
+<li><strong>Monitor Lateral Movement</strong>:</li>
+<li><strong>Enable Autonomous Response</strong>:</li>
+<li><strong>Segment Network</strong>:</li>
+</ol>
+<hr>
+<h3 id="boot-process-why-mbr-matters">Boot Process: Why MBR Matters</h3>
+<div class="highlight"><pre><span></span><code>[Power Button]
+      ↓
+[Power Supply]
+      ↓
+[CPU → BIOS/UEFI]
+      ↓
+[POST: Hardware Check]
+      ↓
+[Boot Device]
+      ↓
+[MBR → Bootloader]   ← Shamoon Overwrites
+      ↓
+[Bootloader → Kernel]
+      ↓
+[Init → Desktop]
+</code></pre></div>
+<p>A corrupted MBR halts booting, requiring manual recovery.</p>
 <hr>
 <h3 id="key-takeaways">Key Takeaways</h3>
-<ul>
-<li><strong>Patch immediately</strong>: Zero-day vulnerabilities like this demonstrate why emergency patching procedures are essential</li>
-<li><strong>Monitor HTTP logs</strong>: Your logs are your first line of defense for detecting exploitation attempts</li>
-<li><strong>Network segmentation</strong>: Limiting lateral movement can contain breaches even when initial compromise occurs</li>
-<li><strong>Assume breach</strong>: The window between disclosure and patching is a race against time</li>
-</ul>
-<h3 id="closing-thoughts">Closing Thoughts</h3>
-<blockquote>
-<p><em>And That Set</em>
-إن أصبت فهو من عند الله و إن أخطأت فهو من نفسي و الشيطان :)
-Stay vigilant. Stay patched. Stay secure.</p>
-</blockquote>
+<ol>
+<li>EDR requires active monitoring and response.</li>
+<li>Legacy accounts are high-risk entry points.</li>
+<li>Scheduled tasks are often overlooked.</li>
+<li>Low-and-slow attacks demand vigilant SOCs.</li>
+<li>Automation is essential for real-time defense.</li>
+</ol>
+<hr>
+<h3 id="conclusion">Conclusion</h3>
+<p>The Shamoon 3 attack exemplifies the devastating potential of targeted malware. By exploiting dormant accounts, leveraging legitimate tools, and executing a time-triggered payload, attackers crippled a critical organization. This analysis, complete with investigation and mitigation commands, underscores the need for proactive defenses, automated responses, and rigorous credential management. As threats evolve, defenders must stay one step ahead to protect critical infrastructure.</p>
 
 
 
@@ -1641,31 +1714,15 @@ Stay vigilant. Stay patched. Stay secure.</p>
       
       <nav class="md-footer__inner md-grid" aria-label="Footer">
         
-          
-          <a href="../../../../2025/01/20/blacklotus-uefi-bootkit-a-deep-dive-into-cve-202221849/" class="md-footer__link md-footer__link--prev" aria-label="Previous: BlackLotus UEFI Bootkit: A Deep Dive into CVE-2022–21849">
-            <div class="md-footer__button md-icon">
-              
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
-            </div>
-            <div class="md-footer__title">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              <div class="md-ellipsis">
-                BlackLotus UEFI Bootkit: A Deep Dive into CVE-2022–21849
-              </div>
-            </div>
-          </a>
-        
         
           
-          <a href="../cve-20150311-use-after-free-vulnerability-in-adobe-flash-player-exploited-qadars-bankingtrojan/" class="md-footer__link md-footer__link--next" aria-label="Next: CVE-2015–0311, use-after-free vulnerability in Adobe Flash Player, exploited (Qadars banking Trojan)">
+          <a href="../../../02/22/blacklotus-uefi-bootkit-a-deep-dive-into-cve-202221849/" class="md-footer__link md-footer__link--next" aria-label="Next: BlackLotus UEFI Bootkit: A Deep Dive into CVE-2022–21849">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                CVE-2015–0311, use-after-free vulnerability in Adobe Flash Player, exploited (Qadars banking Trojan)
+                BlackLotus UEFI Bootkit: A Deep Dive into CVE-2022–21849
               </div>
             </div>
             <div class="md-footer__button md-icon">
