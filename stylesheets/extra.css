@@ -214,9 +214,10 @@ body {
    يتحط جوه <div class="rtl-content" markdown> في أول الملف العربي
    وبعد إننا شلنا بلجن الـi18n، بقى ده الطريقة الوحيدة اللي بتحدد
    اتجاه الصفحة، مش html[lang="ar"] اللي كانت شغالة بس مع الـi18n */
-.rtl-content {
-  direction: rtl;
-  text-align: right;
+/* كارت الكلام العربي */
+.home .rtl-content,
+.home .rtl-content p {
+  color: #ffffff !important;
 }
 
 /* قائمة "Table of contents" والـ"Metadata" جنب المقال: RTL كمان لو الصفحة فيها محتوى عربي */
@@ -225,4 +226,130 @@ body {
 .md-main__inner:has(.rtl-content) .md-nav--secondary {
   direction: rtl;
   text-align: right;
+}
+
+/* ========== Home page ========== */
+.home {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+/* البانر */
+.md-typeset .home .banner {
+  display: block;
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.02em;
+  background: linear-gradient(90deg, #1b2838, #5b3a7a) !important;
+  border: none !important;
+  border-radius: 999px;
+  margin: 0.5rem 0 2.5rem;
+}
+
+/* الاسم */
+.home h1 {
+  font-weight: 700;
+  font-size: 2.4rem;
+  margin: 0 0 0.75rem;
+  background: linear-gradient(90deg, #c9b8e8, #7d9cc9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* التعريف الإنجليزي */
+.home .intro {
+  font-size: 1.02rem;
+  line-height: 1.85;
+  color: #c8c8cf;
+}
+
+/* كارت الكلام العربي */
+.home .rtl-content {
+  direction: rtl;
+  text-align: right;
+  line-height: 2;
+  background: #25272b;
+  border-right: 3px solid #5b3a7a;
+  border-radius: 8px;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0 2.5rem;
+}
+
+
+/* عناوين الأقسام */
+.home h2 {
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: #d4d4d8;
+  margin: 2.5rem 0 1rem;
+  padding-left: 0.75rem;
+  border-left: 3px solid #5b3a7a;
+}
+
+/* كروت البلاي ليست */
+.home .card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.home .card-grid p {
+  margin: 0;
+}
+
+.md-typeset .hero-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: #1b2838;
+  border: 1px solid #2d4057;
+  border-radius: 10px;
+  color: #e5e5e5;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.md-typeset .hero-link::after {
+  content: "↗";
+  opacity: 0.6;
+  margin-left: 0.75rem;
+}
+
+.md-typeset .hero-link:hover {
+  transform: translateY(-2px);
+  border-color: #7d5aa6;
+  background: #222a45;
+  color: #ffffff;
+}
+
+/* أزرار التواصل */
+.home .pills p {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+}
+
+.md-typeset .pill {
+  padding: 0.45rem 1.1rem;
+  border: 1px solid #5b3a7a;
+  border-radius: 999px;
+  color: #d4d4d8;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.md-typeset .pill:hover {
+  background: #5b3a7a;
+  color: #ffffff;
+}
+
+/* إخفاء تاريخ آخر تحديث في الصفحة الرئيسية (اختياري) */
+.md-content:has(.home) .md-source-file {
+  display: none;
 }
