@@ -102,13 +102,14 @@ Wazuh هو نظام SIEM + HIDS
 ### أول لوج منطقي ومريب (الدقيقة 14)
 
 مع أول لوج منطقي هيقابلك في الدقيقة 14 ومريب، نبدأ نفهم ونأخد IOCs.
-</div>
+
 
 ![](https://cdn-images-1.medium.com/max/1000/1*9ewVMMQgIoesmO0k8zFktQ.png)
 
 * الهوست اسمه “JUMP-01 Bastion” وال IP بتاعه اللي هو الـ dst\_ip 10.20.40.10
 * اللي خد اللوجاية: auditd ودا نظام لوجز Linux بيسجل كل حاجة تخص الـ syscalls
 * الإيفنت EXECVE تنفيذ أمر (syscall)
+</div>
 * user: deploy — المستخدم اللي نفذ.
 * process: sudo — الكوماند اللي استُخدمت.
 * parent\_process: sshd — الأب، يعني العملية اتنفذت من جلسة SSH.
