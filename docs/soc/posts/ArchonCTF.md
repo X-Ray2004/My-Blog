@@ -57,6 +57,7 @@ And the challenge’s investigation report was solved with these sections:
 But we’ll walk through the mindset of the solution normally, and at the end we’ll see what we’re missing.
 
 If we go into the challenge, we’ll find a map of all the machines in the network.
+![alt text](image.png)
 
 ## Analyzing the Alert
 
