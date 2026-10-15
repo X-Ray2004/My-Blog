@@ -89,7 +89,56 @@
   margin: 1.5rem 0;
 }
 
-/* ---------- 4. صفحة الهوم (hero) ---------- */
+/* ---------- 4. اتجاه المقالات العربي: RTL ----------
+   يتحط جوه <div class="rtl-content" dir="rtl" markdown> في الملف العربي */
+
+.md-typeset .rtl-content {
+  direction: rtl;
+  text-align: right;
+}
+
+.md-typeset .rtl-content ul,
+.md-typeset .rtl-content ol {
+  margin-left: 0;
+  margin-right: 0.625em;
+}
+
+.md-typeset .rtl-content li {
+  margin-left: 0;
+  margin-right: 1.25em;
+}
+
+.md-typeset .rtl-content blockquote {
+  border-left: none;
+  border-right: 0.2rem solid var(--md-accent-fg-color);
+  padding-left: 0;
+  padding-right: 0.8rem;
+}
+
+/* الكود والجداول تفضل LTR جوه المحتوى العربي */
+.md-typeset .rtl-content pre,
+.md-typeset .rtl-content code,
+.md-typeset .rtl-content table {
+  direction: ltr;
+  text-align: left;
+}
+
+/* الـ admonitions جوه المحتوى العربي */
+.md-typeset .rtl-content .admonition,
+.md-typeset .rtl-content details {
+  direction: rtl;
+  text-align: right;
+}
+
+/* القوائم الجانبية (Table of contents) لو الصفحة فيها محتوى عربي */
+.md-main__inner:has(.rtl-content) .md-sidebar--secondary,
+.md-main__inner:has(.rtl-content) .md-sidebar--primary,
+.md-main__inner:has(.rtl-content) .md-nav--secondary {
+  direction: rtl;
+  text-align: right;
+}
+
+/* ---------- 5. صفحة الهوم (hero) ---------- */
 
 .md-content:has(.hero),
 .md-content__inner:has(.hero) {
@@ -105,6 +154,8 @@
   width: 100%;
   max-width: 40rem;
   padding: 2rem 1.5rem;
+  direction: rtl;
+  text-align: right;
 }
 
 .hero h1 {
@@ -125,12 +176,6 @@
   text-underline-offset: 3px;
 }
 
-/* الصفحة الرئيسية (الهيرو) عربي، فتفضل RTL حتى لو باقي الموقع بقى LTR */
-.hero {
-  direction: rtl;
-  text-align: right;
-}
-
 @media screen and (max-width: 76.1875em) {
   .md-content:has(.hero),
   .md-content__inner:has(.hero) {
@@ -140,7 +185,7 @@
   }
 }
 
-/* ---------- 5. عنوان الهيدر والأيقونة ---------- */
+/* ---------- 6. عنوان الهيدر والأيقونة ---------- */
 
 .md-header__topic {
   font-size: 1.05rem;
@@ -156,33 +201,33 @@
   width: 1.5rem;
 }
 
-/* مساحة تنفس أكبر في صف الهيدر، زي إحساس الديمو الرسمي بتاع Material for MkDocs */
+/* هيدر أرفع وأقصر */
 .md-header__inner {
-  padding: 0.2rem 0.6rem;   /* هيدر أرفع وأقصر */
+  padding: 0.2rem 0.6rem;
 }
 
-/* خط رفيع تحت الهيدر مباشرة — لمسة جمالية بسيطة */
+/* خط رفيع تحت الهيدر مباشرة */
 .md-header {
   border-bottom: 2px solid #ababab;
 }
 
-/* شريط التابس (CTF Writeups / SOC Reports / ...) موف غامق بدل الأزرق */
+/* شريط التابس موف غامق بدل الأزرق */
 .md-tabs {
   background-color: #2a1a3d;
 }
 
-/* صندوق البحث: عرض أوضح وأكبر شوية */
+/* صندوق البحث */
 .md-search__form {
   border-radius: 6px;
 }
 
-/* إخفاء شريط "التالية / السابقة" الموف اللي بيربط بين الأقسام تحت المقال */
+/* إخفاء شريط "التالية / السابقة" تحت المقال */
 .md-footer__inner {
   height: 5.3rem;
   display: none;
 }
 
-/* ---------- 6. الفوتر: موف غامق ---------- */
+/* ---------- 7. الفوتر ---------- */
 
 /* الشريط الأسفل نفسه (فيه الأيقونات وMade with) */
 .md-footer-meta {
@@ -190,18 +235,17 @@
   border-top: 2px solid #ababab;
 }
 
-/* أي جزء تاني من الفوتر (لو موجود صف فوقه لـ prev/next links) */
 .md-footer {
   background-color: #2a1a3d !important;
 }
 
-/* رجوع خلفية الصفحة نفسها للرمادي الأصلي */
+/* خلفية الصفحة نفسها */
 html,
 body {
   background-color: var(--md-default-bg-color);
 }
 
-/* ---------- 7. قائمة المدونة: العنوان نص عادي، Continue reading هو اللينك الوحيد ---------- */
+/* ---------- 8. قائمة المدونة: العنوان نص عادي، Continue reading هو اللينك الوحيد ---------- */
 
 .md-post__content h2 a {
   pointer-events: none;
@@ -210,25 +254,8 @@ body {
   color: var(--md-default-fg-color) !important;
 }
 
-/* ---------- 8. اتجاه المقالات العربي: RTL ----------
-   يتحط جوه <div class="rtl-content" markdown> في أول الملف العربي
-   وبعد إننا شلنا بلجن الـi18n، بقى ده الطريقة الوحيدة اللي بتحدد
-   اتجاه الصفحة، مش html[lang="ar"] اللي كانت شغالة بس مع الـi18n */
-/* كارت الكلام العربي */
-.home .rtl-content,
-.home .rtl-content p {
-  color: #ffffff !important;
-}
+/* ---------- 9. الصفحة الرئيسية (.home) ---------- */
 
-/* قائمة "Table of contents" والـ"Metadata" جنب المقال: RTL كمان لو الصفحة فيها محتوى عربي */
-.md-main__inner:has(.rtl-content) .md-sidebar--secondary,
-.md-main__inner:has(.rtl-content) .md-sidebar--primary,
-.md-main__inner:has(.rtl-content) .md-nav--secondary {
-  direction: rtl;
-  text-align: right;
-}
-
-/* ========== Home page ========== */
 .home {
   max-width: 760px;
   margin: 0 auto;
@@ -264,7 +291,12 @@ body {
   color: #c8c8cf;
 }
 
-/* كارت الكلام العربي */
+/* كارت الكلام العربي (نص أبيض ثابت) */
+.home .rtl-content,
+.home .rtl-content p {
+  color: #ffffff !important;
+}
+
 .home .rtl-content {
   direction: rtl;
   text-align: right;
@@ -275,7 +307,6 @@ body {
   padding: 1rem 1.25rem;
   margin: 1.5rem 0 2.5rem;
 }
-
 
 /* عناوين الأقسام */
 .home h2 {
@@ -349,7 +380,7 @@ body {
   color: #ffffff;
 }
 
-/* إخفاء تاريخ آخر تحديث في الصفحة الرئيسية (اختياري) */
+/* إخفاء تاريخ آخر تحديث في الصفحة الرئيسية */
 .md-content:has(.home) .md-source-file {
   display: none;
 }
