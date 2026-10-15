@@ -35,6 +35,7 @@ The alert is only the starting point. Your job is to uncover the full incident u
 ```
 
 <div class="rtl-content" markdown>
+
 وحل التشالنج ريبورت الـ investigation بالأقسام دي:
 
 * Incident Identification
@@ -109,7 +110,9 @@ Wazuh هو نظام SIEM + HIDS
 * الهوست اسمه “JUMP-01 Bastion” وال IP بتاعه اللي هو الـ dst\_ip 10.20.40.10
 * اللي خد اللوجاية: auditd ودا نظام لوجز Linux بيسجل كل حاجة تخص الـ syscalls
 * الإيفنت EXECVE تنفيذ أمر (syscall)
+
 </div>
+
 * user: deploy — المستخدم اللي نفذ.
 * process: sudo — الكوماند اللي استُخدمت.
 * parent\_process: sshd — الأب، يعني العملية اتنفذت من جلسة SSH.
@@ -119,6 +122,7 @@ Wazuh هو نظام SIEM + HIDS
 * msg: نفس الأمر.
 
 <div class="rtl-content" markdown>
+
 عندنا دلوقتي أهم اتنين IOCs محتاجين نفهمهم:
 
 1. مين الـ src host؟ لأن واضح إن الـ IP داخلي — ما ممكن يكون حد من IT.
