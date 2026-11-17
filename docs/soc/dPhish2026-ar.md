@@ -628,8 +628,6 @@ Answer: `6b8f21832549f4a61e66dfd910196146e152a03f00ab0b2c11f06e7c7a01025e`
 
 ## خلاصة — IOC Report
 
-![alt text](image.png)
-
 ## ملاحظات للـ Investigation الحقيقي
 
 في بعض الخطوات اللي ما استخدمناهاش — لو كنا بنعمل investigation حقيقي:
